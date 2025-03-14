@@ -30,7 +30,7 @@ class ProductRepoImpl implements ProductRepository {
     required String title,
     required String thumbnail,
     required bool isFeatured,
-    required BrandModel brand,
+    required Brand brand,
     required String description,
     required String categoryId,
     required List<String> images,

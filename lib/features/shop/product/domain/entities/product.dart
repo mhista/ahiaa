@@ -1,4 +1,5 @@
 import 'package:ahiaa/core/entities/user.dart';
+import 'package:ahiaa/features/shop/brands/data/models/brandmodel.dart';
 
 import '../../../../../core/entities/coupon.dart';
 import '../../../brands/domain/entities/brands.dart';

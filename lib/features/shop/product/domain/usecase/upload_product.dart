@@ -48,7 +48,7 @@ class ProductParams {
   final String title;
   final String thumbnail;
   final bool isFeatured;
-  final BrandModel brand;
+  final Brand brand;
   final String description;
   final String categoryId;
   final List<String> images;

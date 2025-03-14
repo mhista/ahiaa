@@ -1,10 +1,9 @@
 import 'dart:convert';
 
 import 'package:ahiaa/features/shop/product/domain/entities/product.dart';
-import 'package:flutter/foundation.dart';
 import '../../../../../core/entities/coupon.dart';
 import '../../../../../core/entities/user.dart';
-import '../../../brands/domain/entities/brands.dart';
+import '../../../brands/data/models/brandmodel.dart';
 import '../../data/models/product_attributes.dart';
 import '../../data/models/product_variations.dart';
 
@@ -95,7 +94,7 @@ class ProductModel extends Products {
     result.addAll({'date': date.toIso8601String()});
     result.addAll({'thumbnail': thumbnail});
     result.addAll({'is_featured': isFeatured});
-    result.addAll({'brand': brand.toMap()});
+    result.addAll({'brand': brand.map()});
     result.addAll({'description': description});
     result.addAll({'category_id': categoryId});
     result.addAll({'images': images});

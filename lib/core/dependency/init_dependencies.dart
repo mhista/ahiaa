@@ -1,5 +1,8 @@
 import 'package:ahiaa/core/cubits/imagePicker/image_picker.dart';
 import 'package:ahiaa/core/cubits/user/user_cubit.dart';
+import 'package:ahiaa/core/dependency/banner_dependencies.dart';
+import 'package:ahiaa/core/dependency/brand_dependencies.dart';
+import 'package:ahiaa/core/dependency/category_dependencies.dart';
 import 'package:ahiaa/core/dependency/product_dependencies.dart';
 import 'package:ahiaa/core/services/storage/storage/storage_cubit.dart';
 import 'package:ahiaa/features/auth/data/datasources/auth_remote_data_source.dart';
@@ -35,6 +38,9 @@ Future<void> initDepenedencies() async {
   await _initCubits();
   // other dependencies
   initProductDependencies();
+  initBrandDependencies();
+  initBannerDependencies();
+  initCategoryDependencies();
 }
 
 // initialize authentication

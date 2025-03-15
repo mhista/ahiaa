@@ -35,7 +35,7 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
   Future<List<String>> uploadProductImage(ProductModel product) async {
     try {
       List<String> imagesUrl = [];
-      final images = await serviceLocator<ImageCubit>().pickImage();
+      final images = serviceLocator<ImageCubit>().state;
 
       for (var image in images) {
         final imageUrl = await serviceLocator<StorageCubit>()

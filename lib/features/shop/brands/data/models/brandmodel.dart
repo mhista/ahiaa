@@ -13,6 +13,22 @@ class BrandModel extends Brand {
 
   static BrandModel empty() => BrandModel(id: '', name: '', image: '');
 
+  BrandModel copyWith({
+    String? id,
+    String? name,
+    String? image,
+    bool? isFeatured,
+    int? productsCount,
+  }) {
+    return BrandModel(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      image: image ?? this.image,
+      isFeatured: isFeatured ?? this.isFeatured,
+      productsCount: productsCount ?? this.productsCount,
+    );
+  }
+
   Map<String, dynamic> toMap() {
     final result = <String, dynamic>{};
 
@@ -20,10 +36,10 @@ class BrandModel extends Brand {
     result.addAll({'name': name});
     result.addAll({'image': image});
     if (isFeatured != null) {
-      result.addAll({'isFeatured': isFeatured});
+      result.addAll({'is_featured': isFeatured});
     }
     if (productsCount != null) {
-      result.addAll({'productsCount': productsCount});
+      result.addAll({'products_count': productsCount});
     }
 
     return result;
@@ -34,8 +50,8 @@ class BrandModel extends Brand {
       id: map['id'] ?? '',
       name: map['name'] ?? '',
       image: map['image'] ?? '',
-      isFeatured: map['isFeatured'],
-      productsCount: map['productsCount']?.toInt(),
+      isFeatured: map['is_featured'],
+      productsCount: map['products_count']?.toInt(),
     );
   }
 

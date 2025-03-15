@@ -3,7 +3,7 @@ import 'package:fpdart/fpdart.dart';
 
 import '../../../../../utils/exceptions/exceptions.dart';
 
-abstract class BrandRepository {
+abstract interface class BrandRepository {
   Future<Either<Failure, List<Brand>>> getAllBrands();
   Future<Either<Failure, Brand>> uploadBrand({
     required id,

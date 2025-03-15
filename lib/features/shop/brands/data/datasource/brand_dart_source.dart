@@ -1,3 +1,6 @@
+import 'package:ahiaa/core/cubits/imagePicker/image_picker.dart';
+import 'package:ahiaa/core/dependency/init_dependencies.dart';
+import 'package:ahiaa/core/services/storage/storage/storage_cubit.dart';
 import 'package:ahiaa/features/shop/brands/domain/entities/brands.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -6,7 +9,8 @@ import '../models/brandmodel.dart';
 
 abstract interface class BrandDataSource {
   Future<List<BrandModel>> getAllBrands();
-  Future<void> uploadData(BrandModel brands);
+  Future<BrandModel> uploadBrand(BrandModel brands);
+  Future<String> uploadBrandImage(BrandModel brand);
 }
 
 class BrandDataSourceImpl implements BrandDataSource {
@@ -26,8 +30,31 @@ class BrandDataSourceImpl implements BrandDataSource {
   }
 
   @override
-  Future<void> uploadData(BrandModel brands) {
-    // TODO: implement uploadData
-    throw UnimplementedError();
+  Future<BrandModel> uploadBrand(BrandModel brands) async {
+    try {
+      final brand =
+          await _supabaseClient.from('brands').insert(brands.toMap()).select();
+
+      return BrandModel.fromMap(brand.first);
+    } catch (e) {
+      throw ServerException(e.toString());
+    }
+  }
+
+  @override
+  Future<String> uploadBrandImage(BrandModel brand) async {
+    try {
+      final image = serviceLocator<ImageCubit>().state;
+
+      final imageUrl = await serviceLocator<StorageCubit>()
+          .uploadImageToSupabase(
+            image: image.first,
+            path: brand.id,
+            bucketId: 'brands',
+          );
+      return imageUrl;
+    } catch (e) {
+      throw ServerException(e.toString());
+    }
   }
 }

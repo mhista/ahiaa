@@ -6,7 +6,8 @@ import 'package:image_picker/image_picker.dart';
 class ImageCubit extends Cubit<List<File>> {
   ImageCubit() : super([]);
 
-  Future<List<File>> pickImage() async {
+  // TODO :  Add a method to pick an image from the gallery in the UI
+  Future<void> pickImage() async {
     final xfile = await ImagePicker().pickImage(
       source: ImageSource.gallery,
       maxHeight: 512,
@@ -18,7 +19,7 @@ class ImageCubit extends Cubit<List<File>> {
       final image = File(xfile.path);
       emit([...state, image]);
     }
-    return [...state];
+    // return [...state];
   }
 
   void emptyCubit() => emit([]);

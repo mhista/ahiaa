@@ -1,4 +1,5 @@
 import 'package:ahiaa/features/shop/brands/data/datasource/brand_dart_source.dart';
+import 'package:ahiaa/features/shop/brands/data/models/brandmodel.dart';
 import 'package:ahiaa/features/shop/brands/domain/entities/brands.dart';
 import 'package:ahiaa/features/shop/brands/domain/repository/brand_repository.dart';
 import 'package:ahiaa/utils/exceptions/exceptions.dart';
@@ -28,8 +29,22 @@ class BrandRepoImpl implements BrandRepository {
     required image,
     isFeatured,
     productsCount,
-  }) {
-    // TODO: implement uploadData
-    throw UnimplementedError();
+  }) async {
+    try {
+      BrandModel brandModel = BrandModel(
+        id: id,
+        name: name,
+        image: image,
+        isFeatured: isFeatured,
+        productsCount: productsCount,
+      );
+      final imageUrl = await _dataSource.uploadBrandImage(brandModel);
+      final brand = await _dataSource.uploadBrand(
+        brandModel.copyWith(image: imageUrl),
+      );
+      return right(brand);
+    } on ServerException catch (e) {
+      return left(Failure(e.message));
+    }
   }
 }

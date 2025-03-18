@@ -47,4 +47,22 @@ final class ProductUpload extends ProductEvent {
   });
 }
 
-final class ProductFetch extends ProductEvent {}
+final class AllProductsGet extends ProductEvent {}
+
+final class GetFeatureProducts extends ProductEvent {
+  final bool useLimit;
+
+  const GetFeatureProducts({this.useLimit = true});
+}
+
+final class GetBrandProducts extends ProductEvent {
+  final String brandId;
+
+  const GetBrandProducts({required this.brandId});
+}
+
+final class GetFavProducts extends ProductEvent {}
+
+final class GetStoreProducts extends ProductEvent {}
+
+final class GetCategoryProducts extends ProductEvent {}

@@ -7,13 +7,26 @@ class BannerModel extends Bannerr {
     required super.imageUrl,
     required super.targetScreen,
     required super.active,
+    required super.shopperId,
+    required super.startDate,
+    required super.endDate,
   });
 
-  BannerModel copyWith({String? imageUrl, String? targetScreen, bool? active}) {
+  BannerModel copyWith({
+    String? imageUrl,
+    String? targetScreen,
+    bool? active,
+    String? shopperId,
+    DateTime? startDate,
+    DateTime? endDate,
+  }) {
     return BannerModel(
       imageUrl: imageUrl ?? this.imageUrl,
       targetScreen: targetScreen ?? this.targetScreen,
       active: active ?? this.active,
+      shopperId: shopperId ?? this.shopperId,
+      startDate: startDate ?? this.startDate,
+      endDate: endDate ?? this.endDate,
     );
   }
 
@@ -23,6 +36,9 @@ class BannerModel extends Bannerr {
     result.addAll({'image_url': imageUrl});
     result.addAll({'target_screen': targetScreen});
     result.addAll({'active': active});
+    result.addAll({'shopper_id': shopperId});
+    result.addAll({'start_date': startDate.millisecondsSinceEpoch});
+    result.addAll({'end_date': endDate.millisecondsSinceEpoch});
 
     return result;
   }
@@ -32,6 +48,9 @@ class BannerModel extends Bannerr {
       imageUrl: map['image_url'] ?? '',
       targetScreen: map['target_screen'] ?? '',
       active: map['active'] ?? false,
+      shopperId: map['shopper_id'] ?? '',
+      startDate: DateTime.fromMillisecondsSinceEpoch(map['start_date']),
+      endDate: DateTime.fromMillisecondsSinceEpoch(map['end_date']),
     );
   }
 
@@ -39,4 +58,9 @@ class BannerModel extends Bannerr {
 
   factory BannerModel.fromJson(String source) =>
       BannerModel.fromMap(json.decode(source));
+
+  @override
+  String toString() {
+    return 'BannerModel(imageUrl: $imageUrl, targetScreen: $targetScreen, active: $active, shopperId: $shopperId, startDate: $startDate, endDate: $endDate)';
+  }
 }

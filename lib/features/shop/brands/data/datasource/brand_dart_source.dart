@@ -33,7 +33,14 @@ class BrandDataSourceImpl implements BrandDataSource {
   Future<BrandModel> uploadBrand(BrandModel brands) async {
     try {
       final brand =
-          await _supabaseClient.from('brands').insert(brands.toMap()).select();
+          await _supabaseClient
+              .from('brands')
+              .insert(
+                brands
+                    .copyWith(sellerId: _supabaseClient.auth.currentUser?.id)
+                    .toMap(),
+              )
+              .select();
 
       return BrandModel.fromMap(brand.first);
     } catch (e) {

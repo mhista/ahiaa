@@ -37,6 +37,8 @@ class BrandRepoImpl implements BrandRepository {
         image: image,
         isFeatured: isFeatured,
         productsCount: productsCount,
+        sellerId: '',
+        createdAt: DateTime.now(),
       );
       final imageUrl = await _dataSource.uploadBrandImage(brandModel);
       final brand = await _dataSource.uploadBrand(

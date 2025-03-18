@@ -14,6 +14,8 @@ import 'package:ahiaa/utils/exceptions/subabase/server_exceptions.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:uuid/uuid.dart';
 
+import '../../../brands/data/models/brandmodel.dart';
+
 class ProductRepoImpl implements ProductRepository {
   final ProductRemoteDataSource _dataSource;
 
@@ -30,7 +32,7 @@ class ProductRepoImpl implements ProductRepository {
     required String title,
     required String thumbnail,
     required bool isFeatured,
-    required Brand brand,
+    required BrandModel brand,
     required String description,
     required String categoryId,
     required List<String> images,
@@ -82,6 +84,74 @@ class ProductRepoImpl implements ProductRepository {
   Future<Either<Failure, List<Products>>> getAllProducts() async {
     try {
       final products = await _dataSource.getAllProducts();
+      return right(products);
+    } on ServerException catch (e) {
+      return left(Failure(e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<Products>>> getAllFeaturedProducts() async {
+    try {
+      final products = await _dataSource.getAllFeaturedProducts();
+      return right(products);
+    } on ServerException catch (e) {
+      return left(Failure(e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<Products>>> getAllRecommendedProducts() async {
+    try {
+      final products = await _dataSource.getAllRecommendedProducts();
+      return right(products);
+    } on ServerException catch (e) {
+      return left(Failure(e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<Products>>> getFavoriteProducts(
+    List<String> productId,
+  ) async {
+    try {
+      final products = await _dataSource.getFavoriteProducts(productId);
+      return right(products);
+    } on ServerException catch (e) {
+      return left(Failure(e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<Products>>> getFeaturedProducts() async {
+    try {
+      final products = await _dataSource.getFeaturedProducts();
+      return right(products);
+    } on ServerException catch (e) {
+      return left(Failure(e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<Products>>> getProductsByBrand({
+    required String brandId,
+    int limit = -1,
+  }) async {
+    try {
+      final products = await _dataSource.getProductsByBrand(
+        brandId: brandId,
+        limit: limit,
+      );
+      return right(products);
+    } on ServerException catch (e) {
+      return left(Failure(e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<Products>>> getRecommendedProducts() async {
+    try {
+      final products = await _dataSource.getRecommendedProducts();
       return right(products);
     } on ServerException catch (e) {
       return left(Failure(e.message));

@@ -2,6 +2,7 @@ import 'package:ahiaa/utils/exceptions/exceptions.dart';
 import 'package:fpdart/fpdart.dart';
 
 import '../../../../../core/entities/coupon.dart';
+import '../../../brands/data/models/brandmodel.dart';
 import '../../../brands/domain/entities/brands.dart';
 import '../../data/models/product_attributes.dart';
 import '../../data/models/product_variations.dart';
@@ -17,7 +18,7 @@ abstract interface class ProductRepository {
     required String title,
     required String thumbnail,
     required bool isFeatured,
-    required Brand brand,
+    required BrandModel brand,
     required String description,
     required String categoryId,
     required List<String> images,
@@ -30,4 +31,16 @@ abstract interface class ProductRepository {
   });
 
   Future<Either<Failure, List<Products>>> getAllProducts();
+  Future<Either<Failure, List<Products>>> getProductsByBrand({
+    required String brandId,
+    int limit = -1,
+  });
+  Future<Either<Failure, List<Products>>> getFeaturedProducts();
+  Future<Either<Failure, List<Products>>> getAllFeaturedProducts();
+  Future<Either<Failure, List<Products>>> getRecommendedProducts();
+  Future<Either<Failure, List<Products>>> getAllRecommendedProducts();
+  // Future<Either<Failure, List<Products>>> fetchProductsByQuery(Query query);
+  Future<Either<Failure, List<Products>>> getFavoriteProducts(
+    List<String> productId,
+  );
 }

@@ -10,6 +10,16 @@ abstract interface class ProductRemoteDataSource {
   Future<ProductModel> uploadProduct(ProductModel productModel);
   Future<List<String>> uploadProductImage(ProductModel product);
   Future<List<ProductModel>> getAllProducts();
+  Future<List<ProductModel>> getProductsByBrand({
+    required String brandId,
+    int limit = -1,
+  });
+  Future<List<ProductModel>> getFeaturedProducts();
+  Future<List<ProductModel>> getAllFeaturedProducts();
+  Future<List<ProductModel>> getRecommendedProducts();
+  Future<List<ProductModel>> getAllRecommendedProducts();
+  // Future<List<ProductModel>> fetchProductsByQuery(Query query);
+  Future<List<ProductModel>> getFavoriteProducts(List<String> productId);
 }
 
 class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
@@ -70,5 +80,91 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
     } catch (e) {
       throw ServerException(e.toString());
     }
+  }
+
+  @override
+  Future<List<ProductModel>> getAllFeaturedProducts() async {
+    try {
+      final products = await supabaseClient
+          .from('products')
+          .select('*, profiles (*)')
+          .eq('is_featured', true); //profile(name)
+      return products
+          .map(
+            (product) => ProductModel.fromMap(
+              product,
+            ).copyWith(user: product['profiles']),
+          )
+          .toList();
+    } catch (e) {
+      throw ServerException(e.toString());
+    }
+  }
+
+  @override
+  Future<List<ProductModel>> getAllRecommendedProducts() {
+    // TODO: implement getAllRecommendedProducts
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<ProductModel>> getFavoriteProducts(List<String> productId) {
+    // TODO: implement getFavoriteProducts
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<ProductModel>> getFeaturedProducts() async {
+    try {
+      final products = await supabaseClient
+          .from('products')
+          .select('*, profiles (*)')
+          .eq('is_featured', true)
+          .limit(4); //profile(name)
+      return products
+          .map(
+            (product) => ProductModel.fromMap(
+              product,
+            ).copyWith(user: product['profiles']),
+          )
+          .toList();
+    } catch (e) {
+      throw ServerException(e.toString());
+    }
+  }
+
+  @override
+  Future<List<ProductModel>> getProductsByBrand({
+    required String brandId,
+    int limit = -1,
+  }) async {
+    try {
+      final products =
+          limit == -1
+              ? await supabaseClient
+                  .from('products')
+                  .select('*, profiles (*)')
+                  .eq('brand->>id', brandId)
+              : await supabaseClient
+                  .from('products')
+                  .select('*, profiles (*)')
+                  .eq('brand->>id', brandId)
+                  .limit(limit); //profile(name)
+      return products
+          .map(
+            (product) => ProductModel.fromMap(
+              product,
+            ).copyWith(user: product['profiles']),
+          )
+          .toList();
+    } catch (e) {
+      throw ServerException(e.toString());
+    }
+  }
+
+  @override
+  Future<List<ProductModel>> getRecommendedProducts() {
+    // TODO: implement getRecommendedProducts
+    throw UnimplementedError();
   }
 }

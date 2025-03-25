@@ -1,4 +1,4 @@
-import 'package:ahiaa/features/shop/cart/cart.dart';
+import 'package:ahiaa/features/shop/cart/presentation/cart.dart';
 import 'package:ahiaa/features/shop/product/presentation/screens/product_detail/product_detail.dart';
 import 'package:ahiaa/features/shop/product/presentation/screens/product_review/product_reviews.dart';
 import 'package:ahiaa/core/routes/route_names.dart';

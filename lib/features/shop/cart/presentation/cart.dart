@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 
 import 'package:ahiaa/utils/constants/sizes.dart';
 
-import '../../../core/common/widgets/appbar/app_bar.dart';
-import '../../../core/routes/route_names.dart';
+import '../../../../core/common/widgets/appbar/app_bar.dart';
+import '../../../../core/routes/route_names.dart';
 import 'widgets/cart_items.dart';
 
 class CartScreen extends StatelessWidget {

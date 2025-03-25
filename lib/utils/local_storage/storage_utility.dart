@@ -1,72 +1,74 @@
-// import 'package:get_storage/get_storage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-// class PLocalStorage {
-//   // static  PLocalStorage _instance = PLocalStorage._internal();
-//   // SINGLETON INSTANCE
-//   static PLocalStorage? _instance;
+class PLocalStorage {
+  static final PLocalStorage _instance = PLocalStorage._internal();
+  static SharedPreferences? _prefs;
+  String? _userBucket;
+  PLocalStorage._internal();
 
-//   factory PLocalStorage.instance() {
-//     _instance ??= PLocalStorage._internal();
-//     return _instance!;
-//   }
+  /// Get the singleton instance
+  static Future<PLocalStorage> getInstance() async {
+    _prefs ??= await SharedPreferences.getInstance();
+    return _instance;
+  }
 
-//   PLocalStorage._internal();
+  /// Initialize SharedPreferences and set user bucket
+  Future<void> init(String userId) async {
+    _prefs ??= await SharedPreferences.getInstance();
+    _userBucket = "user_$userId"; // Create bucket per user
+  }
 
-//   late final GetStorage _storage;
+  /// Get the key with the user bucket prefix
+  String _getKeyWithBucket(String key) {
+    if (_userBucket != null) {
+      return '$_userBucket.$key';
+    }
+    return key;
+  }
 
-//   static Future<void> init(String bucketName) async {
-//     await GetStorage.init(bucketName);
-//     _instance = PLocalStorage._internal();
-//     _instance!._storage = GetStorage(bucketName);
-//   }
+  /// Save data generically
+  Future<void> saveData<T>(String key, T value) async {
+    if (_prefs == null) return;
+    key = _getKeyWithBucket(key);
+    if (value is String) {
+      await _prefs!.setString(key, value);
+    } else if (value is int) {
+      await _prefs!.setInt(key, value);
+    } else if (value is double) {
+      await _prefs!.setDouble(key, value);
+    } else if (value is bool) {
+      await _prefs!.setBool(key, value);
+    } else if (value is List<String>) {
+      await _prefs!.setStringList(key, value);
+    } else {
+      throw Exception("Unsupported type");
+    }
+  }
 
-// // generic method to save data
-//   Future<void> saveData<T>(String key, T value) async {
-//     if (_instance == null) {
-//       throw Exception('PLocalStorage is not initialized');
-//     }
-//     await _storage.write(key, value);
-//   }
+  /// Retrieve data generically
+  T? getData<T>(String key) {
+    if (_prefs == null) return null;
+    key = _getKeyWithBucket(key);
+    return _prefs!.get(key) as T?;
+  }
 
-//   // generic method to read data
-//   T? readData<T>(String key) {
-//     if (_instance == null) {
-//       throw Exception('PLocalStorage is not initialized');
-//     }
-//     return _storage.read<T>(key);
-//   }
+  /// Remove a specific key
+  Future<void> removeData(String key) async {
+    if (_prefs != null) {
+      key = _getKeyWithBucket(key);
+      await _prefs!.remove(key);
+    }
+  }
 
-// // generic method to remove data
-//   Future<void> removeData(String key) async {
-//     if (_instance == null) {
-//       throw Exception('PLocalStorage is not initialized');
-//     }
-//     await _storage.remove(key);
-//   }
+  /// Check if a key exists
+  bool containsKey(String key) {
+    if (_prefs == null) return false;
+    key = _getKeyWithBucket(key);
+    return _prefs!.containsKey(key);
+  }
 
-// // clear all data in storage
-//   Future<void> clearAll() async {
-//     if (_instance == null) {
-//       throw Exception('PLocalStorage is not initialized');
-//     }
-//     await _storage.erase();
-//   }
-// }
-
-// //
-
-// // void work() {
-// //   PLocalStorage localStorage = PLocalStorage._instance;
-
-// // // SAVE DATA
-// //   localStorage.saveData('UserName', 'JohnDoe');
-
-// //   // READ DATA
-// //   localStorage.readData('UserName');
-
-// //   // REMOVE DATA
-// //   localStorage.removeData('UserName');
-
-// // // CLEAR ALL
-// //   localStorage.clearAll();
-// // }
+  /// Clear all stored data (use with caution)
+  Future<void> clearAll() async {
+    if (_prefs != null) await _prefs!.clear();
+  }
+}

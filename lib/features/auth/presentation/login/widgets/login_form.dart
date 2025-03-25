@@ -69,7 +69,7 @@ class PLoginForm extends StatelessWidget {
             // SignInButton
             SizedBox(
               width: double.infinity,
-              child: BlocConsumer<AuthBloc, AuthState>(
+              child: BlocConsumer<AuthBloc, AuthStateChanges>(
                 listener: (context, state) {
                   if (state is AuthFailure) {
                     PLoaders.errorSnackBar(
@@ -105,14 +105,32 @@ class PLoginForm extends StatelessWidget {
             ),
 
             const SizedBox(height: PSizes.spaceBtwItems),
-            // create account buttons
-            SizedBox(
-              width: double.infinity,
-              child: OutlinedButton(
-                onPressed: () {},
-                child: const Text(PTexts.createAccount),
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text("Don't have an account? "),
+                GestureDetector(
+                  onTap:
+                      () => Beamer.of(context).beamToNamed(RouteNames.signup),
+                  child: Text(
+                    "Sign Up",
+                    style: Theme.of(
+                      context,
+                    ).textTheme.headlineSmall!.apply(fontSizeDelta: -3),
+                  ),
+                ),
+              ],
             ),
+            const SizedBox(height: PSizes.spaceBtwItems / 2),
+
+            // create account buttons
+            // SizedBox(
+            //   width: double.infinity,
+            //   child: OutlinedButton(
+            //     onPressed: () {},
+            //     child: const Text(PTexts.createAccount),
+            //   ),
+            // ),
           ],
         ),
       ),

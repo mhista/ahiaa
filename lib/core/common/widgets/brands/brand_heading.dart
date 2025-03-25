@@ -27,11 +27,12 @@ class BrandInfoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDark = PHelperFunctions.isDarkMode(context);
     return TRoundedContainer(
-      backgroundColor: appBarScrolled
-          ? isDark
-              ? PColors.black
-              : PColors.white
-          : PColors.transparent,
+      backgroundColor:
+          appBarScrolled
+              ? isDark
+                  ? PColors.black
+                  : PColors.white
+              : PColors.transparent,
       radius: 0,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -48,7 +49,7 @@ class BrandInfoWidget extends StatelessWidget {
                     height: 50,
                     child: PRoundedImage(
                       backgroundColor: PColors.transparent,
-                      imageUrl: PImages.agro,
+                      imageUrl: PImages.p1,
                       contentPadding: 0,
                       // fit: BoxFit.cover,
                     ),
@@ -66,14 +67,12 @@ class BrandInfoWidget extends StatelessWidget {
                       contentPadding: 0,
                       backgroundColor: storeColor ?? PColors.transparent,
 
-                      imageUrl: PImages.agro,
+                      imageUrl: PImages.p1,
                       // fit: BoxFit.cover,
                     ),
                   ),
                 ),
-              SizedBox(
-                width: PSizes.xs,
-              ),
+              SizedBox(width: PSizes.xs),
               // BRAND NAME AND RATING
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -85,10 +84,9 @@ class BrandInfoWidget extends StatelessWidget {
                       child: Text(
                         'Agro Market',
                         overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleMedium!
-                            .apply(color: storeColor),
+                        style: Theme.of(
+                          context,
+                        ).textTheme.titleMedium!.apply(color: storeColor),
                       ),
                     ),
                   ),
@@ -96,32 +94,26 @@ class BrandInfoWidget extends StatelessWidget {
                     children: [
                       Text(
                         '4.3',
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelSmall!
-                            .apply(fontWeightDelta: 2, color: storeColor),
+                        style: Theme.of(context).textTheme.labelSmall!.apply(
+                          fontWeightDelta: 2,
+                          color: storeColor,
+                        ),
                       ),
-                      Icon(
-                        Iconsax.star1,
-                        size: 13,
-                        color: storeColor,
-                      ),
+                      Icon(Iconsax.star1, size: 13, color: storeColor),
                       Text(
                         ' (300k)',
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelSmall!
-                            .apply(fontWeightDelta: 2, color: storeColor),
-                      )
+                        style: Theme.of(context).textTheme.labelSmall!.apply(
+                          fontWeightDelta: 2,
+                          color: storeColor,
+                        ),
+                      ),
                     ],
-                  )
+                  ),
                 ],
               ),
             ],
           ),
-          SizedBox(
-            width: PSizes.spaceBtwItems,
-          ),
+          SizedBox(width: PSizes.spaceBtwItems),
           Row(
             children: [
               GestureDetector(
@@ -129,10 +121,13 @@ class BrandInfoWidget extends StatelessWidget {
                 child: TRoundedContainer(
                   radius: 5,
                   padding: EdgeInsets.symmetric(
-                      vertical: PSizes.xs, horizontal: PSizes.md),
-                  backgroundColor: removeBgImage
-                      ? PColors.transparent.withOpacity(0.4)
-                      : usesBrandImage
+                    vertical: PSizes.xs,
+                    horizontal: PSizes.md,
+                  ),
+                  backgroundColor:
+                      removeBgImage
+                          ? PColors.transparent.withOpacity(0.4)
+                          : usesBrandImage
                           ? isDark
                               ? PColors.dark
                               : PColors.light
@@ -140,35 +135,24 @@ class BrandInfoWidget extends StatelessWidget {
                   child: Text(
                     'Follow',
                     style: Theme.of(context).textTheme.labelSmall!.apply(
-                        fontWeightDelta: 2,
-                        fontSizeDelta: 3,
-                        color: storeColor),
+                      fontWeightDelta: 2,
+                      fontSizeDelta: 3,
+                      color: storeColor,
+                    ),
                   ),
                 ),
               ),
-              SizedBox(
-                width: PSizes.sm,
-              ),
+              SizedBox(width: PSizes.sm),
               if (!usesBrandImage || appBarScrolled || removeBgImage)
                 GestureDetector(
                   onTap: () {},
-                  child: Icon(
-                    Icons.search,
-                    size: 27,
-                    color: storeColor,
-                  ),
+                  child: Icon(Icons.search, size: 27, color: storeColor),
                 ),
-              SizedBox(
-                width: PSizes.sm,
-              ),
+              SizedBox(width: PSizes.sm),
               GestureDetector(
                 onTap: () {},
-                child: Icon(
-                  Icons.more_horiz,
-                  size: 27,
-                  color: storeColor,
-                ),
-              )
+                child: Icon(Icons.more_horiz, size: 27, color: storeColor),
+              ),
             ],
           ),
         ],

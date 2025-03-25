@@ -1,6 +1,6 @@
 class RouteNames {
   // home
-  static const home = '/';
+  static const home = '/home';
   // discover
   static const discover = '/discover';
   // store
@@ -31,10 +31,10 @@ class RouteNames {
   static const signup = '/signup';
   static const signupSuccess = '/signup-success';
   static const verifyEmail = '/verify-email';
-  static const sigin = '/sign-in';
+  static const sigin = '/login';
   static const resetPassword = '/reset-password';
   static const forgetPassword = '/forget-password';
-  static const onBoardinig = '/on-boarding';
+  static const onBoardinig = '/onboarding';
   // selling
   static const sell = '/sell';
 }

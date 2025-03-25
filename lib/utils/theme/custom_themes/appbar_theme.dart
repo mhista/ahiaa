@@ -7,7 +7,10 @@ class TAppBarTheme {
   TAppBarTheme._();
 
   static const lightAppBarTheme = AppBarTheme(
-    systemOverlayStyle: SystemUiOverlayStyle.dark,
+    systemOverlayStyle: SystemUiOverlayStyle(
+      statusBarColor: PColors.white,
+      statusBarIconBrightness: Brightness.dark,
+    ),
     elevation: 0,
     centerTitle: false,
     scrolledUnderElevation: 0,

@@ -37,8 +37,8 @@ class BannerModel extends Bannerr {
     result.addAll({'target_screen': targetScreen});
     result.addAll({'active': active});
     result.addAll({'shopper_id': shopperId});
-    result.addAll({'start_date': startDate.millisecondsSinceEpoch});
-    result.addAll({'end_date': endDate.millisecondsSinceEpoch});
+    result.addAll({'start_date': startDate.toIso8601String()});
+    result.addAll({'end_date': endDate.toIso8601String()});
 
     return result;
   }
@@ -49,8 +49,8 @@ class BannerModel extends Bannerr {
       targetScreen: map['target_screen'] ?? '',
       active: map['active'] ?? false,
       shopperId: map['shopper_id'] ?? '',
-      startDate: DateTime.fromMillisecondsSinceEpoch(map['start_date']),
-      endDate: DateTime.fromMillisecondsSinceEpoch(map['end_date']),
+      startDate: DateTime.parse(map['start_date']),
+      endDate: DateTime.parse(map['end_date']),
     );
   }
 

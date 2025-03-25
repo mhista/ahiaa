@@ -17,7 +17,7 @@ class PFormeDivider extends StatelessWidget {
       children: [
         Flexible(
           child: Divider(
-            color: isDark ? PColors.darkGrey : PColors.grey,
+            color: isDark ? PColors.darkGrey : PColors.darkGrey,
             thickness: 0.5,
             indent: 60,
             endIndent: 5,
@@ -29,7 +29,7 @@ class PFormeDivider extends StatelessWidget {
         ),
         Flexible(
           child: Divider(
-            color: isDark ? PColors.darkGrey : PColors.grey,
+            color: isDark ? PColors.darkGrey : PColors.darkGrey,
             thickness: 0.5,
             indent: 5,
             endIndent: 60,

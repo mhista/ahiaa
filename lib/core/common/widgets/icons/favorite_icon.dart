@@ -18,10 +18,12 @@ class FavoriteIcon extends StatelessWidget {
     this.size,
     this.color,
     this.weight,
+    this.useOutline = false
   });
   final double? top, right, left, bottom, width, height, size, weight;
   final Color? backgrondColor, color;
   final String productId;
+  final bool useOutline;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +39,7 @@ class FavoriteIcon extends StatelessWidget {
         size: size,
         color: color,
         onPressed: () {},
-        icon: Iconsax.heart5,
+        icon: useOutline? Iconsax.heart:Iconsax.heart5,
         weight: weight,
       ),
     );

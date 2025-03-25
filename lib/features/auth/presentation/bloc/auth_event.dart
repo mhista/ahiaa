@@ -10,12 +10,13 @@ final class AuthSignUp extends AuthEvent {
   final String lastName;
   final String phoneNumber;
 
-  AuthSignUp(
-      {required this.email,
-      required this.password,
-      required this.firstName,
-      required this.lastName,
-      required this.phoneNumber});
+  AuthSignUp({
+    required this.email,
+    required this.password,
+    required this.firstName,
+    required this.lastName,
+    required this.phoneNumber,
+  });
 }
 
 final class AuthLogin extends AuthEvent {
@@ -26,3 +27,5 @@ final class AuthLogin extends AuthEvent {
 }
 
 final class AuthUserLoggedIn extends AuthEvent {}
+
+final class GoogleSigninEvent extends AuthEvent {}

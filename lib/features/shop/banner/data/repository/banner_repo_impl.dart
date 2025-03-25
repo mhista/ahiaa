@@ -5,7 +5,7 @@ import 'package:ahiaa/utils/exceptions/exceptions.dart';
 import 'package:fpdart/fpdart.dart';
 
 import '../../../../../utils/exceptions/subabase/server_exceptions.dart';
-import '../../domain/repositories/banner_repository.dart';
+import '../../domain/repository/banner_repository.dart';
 
 class BannerRepoImpl implements BannerRepository {
   final BannerDataSource bannerDataSource;

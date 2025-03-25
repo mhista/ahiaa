@@ -20,4 +20,6 @@ abstract interface class AuthRepository {
   });
 
   Future<Either<Failure, User>> currentUser();
+  // google signin
+  Future<Either<Failure, User>> signInWithGoogle();
 }

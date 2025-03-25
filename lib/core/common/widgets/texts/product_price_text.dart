@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../utils/constants/colors.dart';
+
 class ProductPriceText extends StatelessWidget {
   const ProductPriceText({
     super.key,
@@ -21,10 +23,11 @@ class ProductPriceText extends StatelessWidget {
       overflow: TextOverflow.ellipsis,
       style:
           isLarge
-              ? Theme.of(context).textTheme.headlineSmall!.apply(
+              ? Theme.of(context).textTheme.headlineMedium!.apply(
                 decoration: lineThrough ? TextDecoration.lineThrough : null,
+                color: PColors.accent.withValues(alpha: 0.7),
               )
-              : Theme.of(context).textTheme.titleLarge!.apply(
+              : Theme.of(context).textTheme.headlineSmall!.apply(
                 decoration: lineThrough ? TextDecoration.lineThrough : null,
               ),
     );

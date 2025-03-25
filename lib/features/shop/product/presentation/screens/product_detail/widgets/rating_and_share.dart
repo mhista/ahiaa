@@ -12,34 +12,16 @@ class RatingAndShare extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Row(
-          // RATING
-          children: [
-            const Icon(Iconsax.star5, color: Colors.amber, size: 24),
-            const SizedBox(width: PSizes.spaceBtwItems / 2),
-            Text.rich(
-              TextSpan(
-                children: [
-                  TextSpan(
-                    text: '5.0 ',
-                    style: Theme.of(context).textTheme.bodyLarge,
-                  ),
-                  const TextSpan(text: '(199)'),
-                ],
-              ),
-            ),
-          ],
-        ),
         // SHARE BUTTON
-        Row(
-          children: [
-            FavoriteIcon(productId: '1'),
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.share, size: PSizes.iconMd),
-            ),
-          ],
-        ),
+        // Row(
+        //   children: [
+        //     FavoriteIcon(productId: '1'),
+        //     IconButton(
+        //       onPressed: () {},
+        //       icon: const Icon(Icons.share, size: PSizes.iconMd),
+        //     ),
+        //   ],
+        // ),
       ],
     );
   }

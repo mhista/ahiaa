@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../utils/constants/colors.dart';
-import '../../../../../utils/constants/sizes.dart';
-import '../../../../../utils/helpers/helper_functions.dart';
-import '../../../../core/common/widgets/products/cart/add_remove_button.dart';
-import '../../../../core/common/widgets/products/cart/cart_item.dart'
+import '../../../../../../utils/constants/colors.dart';
+import '../../../../../../utils/constants/sizes.dart';
+import '../../../../../../utils/helpers/helper_functions.dart';
+import '../../../../../core/common/widgets/products/cart/add_remove_button.dart';
+import '../../../../../core/common/widgets/products/cart/cart_item.dart'
     show CartItem;
-import '../../../../core/common/widgets/texts/product_price_text.dart';
+import '../../../../../core/common/widgets/texts/product_price_text.dart';
 
 class CartItems extends StatelessWidget {
   const CartItems({super.key, this.showAddRemoveButton = true});

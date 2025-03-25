@@ -13,8 +13,13 @@ import '../../../../../../utils/device/device_utility.dart';
 import '../../../../../../utils/helpers/helper_functions.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const HomeAppBar({super.key, this.backgroundColor});
+  const HomeAppBar({
+    super.key,
+    this.backgroundColor,
+    this.appBarHeight = kToolbarHeight,
+  });
   final Color? backgroundColor;
+  final double appBarHeight;
   @override
   Widget build(BuildContext context) {
     final isDark = PHelperFunctions.isDarkMode(context);
@@ -22,17 +27,15 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: backgroundColor,
       radius: 0,
       child: PAppBar(
+        appBarHeight: appBarHeight,
         padding: EdgeInsets.only(bottom: PSizes.sm),
         title: SizedBox(
           height: 45,
-
           child: KSearchBar(
             radius: 50,
             hasColor: false,
             childrensColor:
-                isDark
-                    ? PColors.white.withValues(alpha: 0.7)
-                    : PColors.black.withValues(alpha: 0.7),
+                isDark ? PColors.white.withValues(alpha: 0.7) : PColors.black,
             color:
                 isDark
                     ? PColors.white.withValues(alpha: 0.3)
@@ -41,22 +44,24 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
             hintText: 'Search Ahiaa',
 
             useSearch: true,
-            // usePrefixSuffix: true,
+            usePrefixSuffix: true,
+            suffixWidget: Icon(Iconsax.microphone, color: PColors.black),
+
             // isDense: true,
             // isCollapsed: true,
           ),
         ),
         actions: [
-          PCircularIcon(
-            icon: Iconsax.notification,
-            backgroundColor: PColors.transparent,
-            color:
-                isDark
-                    ? PColors.white.withValues(alpha: 0.7)
-                    : PColors.black.withValues(alpha: 0.7),
-            width: 40,
-            height: 40,
-          ),
+          // PCircularIcon(
+          //   icon: Iconsax.notification,
+          //   backgroundColor: PColors.transparent,
+          //   color:
+          //       isDark
+          //           ? PColors.white.withValues(alpha: 0.7)
+          //           : PColors.black.withValues(alpha: 0.7),
+          //   width: 40,
+          //   height: 40,
+          // ),
           PCircularIcon(
             onPressed: () {
               Beamer.of(context).beamToNamed(RouteNames.cart);
@@ -67,14 +72,15 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                 Beamer.of(context).currentConfiguration?.uri.toString(),
               );
             },
-            backgroundColor: PColors.transparent,
-            color:
-                isDark
-                    ? PColors.white.withValues(alpha: 0.7)
-                    : PColors.black.withValues(alpha: 0.7),
-            icon: Iconsax.shopping_cart,
-            width: 40,
-            height: 40,
+            // backgroundColor: PColors.transparent,
+            color: PColors.black,
+            // isDark
+            //     ? PColors.white.withValues(alpha: 0.7)
+            //     : PColors.black.withValues(alpha: 0.7),
+            icon: Iconsax.camera,
+            width: 45,
+            height: 45,
+            size: 20,
           ),
           SizedBox(width: PSizes.sm),
         ],

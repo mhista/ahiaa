@@ -15,11 +15,13 @@ class PRatingBarIndicator extends StatelessWidget {
     return RatingBarIndicator(
       rating: rating,
       itemSize: 18,
-      unratedColor: isDark ? PColors.grey : PColors.primary,
+      unratedColor: PColors.accent.withValues(
+        alpha: 0.4,
+      ), //isDark ? PColors.grey : PColors.primary,
       itemBuilder:
           (_, __) => Icon(
             Iconsax.star1,
-            color: isDark ? PColors.primary : PColors.black,
+            color: PColors.primary, //isDark ? PColors.primary : PColors.black,
           ),
     );
   }

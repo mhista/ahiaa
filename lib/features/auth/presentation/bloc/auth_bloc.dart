@@ -5,65 +5,76 @@ import 'package:ahiaa/features/auth/domain/usecases/login.dart';
 import 'package:ahiaa/features/auth/domain/usecases/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
-import '../../../../core/cubits/user/user_cubit.dart';
-import '../../../../core/entities/user.dart';
+import '../../../../../core/cubits/user/user_cubit.dart';
+import '../../../../../core/entities/user.dart';
+import '../../domain/usecases/google_signin.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
 
-class AuthBloc extends Bloc<AuthEvent, AuthState> {
+class AuthBloc extends Bloc<AuthEvent, AuthStateChanges> {
   final UserSignUp _userSignUp;
   final UserLogin _userLogin;
   final CurrentUser _currentUser;
   final UserCubit _userCubit;
-  AuthBloc(
-      {required UserSignUp userSignUp,
-      required UserLogin userLogin,
-      required CurrentUser currentUser,
-      required UserCubit userCubit})
-      : _userSignUp = userSignUp,
-        _userLogin = userLogin,
-        _currentUser = currentUser,
-        _userCubit = userCubit,
-        super(AuthInitial()) {
+  final GoogleSigninUser _googleSignIn;
+  AuthBloc({
+    required UserSignUp userSignUp,
+    required UserLogin userLogin,
+    required CurrentUser currentUser,
+    required UserCubit userCubit,
+    required GoogleSigninUser googleSignIn,
+  }) : _userSignUp = userSignUp,
+       _userLogin = userLogin,
+       _currentUser = currentUser,
+       _userCubit = userCubit,
+       _googleSignIn = googleSignIn,
+       super(AuthInitial()) {
     on<AuthEvent>((_, emit) => emit(AuthLoading()));
     on<AuthSignUp>(_onAuthSignUp);
-    on<AuthLogin>(_onAuthLogin);
+    on<AuthLogin>(_onAuthLoginWithEmailAndPasword);
     on<AuthUserLoggedIn>(_isUserLoggedIn);
+    on<GoogleSigninEvent>(_googleSigninUser);
   }
 
   // SIGNUP EVENT
 
   FutureOr<void> _onAuthSignUp(event, emit) async {
-    final res = await _userSignUp(UserSignUpParams(
-      email: event.email,
-      password: event.password,
-      firstName: event.firstName,
-      lastName: event.lastName,
-      phoneNumber: event.phoneNumber,
-    ));
+    final res = await _userSignUp(
+      UserSignUpParams(
+        email: event.email,
+        password: event.password,
+        firstName: event.firstName,
+        lastName: event.lastName,
+        phoneNumber: event.phoneNumber,
+      ),
+    );
     debugPrint('signing up');
-    res.fold((l) => emit(AuthFailure(message: l.message)),
-        (user) => _emitAuthSuccess(user, emit));
+    res.fold(
+      (l) => emit(AuthFailure(message: l.message)),
+      (user) => _emitAuthSuccess(user, emit),
+    );
   }
 
-// LOGIN EVENT
+  // LOGIN EVENT
 
-  FutureOr<void> _onAuthLogin(event, emit) async {
-    final res = await _userLogin(UserLoginParams(
-      email: event.email,
-      password: event.password,
-    ));
+  FutureOr<void> _onAuthLoginWithEmailAndPasword(event, emit) async {
+    final res = await _userLogin(
+      UserLoginParams(email: event.email, password: event.password),
+    );
     debugPrint('logging in');
-    res.fold((l) => emit(AuthFailure(message: l.message)),
-        (user) => _emitAuthSuccess(user, emit));
+    res.fold(
+      (l) => emit(AuthFailure(message: l.message)),
+      (user) => _emitAuthSuccess(user, emit),
+    );
   }
 
   // CURRENT USER EVENT
   void _isUserLoggedIn(
     AuthUserLoggedIn event,
-    Emitter<AuthState> emit,
+    Emitter<AuthStateChanges> emit,
   ) async {
     final result = await _currentUser(NoParams());
     result.fold(
@@ -72,7 +83,19 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
   }
 
-  void _emitAuthSuccess(User user, Emitter<AuthState> emit) {
+  // GOOGLE SIGNIN
+  void _googleSigninUser(
+    GoogleSigninEvent event,
+    Emitter<AuthStateChanges> emit,
+  ) async {
+    final result = await _googleSignIn(NoParams());
+    result.fold(
+      (l) => emit(AuthFailure(message: l.message)),
+      (user) => _emitAuthSuccess(user, emit),
+    );
+  }
+
+  void _emitAuthSuccess(User user, Emitter<AuthStateChanges> emit) {
     _userCubit.updateUser(user);
     emit(AuthSuccess(user: user));
   }

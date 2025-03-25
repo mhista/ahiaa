@@ -2,24 +2,31 @@ import 'package:ahiaa/core/dependency/init_dependencies.dart';
 import 'package:ahiaa/features/auth/data/models/user_model.dart';
 import 'package:ahiaa/utils/exceptions/subabase/server_exceptions.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 abstract interface class AuthRemoteDataSource {
   Session? get currentSession;
   // Signup with email and password
-  Future<UserModel> signUpWithEmailAndPassword(
-      {required String email,
-      required String password,
-      required String firstName,
-      required String lastName,
-      required String phoneNumber});
+  Future<UserModel> signUpWithEmailAndPassword({
+    required String email,
+    required String password,
+    required String firstName,
+    required String lastName,
+    required String phoneNumber,
+  });
 
   // Login with email and password
-  Future<UserModel> loginWithEmailAndPassword(
-      {required String email, required String password});
+  Future<UserModel> loginWithEmailAndPassword({
+    required String email,
+    required String password,
+  });
 
   //
   Future<UserModel?> getCurrentUserData();
+
+  // google signin
+  Future<UserModel?> signInWithGoogle();
 }
 
 // SUPABASE IMPLEMENTATION
@@ -32,12 +39,16 @@ class AuthRemoteDataSourceSupabaseImp implements AuthRemoteDataSource {
   Session? get currentSession => supabaseClient.auth.currentSession;
 
   @override
-  Future<UserModel> loginWithEmailAndPassword(
-      {required String email, required String password}) async {
+  Future<UserModel> loginWithEmailAndPassword({
+    required String email,
+    required String password,
+  }) async {
     try {
-      final response = await supabaseClient.auth
-          .signInWithPassword(email: email, password: password);
-      debugPrint(response.user!.toJson().toString());
+      final response = await supabaseClient.auth.signInWithPassword(
+        email: email,
+        password: password,
+      );
+      // debugPrint(response.user!.toJson().toString());
       return UserModel.fromMap(response.user!.toJson());
     } on AuthException catch (e) {
       debugPrint(e.message);
@@ -46,23 +57,26 @@ class AuthRemoteDataSourceSupabaseImp implements AuthRemoteDataSource {
   }
 
   @override
-  Future<UserModel> signUpWithEmailAndPassword(
-      {required String email,
-      required String password,
-      required String firstName,
-      required String lastName,
-      required String phoneNumber}) async {
+  Future<UserModel> signUpWithEmailAndPassword({
+    required String email,
+    required String password,
+    required String firstName,
+    required String lastName,
+    required String phoneNumber,
+  }) async {
     try {
-      debugPrint(
-        email + password + firstName + lastName + phoneNumber,
-      );
+      debugPrint(email + password + firstName + lastName + phoneNumber);
 
-      final response = await supabaseClient.auth
-          .signUp(password: password, email: email, data: <String, dynamic>{
-        'firstname': firstName,
-        'lastname': lastName,
-        'phone': phoneNumber,
-      });
+      final response = await supabaseClient.auth.signUp(
+        password: password,
+        email: email,
+        // phone: phoneNumber,
+        data: <String, dynamic>{
+          'firstname': firstName,
+          'lastname': lastName,
+          'phone': phoneNumber,
+        },
+      );
       if (response.user == null) {
         throw ServerException('Unable to login, Try again later');
       }
@@ -90,8 +104,53 @@ class AuthRemoteDataSourceSupabaseImp implements AuthRemoteDataSource {
       throw ServerException(e.toString());
     }
   }
-}
 
+  @override
+  Future<UserModel?> signInWithGoogle() async {
+    try {
+      const webClientId =
+          '954656963708-qfiu95sufs3i98n7r6vijnlvrhctsdjq.apps.googleusercontent.com';
+      const iosClientId =
+          '954656963708-ev08hpe56h065sfnh1p1c1q2ont0gkl0.apps.googleusercontent.com';
+
+      final GoogleSignIn googleSignIn = GoogleSignIn(
+        clientId: iosClientId,
+        serverClientId: webClientId,
+      );
+      final googleUser = await googleSignIn.signIn();
+      final googleAuth = await googleUser!.authentication;
+      final accessToken = googleAuth.accessToken;
+      final idToken = googleAuth.idToken;
+
+      if (accessToken == null) {
+        throw 'No Access Token found.';
+      }
+      if (idToken == null) {
+        throw 'No ID Token found.';
+      }
+
+      final response = await supabaseClient.auth.signInWithIdToken(
+        provider: OAuthProvider.google,
+        idToken: idToken,
+        accessToken: accessToken,
+      );
+      if (response.user == null) {
+        throw ServerException('Unable to login, Try again later');
+      }
+      final user = UserModel.fromMap(response.user!.toJson());
+      final userModel =
+          await supabaseClient
+              .from('profiles')
+              .update(user.toMap())
+              .eq('id', user.id)
+              .select();
+
+      return UserModel.fromMap(userModel.first);
+    } catch (e) {
+      throw ServerException(e.toString());
+    }
+  }
+}
 // -- Create a table for public profiles
 // create table profiles (
 //   id uuid references auth.users not null primary key,

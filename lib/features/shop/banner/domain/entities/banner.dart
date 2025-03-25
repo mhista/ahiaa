@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class Bannerr {
   final String imageUrl;
   final String targetScreen;

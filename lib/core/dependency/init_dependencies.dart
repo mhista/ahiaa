@@ -1,4 +1,6 @@
+import 'package:ahiaa/core/cubits/appstart/appstart_cubit.dart';
 import 'package:ahiaa/core/cubits/imagePicker/image_picker.dart';
+import 'package:ahiaa/core/cubits/navigation/navigation_cubit.dart';
 import 'package:ahiaa/core/cubits/user/user_cubit.dart';
 import 'package:ahiaa/core/dependency/banner_dependencies.dart';
 import 'package:ahiaa/core/dependency/brand_dependencies.dart';
@@ -17,6 +19,7 @@ import 'package:ahiaa/features/shop/store/presentation/cubit/scroller/shop_scrol
 import 'package:get_it/get_it.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../features/auth/domain/usecases/google_signin.dart';
 import '../../features/auth/presentation/bloc/auth_bloc.dart';
 import '../../features/shop/home/presentation/cubit/banners/banner_cubit.dart';
 import '../../features/shop/home/presentation/cubit/palette/color_cubit.dart';
@@ -65,9 +68,12 @@ void _initAuth() {
     ..registerFactory(() => UserLogin(authRepository: serviceLocator()))
     // register current user
     ..registerFactory(() => CurrentUser(authRepository: serviceLocator()))
+    // register google signin
+    ..registerFactory(() => GoogleSigninUser(authRepository: serviceLocator()))
     // register auth bloc
     ..registerLazySingleton(
       () => AuthBloc(
+        googleSignIn: serviceLocator(),
         userSignUp: serviceLocator(),
         userLogin: serviceLocator(),
         currentUser: serviceLocator(),
@@ -104,7 +110,9 @@ void _initHomeCubits() {
   serviceLocator
     ..registerLazySingleton(() => NavigationCubit())
     // register banner cubit
-    ..registerLazySingleton(() => BannerCubit());
+    ..registerLazySingleton(() => BannerCubit())
+    ..registerLazySingleton(() => OnboardingCubit())
+    ..registerLazySingleton(() => AppStartCubit());
 }
 
 // register color cubit

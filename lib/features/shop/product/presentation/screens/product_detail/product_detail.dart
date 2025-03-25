@@ -11,8 +11,11 @@ import 'package:iconsax/iconsax.dart';
 import 'package:ahiaa/utils/constants/enums.dart';
 import 'package:ahiaa/utils/constants/sizes.dart';
 
+import '../../../../../../core/common/widgets/appbar/app_bar.dart';
+import '../../../../../../core/common/widgets/icons/favorite_icon.dart';
 import '../../../../../../core/common/widgets/layouts/gid_layout.dart'
     show GridLayout;
+import '../../../../../../core/common/widgets/layouts/staggered_layout.dart';
 import '../../../../../../core/common/widgets/products/product_cards/product_card_vertical.dart'
     show PProductCardVertical;
 import '../../../../../../core/common/widgets/texts/read_more_text.dart';
@@ -31,6 +34,35 @@ class ProductDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: PAppBar(
+        showBackArrow: true,
+        actions: [
+          Flexible(
+            child: Stack(
+              children: [
+                FavoriteIcon(
+                  top: 0,
+                  right: 40,
+                  productId: '1',
+                  backgrondColor: PColors.transparent,
+                  useOutline: true,
+                ),
+                Positioned(
+                  right: 0,
+                  top: 0,
+                  child: IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.more_horiz_outlined,
+                      size: PSizes.iconMd,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -76,7 +108,10 @@ class ProductDetailScreen extends StatelessWidget {
                     // height: 50,
                     width: double.infinity,
                     child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(padding: EdgeInsets.zero),
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                        backgroundColor: PColors.primary,
+                      ),
                       onPressed: () {},
                       child: const Text('Checkout'),
                     ),
@@ -125,12 +160,7 @@ class ProductDetailScreen extends StatelessWidget {
                     spacing: PSizes.spaceBtwSections,
                     children: [
                       PSectionHeading(title: "More from John's store"),
-                      GridLayout(
-                        itemCount: 4,
-
-                        // mainAxisExtent: 270,
-                        itemBuilder: (_, index) => PProductCardVertical(),
-                      ),
+                      StaggeredProductLayout(itemCount: 4),
                     ],
                   ),
                 ],
@@ -195,7 +225,7 @@ class RefundShippingPolicyContainer extends StatelessWidget {
         borderWidth: 0.1,
         // showBorder: true,
         radius: 12,
-        backgroundColor: PColors.light,
+        backgroundColor: PColors.accent.withValues(alpha: 0.1),
         width: double.infinity,
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),

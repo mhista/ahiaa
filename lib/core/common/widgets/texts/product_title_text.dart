@@ -21,7 +21,10 @@ class ProductTitleText extends StatelessWidget {
       style:
           smallSize
               ? Theme.of(context).textTheme.bodyLarge!.apply(fontSizeDelta: 2)
-              : Theme.of(context).textTheme.headlineSmall,
+              : Theme.of(context).textTheme.headlineMedium!.apply(
+                fontWeightDelta: -2,
+                fontSizeDelta: -2,
+              ),
       overflow: TextOverflow.ellipsis,
       maxLines: maxLines,
       textAlign: textAlign,

@@ -1,5 +1,5 @@
 class PTexts {
-//   Global Texts
+  //   Global Texts
   static const String skip = "Skip";
   static const String and = "and";
   static const String done = "Done";
@@ -8,19 +8,53 @@ class PTexts {
   static const String appName = "PickAfrika";
   static const String acontinue = "Continue";
 
-//   OnBoarding Texts
-  static const String onBoardingTitle1 = "choose your product";
-  static const String onBoardingTitle2 = "select payment method";
-  static const String onBoardingTitle3 = "Deliver at your doorstep";
+  //   OnBoarding Texts
+  static const String onBoardingTitle1 = "Welcome to Ahiaa!";
+  static const String onBoardingTitle2 = "Trade with Confidence";
+  static const String onBoardingTitle3 = "Join the Future of Commerce";
 
   static const String onBoardingSubTitle1 =
-      "Welcome to a World of limitless choice - Your Perfect Product Awaits";
-  static const String onBoardingSubTitle2 =
-      "For Seamless Transaction, Choose Your Payment Path - Your Convenience, Our Priority";
-  static const String onBoardingSubTitle3 =
-      "From Our Doorstep to Yours - Swift, Secure, and Contactless Delivery";
+      "Discover a revolutionary way to connect, trade, and grow in a seamless, decentralized marketplace. "
+      "Experience a dynamic and interactive trading system built for efficiency and convenience.";
+  // "Experience a global market inspired by the Igbo trading tradition, designed for modern traders.";
 
-// home
+  static const String onBoardingSubTitle2 =
+      "Enjoy secure, transparent transactions with stress-free shopping. "
+      "Unlock exclusive rewards with our unique trading model and customize your buying and selling experience.";
+  // "Unlock exclusive rewards with our *igba oso ahia* system and customize your buying and selling experience.";
+
+  static const String onBoardingSubTitle3 =
+      "Connect with a thriving community of traders worldwide. "
+      "Set up your store or start shopping today—your future in commerce starts now!";
+
+  // static const String onBoardingTitle1 = "Welcome to Ahiaa!";
+  // static const String onBoardingTitle2 = "The Future of Commerce";
+  // static const String onBoardingTitle3 = "A Marketplace Like No Other";
+  // static const String onBoardingTitle4 =
+  //     "Trade with Trust, Buy with Confidence";
+  // static const String onBoardingTitle5 = "Turn Every Trade into an Opportunity";
+  // static const String onBoardingTitle6 = "Your Market, Your Rules";
+  // static const String onBoardingTitle7 = "Join a Thriving Trading Community";
+  // static const String onBoardingTitle8 = "Ready to Trade Smarter?";
+
+  // static const String onBoardingSubTitle1 =
+  //     "Discover a revolutionary way to connect, trade, and grow.";
+  // static const String onBoardingSubTitle2 =
+  //     "Seamless, decentralized, and designed for the modern trader.";
+  // static const String onBoardingSubTitle3 =
+  //     "Experience a global market inspired by the Igbo trading tradition.";
+  // static const String onBoardingSubTitle4 =
+  //     "Secure and transparent transactions for a stress-free shopping experience.";
+  // static const String onBoardingSubTitle5 =
+  //     "Unlock exclusive rewards with our *igba oso ahia* trading system.";
+  // static const String onBoardingSubTitle6 =
+  //     "Customize your buying and selling journey to fit your needs.";
+  // static const String onBoardingSubTitle7 =
+  //     "Connect with traders worldwide and build lasting business relationships.";
+  // static const String onBoardingSubTitle8 =
+  //     "Set up your store or start shopping today – the future is now!";
+
+  // home
   static const String homeAppBarTitle = "Shopping made easy today";
   static const String homeAppBarSubTitle = "Diwe Innocent";
 

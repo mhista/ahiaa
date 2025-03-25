@@ -1,3 +1,4 @@
+import 'package:ahiaa/core/cubits/appstart/appstart_cubit.dart';
 import 'package:ahiaa/core/cubits/imagePicker/image_picker.dart';
 import 'package:ahiaa/core/services/storage/storage/storage_cubit.dart';
 import 'package:ahiaa/features/shop/banner/presentation/bloc/banner_bloc.dart';
@@ -9,6 +10,7 @@ import 'package:ahiaa/features/shop/store/presentation/cubit/scroller/shop_scrol
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../features/shop/store/presentation/cubit/expand_cubit.dart';
+import '../cubits/navigation/navigation_cubit.dart';
 import '../cubits/user/user_cubit.dart';
 import '../dependency/init_dependencies.dart';
 import '../../features/auth/presentation/bloc/auth_bloc.dart';
@@ -19,6 +21,10 @@ import '../../features/shop/home/presentation/cubit/palette/palette_cubit.dart';
 
 class AllBlocsProvider {
   static final multiblocprovider = [
+    BlocProvider<AppStartCubit>(
+      create: (_) => serviceLocator<AppStartCubit>()..checkAppStart(),
+    ),
+
     BlocProvider<AuthBloc>(create: (_) => serviceLocator<AuthBloc>()),
     BlocProvider<ProductBloc>(create: (_) => serviceLocator<ProductBloc>()),
     BlocProvider<BrandBloc>(create: (_) => serviceLocator<BrandBloc>()),
@@ -29,6 +35,12 @@ class AllBlocsProvider {
     BlocProvider<NavigationCubit>(
       create: (_) => serviceLocator<NavigationCubit>(),
     ),
+
+    // ONBOARDING CUBIT
+    BlocProvider<OnboardingCubit>(
+      create: (_) => serviceLocator<OnboardingCubit>(),
+    ),
+
     BlocProvider<PaletteCubit>(create: (_) => serviceLocator<PaletteCubit>()),
     BlocProvider<BannerCubit>(create: (_) => serviceLocator<BannerCubit>()),
     // color cubit

@@ -1,8 +1,11 @@
+import 'package:ahiaa/core/common/widgets/containers/rounded_container.dart';
+import 'package:ahiaa/core/common/widgets/icons/circular_icon.dart';
 import 'package:flutter/material.dart';
 
 import 'package:ahiaa/utils/constants/colors.dart';
 import 'package:ahiaa/utils/constants/sizes.dart';
 import 'package:ahiaa/utils/helpers/helper_functions.dart';
+import 'package:iconsax/iconsax.dart';
 
 import '../../../../../../../core/common/widgets/products/cart/add_remove_button.dart';
 
@@ -22,11 +25,20 @@ class BottomAddToCart extends StatelessWidget {
         vertical: PSizes.defaultSpace / 2,
       ),
       decoration: BoxDecoration(
-        color: isDark ? PColors.darkerGrey : PColors.light,
+        // color: isDark ? PColors.darkerGrey : PColors.light,
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(PSizes.cardRadiusLg),
           topRight: Radius.circular(PSizes.cardRadiusLg),
         ),
+        //   boxShadow: [
+        //     BoxShadow(
+        //       color: PColors.primary.withValues(alpha: 0.08),
+        //       blurRadius: 30,
+        //       offset: Offset(15, 15),
+        //       spreadRadius: 40,
+        //     ),
+        //   ],
+        // ),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -34,10 +46,10 @@ class BottomAddToCart extends StatelessWidget {
           Row(
             children: [
               ProductAddAndRemove(
-                width: 40,
-                height: 40,
+                width: 30,
+                height: 30,
                 addColor: PColors.white,
-                addBgColor: PColors.black,
+                addBgColor: PColors.primary,
                 minusColor: PColors.white,
                 minusBgColor: PColors.darkGrey,
                 text: '1',
@@ -52,17 +64,41 @@ class BottomAddToCart extends StatelessWidget {
               ),
             ],
           ),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              padding: const EdgeInsets.all(PSizes.md),
-              backgroundColor: PColors.black,
-              side: const BorderSide(color: PColors.black),
-            ),
-            onPressed: () {},
-            //  cartController.productQuantityInCart < 1
-            //     ? null
-            //     : () => cartController.addToCart(product),
-            child: const Text('Add To Cart'),
+          Row(
+            spacing: PSizes.spaceBtwItems,
+            children: [
+              Icon(Iconsax.message),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: PSizes.sm - 3,
+                    horizontal: PSizes.sm + 2,
+                  ),
+                  backgroundColor: PColors.primary,
+                  elevation: 0,
+                  // side: const BorderSide(color: PColors.black),
+                ),
+                onPressed: () {},
+                //  cartController.productQuantityInCart < 1
+                //     ? null
+                //     : () => cartController.addToCart(product),
+                child: Row(
+                  spacing: PSizes.sm,
+                  children: [
+                    const Text('Buy'),
+                    TRoundedContainer(
+                      height: 35,
+                      width: 35,
+                      backgroundColor: PColors.light,
+                      child: Icon(
+                        Icons.arrow_outward_outlined,
+                        color: PColors.primary,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
         ],
       ),

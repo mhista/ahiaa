@@ -9,9 +9,7 @@ import '../../../../home/presentation/cubit/palette/color_cubit.dart';
 import '../../../../home/presentation/cubit/palette/palette_cubit.dart';
 
 class ShopImage extends StatefulWidget {
-  const ShopImage({
-    super.key,
-  });
+  const ShopImage({super.key});
 
   @override
   State<ShopImage> createState() => _ShopImageState();
@@ -25,11 +23,13 @@ class _ShopImageState extends State<ShopImage> {
   }
 
   void _initBgColor() async {
-    await serviceLocator<PaletteCubit>().updatePalette(PImages.agro).then((v) {
-      serviceLocator<ColorCubit>()
-          .updateColor(serviceLocator<PaletteCubit>().state.color);
-      serviceLocator<AppBarColorCubit>()
-          .updateColor(serviceLocator<PaletteCubit>().state.bodyTextColor);
+    await serviceLocator<PaletteCubit>().updatePalette(PImages.p1).then((v) {
+      serviceLocator<ColorCubit>().updateColor(
+        serviceLocator<PaletteCubit>().state.color,
+      );
+      serviceLocator<AppBarColorCubit>().updateColor(
+        serviceLocator<PaletteCubit>().state.bodyTextColor,
+      );
     });
   }
 
@@ -42,7 +42,7 @@ class _ShopImageState extends State<ShopImage> {
       width: double.infinity,
       child: PRoundedImage(
         borderRadius: 0,
-        imageUrl: PImages.agro,
+        imageUrl: PImages.p1,
         contentPadding: 0,
       ),
     );

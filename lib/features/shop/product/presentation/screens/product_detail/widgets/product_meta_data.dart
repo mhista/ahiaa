@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:ahiaa/utils/constants/enums.dart';
+import 'package:iconsax/iconsax.dart';
 
 import '../../../../../../../core/common/widgets/containers/rounded_container.dart';
 import '../../../../../../../core/common/widgets/images/circular_images.dart';
@@ -25,19 +26,37 @@ class ProductMetaData extends StatelessWidget {
       spacing: PSizes.spaceBtwItems / 1.5,
       children: [
         // TITLE
-        ProductTitleText(title: 'Prod'),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            ProductTitleText(title: 'Prod'),
+            Row(
+              // RATING
+              children: [
+                const Icon(Iconsax.star5, color: Colors.amber, size: 24),
+                const SizedBox(width: PSizes.spaceBtwItems / 2),
+                Text.rich(
+                  TextSpan(
+                    children: [
+                      TextSpan(
+                        text: '5.0 ',
+                        style: Theme.of(context).textTheme.bodyLarge,
+                      ),
+                      const TextSpan(text: '(199)'),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
         // PRICE AND SALE PRICE
         Row(
           spacing: PSizes.spaceBtwItems / 2,
           children: [
             TRoundedContainer(
               radius: PSizes.sm,
-              backgroundColor: PColors.info.withValues(
-                alpha: 0.8,
-                red: 0,
-                green: 90,
-                blue: 100,
-              ),
+              backgroundColor: PColors.secondary.withValues(alpha: 0.8),
               padding: const EdgeInsets.symmetric(
                 horizontal: PSizes.sm,
                 vertical: PSizes.xs,
@@ -46,7 +65,7 @@ class ProductMetaData extends StatelessWidget {
                 '- 10%',
                 style: Theme.of(
                   context,
-                ).textTheme.labelLarge!.apply(color: PColors.black),
+                ).textTheme.labelLarge!.apply(color: PColors.light),
               ),
             ),
             // PRICE
@@ -54,8 +73,9 @@ class ProductMetaData extends StatelessWidget {
             //     product.salePrice! > 0)
             Text(
               '\$${200}',
-              style: Theme.of(context).textTheme.labelLarge!.apply(
+              style: Theme.of(context).textTheme.headlineSmall!.apply(
                 decoration: TextDecoration.lineThrough,
+                fontWeightDelta: -2,
               ),
             ),
             // if (product.productType == ProductType.single.name &&

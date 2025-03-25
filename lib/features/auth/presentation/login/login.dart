@@ -20,21 +20,16 @@ class LoginScreen extends StatelessWidget {
           child: Column(
             children: [
               // Logo, Title, Subtitle,
-
-              // PLoginHeader(),
+              PLoginHeader(),
 
               // Form
               PLoginForm(),
 
               // Divider
-              PFormeDivider(
-                dividerText: PTexts.orSignInWith,
-              ),
-              SizedBox(
-                height: PSizes.spaceBtwSections,
-              ),
+              PFormeDivider(dividerText: PTexts.orSignInWith),
+              SizedBox(height: PSizes.spaceBtwSections),
               // Footer
-              // PSocialButton()
+              PSocialButton(),
             ],
           ),
         ),

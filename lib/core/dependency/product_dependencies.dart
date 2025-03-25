@@ -3,8 +3,11 @@ import 'package:ahiaa/features/shop/product/data/datasources/product_remote_data
 import 'package:ahiaa/features/shop/product/data/repository/product_repo_impl.dart';
 import 'package:ahiaa/features/shop/product/domain/repository/product_repositories.dart';
 import 'package:ahiaa/features/shop/product/domain/usecase/get_all_products.dart';
+import 'package:ahiaa/features/shop/product/domain/usecase/get_products_by_brand.dart';
 import 'package:ahiaa/features/shop/product/domain/usecase/upload_product.dart';
 import 'package:ahiaa/features/shop/product/presentation/bloc/product_bloc.dart';
+
+import '../../features/shop/product/domain/usecase/get_featured_products.dart';
 
 void initProductDependencies() {
   serviceLocator
@@ -16,10 +19,14 @@ void initProductDependencies() {
     )
     ..registerFactory(() => UploadProduct(productRepo: serviceLocator()))
     ..registerFactory(() => GetAllProducts(productRepo: serviceLocator()))
+    ..registerFactory(() => GetProductsByBrand(productRepo: serviceLocator()))
+    ..registerFactory(() => GetFeaturedProducts(productRepo: serviceLocator()))
     ..registerLazySingleton(
       () => ProductBloc(
         uploadProduct: serviceLocator(),
         getAllProducts: serviceLocator(),
+        getProductsByBrand: serviceLocator(),
+        getFeaturedProducts: serviceLocator(),
       ),
     );
 }

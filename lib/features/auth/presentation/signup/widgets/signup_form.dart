@@ -1,10 +1,12 @@
 import 'package:ahiaa/core/common/loaders/button_loading.dart';
 import 'package:ahiaa/core/common/loaders/loaders.dart';
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../../../core/common/widgets/fields/custom_textfield.dart';
+import '../../../../../core/routes/route_names.dart';
 import '../../../../../utils/constants/sizes.dart';
 import '../../../../../utils/constants/text_strings.dart';
 import '../../../../../utils/validators/validation.dart';
@@ -13,9 +15,7 @@ import '../../bloc/auth_bloc.dart';
 import 'terms_and_conditions_checkbox.dart';
 
 class PSignupForm extends StatelessWidget {
-  const PSignupForm({
-    super.key,
-  });
+  const PSignupForm({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,30 +33,30 @@ class PSignupForm extends StatelessWidget {
             children: [
               Expanded(
                 child: TextFieldForm(
-                    controller: firstNameController,
-                    fieldName: 'First Name',
-                    labelText: PTexts.firstname,
-                    validator: (value) =>
-                        PValidator.validateEmptyText('First Name', value),
-                    icon: Iconsax.profile),
+                  controller: firstNameController,
+                  fieldName: 'First Name',
+                  labelText: PTexts.firstname,
+                  validator:
+                      (value) =>
+                          PValidator.validateEmptyText('First Name', value),
+                  icon: Iconsax.profile,
+                ),
               ),
-              const SizedBox(
-                width: PSizes.spaceBtwInputFields,
-              ),
+              const SizedBox(width: PSizes.spaceBtwInputFields),
               Expanded(
                 child: TextFieldForm(
-                    controller: lastNameController,
-                    fieldName: 'Last Name',
-                    labelText: PTexts.lastname,
-                    validator: (value) =>
-                        PValidator.validateEmptyText('Last Name', value),
-                    icon: Iconsax.user),
+                  controller: lastNameController,
+                  fieldName: 'Last Name',
+                  labelText: PTexts.lastname,
+                  validator:
+                      (value) =>
+                          PValidator.validateEmptyText('Last Name', value),
+                  icon: Iconsax.user,
+                ),
               ),
             ],
           ),
-          const SizedBox(
-            height: PSizes.spaceBtwInputFields,
-          ),
+          const SizedBox(height: PSizes.spaceBtwInputFields),
           // // Username
           // TextFieldForm(
           //     controller: userNameController,
@@ -76,18 +76,15 @@ class PSignupForm extends StatelessWidget {
             icon: Iconsax.direct,
             validator: PValidator.validateEmail,
           ),
-          const SizedBox(
-            height: PSizes.spaceBtwInputFields,
-          ),
+          const SizedBox(height: PSizes.spaceBtwInputFields),
           // PhoneNumber
           TextFieldForm(
-              controller: phoneController,
-              fieldName: 'Phone number',
-              labelText: PTexts.phoneNumber,
-              icon: Iconsax.call),
-          const SizedBox(
-            height: PSizes.spaceBtwInputFields,
+            controller: phoneController,
+            fieldName: 'Phone number',
+            labelText: PTexts.phoneNumber,
+            icon: Iconsax.call,
           ),
+          const SizedBox(height: PSizes.spaceBtwInputFields),
           // Password
           TextFieldForm(
             controller: passwordController,
@@ -98,40 +95,69 @@ class PSignupForm extends StatelessWidget {
             suffixIcon: Iconsax.eye_slash,
             // obscureText: true,
           ),
-          const SizedBox(
-            height: PSizes.spaceBtwSections,
-          ),
+          const SizedBox(height: PSizes.spaceBtwSections),
           // Terms and condition
           const PTermsAndConditions(),
-          const SizedBox(
-            height: PSizes.spaceBtwSections,
-          ),
+          const SizedBox(height: PSizes.spaceBtwSections),
           // SignUp Button
           SizedBox(
             width: double.infinity,
-            child:
-                BlocConsumer<AuthBloc, AuthState>(listener: (context, state) {
-              if (state is AuthFailure) {
-                PLoaders.customToast(message: state.message, context: context);
-              }
-            }, builder: (context, state) {
-              return ElevatedButton(
-                  child: state is AuthLoading
-                      ? LoadingAnimator()
-                      : Text(PTexts.createAccount),
+            child: BlocConsumer<AuthBloc, AuthStateChanges>(
+              listener: (context, state) {
+                if (state is AuthFailure) {
+                  PLoaders.customToast(
+                    message: state.message,
+                    context: context,
+                  );
+                }
+
+                if (state is AuthSuccess) {
+                  PLoaders.customToast(
+                    message: 'Account Created, verify to enjoy full benefit',
+                    context: context,
+                  );
+                }
+              },
+
+              builder: (context, state) {
+                return ElevatedButton(
+                  child:
+                      state is AuthLoading
+                          ? LoadingAnimator()
+                          : Text(PTexts.createAccount),
                   onPressed: () {
                     context.read<AuthBloc>().add(
-                          AuthSignUp(
-                            email: emailController.text.trim(),
-                            password: passwordController.text.trim(),
-                            firstName: firstNameController.text.trim(),
-                            lastName: lastNameController.text.trim(),
-                            phoneNumber: phoneController.text.trim(),
-                          ),
-                        );
-                  });
-            }),
+                      AuthSignUp(
+                        email: emailController.text.trim(),
+                        password: passwordController.text.trim(),
+                        firstName: firstNameController.text.trim(),
+                        lastName: lastNameController.text.trim(),
+                        phoneNumber: phoneController.text.trim(),
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
           ),
+          const SizedBox(height: PSizes.spaceBtwItems),
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text("Have an account? "),
+              GestureDetector(
+                onTap: () => Beamer.of(context).beamBack(),
+                child: Text(
+                  "Log In",
+                  style: Theme.of(
+                    context,
+                  ).textTheme.headlineSmall!.apply(fontSizeDelta: -3),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: PSizes.spaceBtwItems / 2),
         ],
       ),
     );

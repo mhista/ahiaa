@@ -9,7 +9,7 @@ class PCircularIcon extends StatelessWidget {
 
   // properties
   //Container [width, height and backgroundColor]
-// Icon [size, color and onPressed]
+  // Icon [size, color and onPressed]
   const PCircularIcon({
     super.key,
     required this.icon,
@@ -41,23 +41,22 @@ class PCircularIcon extends StatelessWidget {
       height: height,
       alignment: Alignment.center,
       decoration: BoxDecoration(
-          color: backgroundColor ??
-              (isDark
-                  ? PColors.dark.withOpacity(0.9)
-                  : PColors.light.withOpacity(0.9)),
-          borderRadius: BorderRadius.circular(100)),
+        color:
+            backgroundColor ??
+            (isDark
+                ? PColors.dark.withValues(alpha: 0.9)
+                : PColors.accent.withValues(alpha: 0.1)),
+        borderRadius: BorderRadius.circular(100),
+      ),
       child: Center(
         child: IconButton(
-            onPressed: onPressed,
-            alignment: Alignment.center,
-            icon: Center(
-              child: Icon(
-                icon,
-                color: color,
-                size: size,
-                weight: weight,
-              ),
-            )),
+          onPressed: onPressed,
+          padding: EdgeInsets.zero,
+          alignment: Alignment.center,
+          icon: Center(
+            child: Icon(icon, color: color, size: size, weight: weight),
+          ),
+        ),
       ),
     );
   }

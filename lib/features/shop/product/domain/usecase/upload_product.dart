@@ -4,6 +4,7 @@ import 'package:fpdart/fpdart.dart';
 
 import '../../../../../core/entities/coupon.dart';
 import '../../../../../core/usecases/usecase.dart';
+import '../../../brands/data/models/brandmodel.dart';
 import '../../../brands/domain/entities/brands.dart';
 import '../../data/models/product_attributes.dart';
 import '../../data/models/product_variations.dart';
@@ -48,7 +49,7 @@ class ProductParams {
   final String title;
   final String thumbnail;
   final bool isFeatured;
-  final Brand brand;
+  final BrandModel brand;
   final String description;
   final String categoryId;
   final List<String> images;

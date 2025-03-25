@@ -4,9 +4,11 @@ import 'package:ahiaa/core/routes/beam_locations/shop_location.dart';
 import 'package:beamer/beamer.dart';
 
 import 'beam_locations/cart_checkout_location.dart';
+import 'beam_locations/auth_location.dart';
 
 class BeamerLocations {
   static final beamLocations = <BeamLocation>[
+    AuthLocation(),
     NavigationMenuLocator(),
     ShopLocation(),
     ProductDetailLocation(),

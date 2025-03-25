@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../utils/constants/colors.dart';
+import '../../../../utils/constants/sizes.dart';
 import '../../../../utils/device/device_utility.dart';
 import '../../../../utils/helpers/helper_functions.dart';
 
@@ -24,25 +25,29 @@ class PTabBar extends StatelessWidget implements PreferredSizeWidget {
     final isDark = PHelperFunctions.isDarkMode(context);
     return Material(
       color: backGroundColor ?? (isDark ? PColors.black : PColors.white),
-      child: TabBar(
-        indicator: UnderlineTabIndicator(
-          borderSide:
-              useIndicator
-                  ? BorderSide(width: 2.0, color: PColors.primary)
-                  : BorderSide.none,
-        ),
-        dividerColor: useIndicator ? PColors.primary : PColors.transparent,
-        tabs: tabs,
-        tabAlignment: TabAlignment.start,
-        labelStyle: TextTheme.of(context).headlineSmall!.apply(
-          color: labelColor ?? (isDark ? PColors.white : PColors.dark),
-        ),
-        unselectedLabelStyle: TextTheme.of(
-          context,
-        ).headlineSmall!.apply(color: unSelectedLabelColor ?? PColors.darkGrey),
-        isScrollable: true,
+      child: Padding(
+        padding: const EdgeInsets.only(left: 8.0, top: 4, bottom: 4),
+        child: TabBar(
+          indicator: UnderlineTabIndicator(
+            borderSide:
+                useIndicator
+                    ? BorderSide(width: 2.0, color: PColors.primary)
+                    : BorderSide.none,
+          ),
+          dividerColor: useIndicator ? PColors.primary : PColors.transparent,
+          tabs: tabs,
+          tabAlignment: TabAlignment.start,
+          labelStyle: TextTheme.of(context).headlineSmall!.apply(
+            color: labelColor ?? (isDark ? PColors.white : PColors.dark),
+          ),
+          unselectedLabelStyle: TextTheme.of(context).headlineSmall!.apply(
+            color: unSelectedLabelColor ?? PColors.darkGrey,
+          ),
+          isScrollable: true,
 
-        padding: const EdgeInsets.only(right: 0),
+          padding: const EdgeInsets.only(right: 0),
+          labelPadding: EdgeInsets.only(left: PSizes.sm),
+        ),
       ),
     );
   }

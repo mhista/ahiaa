@@ -29,7 +29,7 @@ class RatingProgressIndicator extends StatelessWidget {
             child: LinearProgressIndicator(
               value: value,
               minHeight: 8,
-              backgroundColor: PColors.grey,
+              backgroundColor: PColors.accent.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(7),
               valueColor: AlwaysStoppedAnimation(
                 isDark ? PColors.primary : PColors.black,

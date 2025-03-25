@@ -1,26 +1,29 @@
 class PImages {
-//   //  APP LOGOS
-  static const String appLogo = 'assets/images/logo_images/p black resized.png';
-//   static const String lightAppLogo = 'assets/images/p white.png';
+  //   //  APP LOGOS
+  static const String appLogo = 'assets/logos/icon.png';
+  //   static const String lightAppLogo = 'assets/images/p white.png';
 
-// //   SOCIAL LOGOS
-  static const String google = 'assets/images/logo_images/google-icon.png';
-  static const String facebook = 'assets/images/logo_images/facebook-icon.png';
+  //   SOCIAL LOGOSassets\logos\icon.png
+  static const String google = 'assets/logos/google-icon.png';
+  static const String facebook = 'assets/logos/facebook-icon.png';
 
-// // BRAND LOGOS
-//   static const String adidas =
-//       'assets/images/logo_images/brand logos/adidas.png';
-//   static const String apple = 'assets/images/logo_images/brand logos/apple.png';
-//   static const String dell = 'assets/images/logo_images/brand logos/dell.png';
-//   static const String hp = 'assets/images/logo_images/brand logos/hp.png';
-//   static const String ikea = 'assets/images/logo_images/brand logos/ikea.png';
-//   static const String nike = 'assets/images/logo_images/brand logos/nike.png';
-//   static const String puma = 'assets/images/logo_images/brand logos/puma.png';
-//   static const String zara = 'assets/images/logo_images/brand logos/zara.png';
-//   static const String jordan =
-//       'assets/images/logo_images/brand logos/jordan.png';
+ // DEFAULT IMAGES
+  static const String defaultMultiImageIcon = 'assets/icons/image-upload.png';
 
-// // LOTTIE ANIMATIONS
+  // // BRAND LOGOS
+  //   static const String adidas =
+  //       'assets/images/logo_images/brand logos/adidas.png';
+  //   static const String apple = 'assets/images/logo_images/brand logos/apple.png';
+  //   static const String dell = 'assets/images/logo_images/brand logos/dell.png';
+  //   static const String hp = 'assets/images/logo_images/brand logos/hp.png';
+  //   static const String ikea = 'assets/images/logo_images/brand logos/ikea.png';
+  //   static const String nike = 'assets/images/logo_images/brand logos/nike.png';
+  //   static const String puma = 'assets/images/logo_images/brand logos/puma.png';
+  //   static const String zara = 'assets/images/logo_images/brand logos/zara.png';
+  //   static const String jordan =
+  //       'assets/images/logo_images/brand logos/jordan.png';
+
+  // // LOTTIE ANIMATIONS
   static const String lottie1 = 'assets/images/animations/lottie1.json';
   static const String lottie2 = 'assets/images/animations/lottie2.json';
   static const String lottie3 = 'assets/images/animations/success.json';
@@ -30,27 +33,28 @@ class PImages {
 
   static const String successAnimation =
       'assets/images/animations/success.json';
-//   // ONBOARDING images
+  //   // ONBOARDING images
 
   static const String onBoardingImage3 =
-      'assets/images/onboarding_images/sammy-delivery-with-gps-navigation.gif';
+      'assets/images/onboarding/onboard3.jpg';
   static const String onBoardingImage1 =
-      'assets/images/onboarding_images/sammy-sailor.gif';
+      'assets/images/onboarding/onboard1.jpg';
   static const String onBoardingImage2 =
-      'assets/images/onboarding_images/sammy-woman.gif';
+      'assets/images/onboarding/onboard2.jpg';
 
-//   // other images
+  //   // other images
 
   static const String emailDeliveredImage =
       'assets/images/animations/sammy-man-email.png';
   static const String orderSuccessful =
       'assets/images/animations/3d-casual-life.png';
-// CATEGORIES
-  static const String agro = 'assets/images/categories/agro.png';
-  static const String craft1 = 'assets/images/categories/craft1.png';
-  static const String craft2 = 'assets/images/categories/craft2.png';
+  // CATEGORIES
+  static const String p1 = 'assets/images/categories/p1.jpg';
+  static const String p2 = 'assets/images/categories/p2.jpg';
+  static const String p3 = 'assets/images/categories/p3.jpg';
+  static const String p4 = 'assets/images/categories/p4.jpg';
 
-//   // ICON3
+  //   // ICON3
   static const String paypal = 'assets/icons/payment_methods/paypal.png';
   static const String applePay = 'assets/icons/payment_methods/apple-pay.png';
   static const String creditCard =

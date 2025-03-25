@@ -26,7 +26,7 @@ class ProductDetailReviewCard extends StatelessWidget {
           child: Text('11,300', style: Theme.of(context).textTheme.bodySmall),
         ),
         TRoundedContainer(
-          backgroundColor: isDark ? PColors.darkerGrey : PColors.grey,
+          backgroundColor: PColors.accent.withValues(alpha: 0.1),
           child: Padding(
             padding: const EdgeInsets.all(PSizes.md),
             child: Column(

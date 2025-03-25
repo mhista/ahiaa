@@ -7,7 +7,7 @@ import '../../../../utils/helpers/pricing_calculator.dart';
 import '../../../core/common/loaders/loaders.dart';
 import '../../../core/common/widgets/appbar/app_bar.dart';
 import '../../../core/common/widgets/containers/rounded_container.dart';
-import '../cart/widgets/cart_items.dart';
+import '../cart/presentation/widgets/cart_items.dart';
 import 'widget/billing_address_section.dart';
 import 'widget/billing_amount_section.dart';
 import 'widget/billing_payment_section.dart';

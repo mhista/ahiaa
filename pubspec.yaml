@@ -1,19 +1,17 @@
 name: ahiaa
 description: "A new Flutter project."
 
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 version: 1.0.0+1
 
 environment:
   sdk: ^3.7.0
 
-
 dependencies:
-  flutter: 
+  flutter:
     sdk: flutter
-  
+
   intl: ^0.19.0
   logger: ^2.0.2+1
   url_launcher: ^6.2.4
@@ -28,7 +26,6 @@ dependencies:
   readmore: ^3.0.0
   flutter_rating_bar: ^4.0.1
   connectivity_plus: ^6.1.0
-
 
   iconsax:
   cupertino_icons: ^1.0.8
@@ -51,22 +48,28 @@ dependencies:
   palette_generator: ^0.3.3+5
   uuid: ^4.5.1
   animate_do: ^4.2.0
+  shared_preferences: ^2.5.2
+  google_sign_in: ^6.3.0
+  equatable: ^2.0.7
+  font_awesome_flutter: ^10.8.0
+  flutter_staggered_grid_view: ^0.7.0
+  icons_plus: ^5.0.0
+  flutter_colorpicker: ^1.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
- 
   flutter_lints: ^5.0.0
 
 flutter:
-
   uses-material-design: true
 
   assets:
     - assets/logos/
     - assets/images/
     - assets/images/categories/
+    - assets/images/onboarding/
     - assets/brands/agro/
     - assets/brands/fashion/
 

@@ -1,5 +1,6 @@
 import 'package:ahiaa/core/dependency/init_dependencies.dart';
 import 'package:ahiaa/features/shop/home/presentation/screens/home.dart';
+import 'package:ahiaa/features/vendor/presentation/screens/upload_product.dart';
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -40,9 +41,9 @@ class NavigationMenu extends StatelessWidget {
     return [
       HomeScreen(),
       const DiscoverScreen(),
+      const UploadProductScreen(),
       const SupportScreen(),
-      const SupportScreen(),
-      PersonalizationScreen(),
+      ProfileScreen(),
     ];
   }
 

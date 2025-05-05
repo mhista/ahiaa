@@ -1,3 +1,4 @@
+import 'package:ahiaa/utils/constants/enums.dart';
 import 'package:flutter/material.dart';
 
 import 'package:ahiaa/core/common/widgets/appbar/searchBar.dart';
@@ -29,7 +30,8 @@ class SearchWidgetListTile extends StatelessWidget {
 
               children: [
                 PRoundedImage(
-                  imageUrl: PImages.p1,
+                  imageType: ImageType.asset,
+                  image: PImages.p1,
                   height: 45,
                   width: 40,
                   borderRadius: 10,

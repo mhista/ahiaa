@@ -5,8 +5,12 @@ import 'package:ahiaa/features/shop/product/domain/repository/product_repositori
 import 'package:ahiaa/features/shop/product/domain/usecase/get_all_products.dart';
 import 'package:ahiaa/features/shop/product/domain/usecase/get_products_by_brand.dart';
 import 'package:ahiaa/features/shop/product/domain/usecase/upload_product.dart';
-import 'package:ahiaa/features/shop/product/presentation/bloc/product_bloc.dart';
+import 'package:ahiaa/features/shop/product/business_logic/bloc/product_bloc.dart';
 
+import '../../features/shop/product/business_logic/cubits/attribute_cubits.dart';
+import '../../features/shop/product/business_logic/cubits/sub_categories.dart'
+    show ProductSubCategoryCubit;
+import '../../features/shop/product/business_logic/cubits/variation_cubit.dart';
 import '../../features/shop/product/domain/usecase/get_featured_products.dart';
 
 void initProductDependencies() {
@@ -21,6 +25,9 @@ void initProductDependencies() {
     ..registerFactory(() => GetAllProducts(productRepo: serviceLocator()))
     ..registerFactory(() => GetProductsByBrand(productRepo: serviceLocator()))
     ..registerFactory(() => GetFeaturedProducts(productRepo: serviceLocator()))
+    ..registerLazySingleton(() => ProductAttributeCubits())
+    ..registerLazySingleton(() => ProductVariationCubit())
+    ..registerLazySingleton(() => ProductSubCategoryCubit())
     ..registerLazySingleton(
       () => ProductBloc(
         uploadProduct: serviceLocator(),

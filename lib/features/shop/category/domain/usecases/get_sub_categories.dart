@@ -18,7 +18,7 @@ class GetSubCategories implements UseCase<List<Category>, SubCatParams> {
 }
 
 class SubCatParams {
-  final String categoryID;
+  final int categoryID;
 
   SubCatParams({required this.categoryID});
 }

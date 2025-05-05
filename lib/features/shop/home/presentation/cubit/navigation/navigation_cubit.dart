@@ -4,8 +4,6 @@ class NavigationCubit extends Cubit<int> {
   NavigationCubit() : super(0);
 
   void updateIndex(int index) {
-    print(index);
-
     emit(index);
   }
 }

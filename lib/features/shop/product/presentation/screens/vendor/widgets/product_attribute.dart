@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/common/widgets/containers/rounded_container.dart';
-import '../../../../../core/common/widgets/fields/custom_textfield.dart';
-import '../../../../../utils/constants/colors.dart';
-import '../../../../../utils/constants/sizes.dart';
+import '../../../../../../../core/common/widgets/containers/rounded_container.dart';
+import '../../../../../../../core/common/widgets/fields/custom_textfield.dart';
+import '../../../../../../../utils/constants/colors.dart';
+import '../../../../../../../utils/constants/sizes.dart';
 
 class AttributeSelect extends StatelessWidget {
   const AttributeSelect({
     super.key,
     required this.controller,
+    required this.controller2,
+
     required this.hintText,
     required this.hintText2,
     required this.formHeader,
@@ -17,7 +19,7 @@ class AttributeSelect extends StatelessWidget {
     this.colorWidget,
   });
 
-  final TextEditingController controller;
+  final TextEditingController controller, controller2;
   final String hintText, hintText2, formHeader, fieldName;
   final bool isColorField;
   final Widget? colorWidget;
@@ -40,9 +42,10 @@ class AttributeSelect extends StatelessWidget {
             ),
             if (!isColorField)
               AttributeFormField(
-                controller: controller,
+                controller: controller2,
                 hintext: hintText2,
                 fieldName: fieldName,
+                flex: 2,
               ),
             if (isColorField) colorWidget!,
             TRoundedContainer(
@@ -76,13 +79,16 @@ class AttributeFormField extends StatelessWidget {
     required this.controller,
     required this.hintext,
     required this.fieldName,
+    this.flex = 1,
   });
 
   final TextEditingController controller;
   final String hintext, fieldName;
+  final int flex;
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return Flexible(
+      flex: flex,
       child: TextFieldForm(
         decoration: InputDecoration(
           hintText: hintext,

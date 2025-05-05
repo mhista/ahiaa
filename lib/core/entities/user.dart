@@ -6,6 +6,7 @@ class User {
   final String phoneNumber;
   final String profilePicture;
   final bool isShopOwner;
+  final bool isSuperAdmin;
   final DateTime? updatedAt;
 
   // List addresses;
@@ -18,5 +19,6 @@ class User {
     required this.profilePicture,
     required this.isShopOwner,
     required this.updatedAt,
+    required this.isSuperAdmin,
   });
 }

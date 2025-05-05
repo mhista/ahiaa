@@ -1,7 +1,7 @@
 import 'package:fpdart/fpdart.dart';
 
 import 'package:ahiaa/core/usecases/usecase.dart';
-import 'package:ahiaa/features/shop/product/domain/entities/product.dart';
+import 'package:ahiaa/core/entities/product.dart';
 import 'package:ahiaa/utils/exceptions/exceptions.dart';
 
 import '../repository/product_repositories.dart';

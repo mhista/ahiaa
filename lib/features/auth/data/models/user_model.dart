@@ -12,6 +12,7 @@ class UserModel extends User {
     required super.profilePicture,
     required super.isShopOwner,
     required super.updatedAt,
+    required super.isSuperAdmin,
   });
 
   User copyWith({
@@ -32,6 +33,8 @@ class UserModel extends User {
       phoneNumber: phoneNumber ?? this.phoneNumber,
       profilePicture: profilePicture ?? this.profilePicture,
       isShopOwner: isShopOwner,
+      isSuperAdmin: isSuperAdmin,
+
       updatedAt: updatedAt ?? DateTime.now(),
       // addresses: addresses ?? this.addresses,
     );
@@ -44,6 +47,8 @@ class UserModel extends User {
     result.addAll({'firstname': firstName});
     result.addAll({'lastname': lastName});
     result.addAll({'is_shop_owner': isShopOwner});
+    result.addAll({'is_super_admin': isSuperAdmin});
+
     result.addAll({'email': email});
     result.addAll({'phone': phoneNumber});
     result.addAll({'avatarurl': profilePicture});
@@ -66,6 +71,8 @@ class UserModel extends User {
       phoneNumber: map['phone'] ?? '',
       profilePicture: map['avatarurl'] ?? '',
       isShopOwner: map['is_shop_owner'] ?? false,
+      isSuperAdmin: map['is_super_admin'] ?? false,
+
       // addresses: map['addresses'] ?? [],
     );
   }

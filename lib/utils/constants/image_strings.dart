@@ -7,8 +7,8 @@ class PImages {
   static const String google = 'assets/logos/google-icon.png';
   static const String facebook = 'assets/logos/facebook-icon.png';
 
- // DEFAULT IMAGES
-  static const String defaultMultiImageIcon = 'assets/icons/image-upload.png';
+  // DEFAULT IMAGES
+  static const String defaultMultiImageIcon = 'assets/logos/image-upload.png';
 
   // // BRAND LOGOS
   //   static const String adidas =
@@ -49,10 +49,27 @@ class PImages {
   static const String orderSuccessful =
       'assets/images/animations/3d-casual-life.png';
   // CATEGORIES
-  static const String p1 = 'assets/images/categories/p1.jpg';
-  static const String p2 = 'assets/images/categories/p2.jpg';
-  static const String p3 = 'assets/images/categories/p3.jpg';
-  static const String p4 = 'assets/images/categories/p4.jpg';
+  static const String pp1 = 'assets/images/categories/p1.jpg';
+
+  static const String p1 = 'assets/images/categories/p (1).jpg';
+  static const String p2 = 'assets/images/categories/p (2).jpg';
+  static const String p3 = 'assets/images/categories/p (3).jpg';
+  static const String p4 = 'assets/images/categories/p (4).jpg';
+  static const String p5 = 'assets/images/categories/p (5).jpg';
+  static const String p6 = 'assets/images/categories/p (6).jpg';
+  static const String p7 = 'assets/images/categories/p (7).jpg';
+  static const String p8 = 'assets/images/categories/p (8).jpg';
+  static const String p9 = 'assets/images/categories/p (9).jpg';
+  static const String p10 = 'assets/images/categories/p (10).jpg';
+
+  static const String p11 = 'assets/images/categories/p (11).jpg';
+  static const String p12 = 'assets/images/categories/p12.jpg';
+  static const String p13 = 'assets/images/categories/p (13).jpg';
+  static const String p14 = 'assets/images/categories/p (14).jpg';
+  static const String p15 = 'assets/images/categories/p (15).jpg';
+  static const String p16 = 'assets/images/categories/p (16).jpg';
+  static const String p17 = 'assets/images/categories/p (17).jpg';
+  static const String p18 = 'assets/images/categories/p (18).jpg';
 
   //   // ICON3
   static const String paypal = 'assets/icons/payment_methods/paypal.png';

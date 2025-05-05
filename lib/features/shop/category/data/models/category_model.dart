@@ -2,7 +2,7 @@ import '../../domain/entities/category.dart';
 
 class CategoryModel extends Category {
   CategoryModel({
-    required super.id,
+    super.id,
     required super.name,
     required super.image,
     required super.isFeatured,
@@ -11,10 +11,10 @@ class CategoryModel extends Category {
 
   // EMPTY HELPER FUNCTION
   static CategoryModel empty() =>
-      CategoryModel(id: '', name: '', image: '', isFeatured: false);
+      CategoryModel(id: 0, name: '', image: '', isFeatured: false);
 
   CategoryModel copyWith({
-    String? id,
+    int? id,
     String? name,
     String? image,
     String? parentId,

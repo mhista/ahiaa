@@ -1,4 +1,3 @@
-import 'package:ahiaa/core/common/widgets/texts/section_heading.dart';
 import 'package:ahiaa/utils/constants/image_strings.dart';
 import 'package:ahiaa/utils/constants/sizes.dart';
 import 'package:ahiaa/utils/helpers/helper_functions.dart';
@@ -93,7 +92,12 @@ class ProfileScreen extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  PSectionHeading(title: 'Account', showActionButton: false),
+                  Text(
+                    'Account',
+                    style: Theme.of(
+                      context,
+                    ).textTheme.headlineMedium!.apply(fontSizeDelta: -3),
+                  ),
                   const SizedBox(height: PSizes.spaceBtwItems),
                   Padding(
                     padding: const EdgeInsets.all(4.0),

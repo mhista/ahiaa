@@ -2,10 +2,10 @@ import 'dart:convert';
 
 class ProductAttributeModel {
   String? name;
-  final List<String>? values;
+  final List<dynamic>? values;
   ProductAttributeModel({this.name, this.values});
 
-  ProductAttributeModel copyWith({String? name, List<String>? values}) {
+  ProductAttributeModel copyWith({String? name, List<dynamic>? values}) {
     return ProductAttributeModel(
       name: name ?? this.name,
       values: values ?? this.values,
@@ -29,7 +29,7 @@ class ProductAttributeModel {
     if (map.isEmpty) return ProductAttributeModel();
     return ProductAttributeModel(
       name: map['name'],
-      values: List<String>.from(map['values']),
+      values: List<dynamic>.from(map['values']),
     );
   }
 

@@ -66,10 +66,11 @@ class PProductCardVertical extends StatelessWidget {
                           width: 190,
                           backgroundColor:
                               isDark ? PColors.black : PColors.white,
-                          contentPadding: 0,
+                          padding: 0,
                           fit: BoxFit.cover,
                           isNetworkImage: false,
-                          imageUrl: images[index],
+                          image: images[index],
+                          imageType: ImageType.asset,
                           // applyImageRadius: true,
                         ),
                       ),

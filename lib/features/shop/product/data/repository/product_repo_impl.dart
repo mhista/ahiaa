@@ -3,11 +3,13 @@ import 'package:ahiaa/core/dependency/init_dependencies.dart';
 import 'package:ahiaa/core/entities/coupon.dart';
 import 'package:ahiaa/core/services/storage/storage/storage_cubit.dart';
 import 'package:ahiaa/features/shop/brands/domain/entities/brands.dart';
+import 'package:ahiaa/features/shop/product/business_logic/cubits/sub_categories.dart';
+import 'package:ahiaa/features/shop/product/business_logic/cubits/variation_cubit.dart';
 import 'package:ahiaa/features/shop/product/data/datasources/product_remote_data_source.dart';
 import 'package:ahiaa/features/shop/product/data/models/product_attributes.dart';
 import 'package:ahiaa/features/shop/product/data/models/product_model.dart';
 import 'package:ahiaa/features/shop/product/data/models/product_variations.dart';
-import 'package:ahiaa/features/shop/product/domain/entities/product.dart';
+import 'package:ahiaa/core/entities/product.dart';
 import 'package:ahiaa/features/shop/product/domain/repository/product_repositories.dart';
 import 'package:ahiaa/utils/exceptions/exceptions.dart';
 import 'package:ahiaa/utils/exceptions/subabase/server_exceptions.dart';
@@ -15,6 +17,7 @@ import 'package:fpdart/fpdart.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../../brands/data/models/brandmodel.dart';
+import '../../business_logic/cubits/attribute_cubits.dart';
 
 class ProductRepoImpl implements ProductRepository {
   final ProductRemoteDataSource _dataSource;
@@ -26,30 +29,30 @@ class ProductRepoImpl implements ProductRepository {
   Future<Either<Failure, Products>> uploadProduct({
     required String sellerId,
     required int stock,
-    required String sku,
+    String? sku,
     required double price,
-    required double salePrice,
+    double? salePrice,
     required String title,
-    required String thumbnail,
-    required bool isFeatured,
-    required BrandModel brand,
+    bool? isFeatured,
+    BrandModel? brand,
     required String description,
     required String categoryId,
-    required List<String> images,
     required String productType,
-    required List<ProductAttributeModel> productAttributes,
-    required List<ProductVariationModel> productVariations,
-    required bool canResale,
-    required double resaleAddedAmount,
-    required Coupon coupon,
+    bool? canResale,
+    double? resaleAddedAmount,
+    Coupon? coupon,
   }) async {
+    final productAttribute = serviceLocator<ProductAttributeCubits>();
+    final productVariation = serviceLocator<ProductVariationCubit>();
+    final subCategories = serviceLocator<ProductSubCategoryCubit>();
+
     try {
       ProductModel product = ProductModel(
         id: const Uuid().v1(),
         stock: stock,
         price: price,
         title: title,
-        thumbnail: thumbnail,
+        thumbnail: '',
         productType: productType,
         canResale: canResale,
         sku: sku,
@@ -59,12 +62,13 @@ class ProductRepoImpl implements ProductRepository {
         brand: brand,
         description: description,
         categoryId: categoryId,
-        images: images,
-        productAttributes: productAttributes,
-        productVariations: productVariations,
+        images: [],
+        productAttributes: productAttribute.state,
+        productVariations: productVariation.state,
         resaleAddedAmount: resaleAddedAmount,
         coupon: coupon,
         sellerId: sellerId,
+        subCategories: [''],
       );
 
       final imagesUrl = await _dataSource.uploadProductImage(product);
@@ -74,6 +78,8 @@ class ProductRepoImpl implements ProductRepository {
       );
 
       final uploadedProduct = await _dataSource.uploadProduct(product);
+      productAttribute.emptyCubit();
+      productVariation.emptyCubit();
       return right(uploadedProduct);
     } on ServerException catch (e) {
       return left(Failure(e.message));

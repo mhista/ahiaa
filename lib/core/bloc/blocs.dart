@@ -4,9 +4,14 @@ import 'package:ahiaa/core/services/storage/storage/storage_cubit.dart';
 import 'package:ahiaa/features/shop/banner/presentation/bloc/banner_bloc.dart';
 import 'package:ahiaa/features/shop/brands/presentation/bloc/brand_bloc.dart';
 import 'package:ahiaa/features/shop/category/presentation/bloc/category_bloc.dart';
-import 'package:ahiaa/features/shop/product/presentation/bloc/product_bloc.dart';
+import 'package:ahiaa/features/shop/product/business_logic/bloc/product_bloc.dart';
+import 'package:ahiaa/features/shop/product/business_logic/cubits/attribute_cubits.dart';
+import 'package:ahiaa/features/shop/product/business_logic/cubits/sub_categories.dart';
+import 'package:ahiaa/features/shop/product/business_logic/cubits/variation_cubit.dart'
+    show ProductVariationCubit;
 import 'package:ahiaa/features/shop/store/presentation/cubit/scroller/scroll_cubit.dart';
 import 'package:ahiaa/features/shop/store/presentation/cubit/scroller/shop_scroller.dart';
+import 'package:ahiaa/features/shop/product/business_logic/cubits/color_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../features/shop/store/presentation/cubit/expand_cubit.dart';
@@ -44,13 +49,15 @@ class AllBlocsProvider {
     BlocProvider<PaletteCubit>(create: (_) => serviceLocator<PaletteCubit>()),
     BlocProvider<BannerCubit>(create: (_) => serviceLocator<BannerCubit>()),
     // color cubit
-    BlocProvider<ColorCubit>(create: (_) => serviceLocator<ColorCubit>()),
-    BlocProvider<AppBarColorCubit>(
-      create: (_) => serviceLocator<AppBarColorCubit>(),
+    BlocProvider<ColorPickerCubit>(
+      create: (_) => serviceLocator<ColorPickerCubit>(),
     ),
+    // BlocProvider<AppBarColorCubit>(
+    //   create: (_) => serviceLocator<AppBarColorCubit>(),
+    // ),
     // scroll cubit
-    BlocProvider<ScrollCubit>(create: (_) => serviceLocator<ScrollCubit>()),
-    BlocProvider<ScrollCubit2>(create: (_) => serviceLocator<ScrollCubit2>()),
+    // BlocProvider<ScrollCubit>(create: (_) => serviceLocator<ScrollCubit>()),
+    // BlocProvider<ScrollCubit2>(create: (_) => serviceLocator<ScrollCubit2>()),
     // user cubit
     BlocProvider<UserCubit>(create: (_) => serviceLocator<UserCubit>()),
     // storage cubit
@@ -59,8 +66,14 @@ class AllBlocsProvider {
     BlocProvider<ImageCubit>(create: (_) => serviceLocator<ImageCubit>()),
     //  store cubit
     BlocProvider<ExpandCubit>(create: (_) => serviceLocator<ExpandCubit>()),
-    BlocProvider<StopStartScroll>(
-      create: (_) => serviceLocator<StopStartScroll>(),
+    BlocProvider<ProductAttributeCubits>(
+      create: (_) => serviceLocator<ProductAttributeCubits>(),
+    ),
+    BlocProvider<ProductVariationCubit>(
+      create: (_) => serviceLocator<ProductVariationCubit>(),
+    ),
+    BlocProvider<ProductSubCategoryCubit>(
+      create: (_) => serviceLocator<ProductSubCategoryCubit>(),
     ),
   ];
 }

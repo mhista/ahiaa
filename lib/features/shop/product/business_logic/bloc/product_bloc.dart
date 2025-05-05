@@ -1,5 +1,5 @@
 import 'package:ahiaa/core/usecases/usecase.dart';
-import 'package:ahiaa/features/shop/product/domain/entities/product.dart';
+import 'package:ahiaa/core/entities/product.dart';
 import 'package:ahiaa/features/shop/product/domain/usecase/get_all_products.dart';
 import 'package:ahiaa/features/shop/product/domain/usecase/get_featured_products.dart';
 import 'package:ahiaa/features/shop/product/domain/usecase/get_products_by_brand.dart';
@@ -55,19 +55,14 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
       ProductParams(
         sellerId: event.sellerId,
         stock: event.stock,
-        sku: event.sku,
         price: event.price,
         salePrice: event.salePrice,
         title: event.title,
-        thumbnail: event.thumbnail,
         isFeatured: event.isFeatured,
         brand: event.brand,
         description: event.description,
         categoryId: event.categoryId,
-        images: event.images,
         productType: event.productType,
-        productAttributes: event.productAttributes,
-        productVariations: event.productVariations,
         canResale: event.canResale,
         resaleAddedAmount: event.resaleAddedAmount,
         coupon: event.coupon,

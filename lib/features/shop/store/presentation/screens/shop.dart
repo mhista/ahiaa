@@ -44,7 +44,8 @@ class ShopScreen extends StatelessWidget {
                 automaticallyImplyLeading: false,
                 backgroundColor: PColors.transparent,
                 systemOverlayStyle: SystemUiOverlayStyle(
-                    statusBarIconBrightness: Brightness.dark),
+                  statusBarIconBrightness: Brightness.dark,
+                ),
                 pinned: true,
                 floating: false,
                 expandedHeight: 350,
@@ -52,51 +53,52 @@ class ShopScreen extends StatelessWidget {
                   background: Stack(
                     children: [
                       ShopImage(),
-                      BlocBuilder<ColorCubit, Color>(builder: (context, state) {
-                        return Container(
-                          // height: 350,
-                          decoration: BoxDecoration(
+                      BlocBuilder<ColorCubit, Color>(
+                        builder: (context, state) {
+                          return Container(
+                            // height: 350,
+                            decoration: BoxDecoration(
                               gradient: LinearGradient(
-                            begin: AlignmentDirectional.topCenter,
-                            end: AlignmentDirectional.bottomCenter,
-                            colors: [
-                              PColors.transparent,
-                              serviceLocator<ColorCubit>()
-                                  .state
-                                  .withOpacity(0.1),
-                              serviceLocator<ColorCubit>()
-                                  .state
-                                  .withOpacity(0.7),
-                              serviceLocator<ColorCubit>()
-                                  .state
-                                  .withOpacity(0.9),
-                              serviceLocator<ColorCubit>().state,
-                            ],
-                          )),
-                          // backgroundColor: PColors.transparent,
-                        );
-                      }),
+                                begin: AlignmentDirectional.topCenter,
+                                end: AlignmentDirectional.bottomCenter,
+                                colors: [
+                                  PColors.transparent,
+                                  serviceLocator<ColorCubit>().state
+                                      .withOpacity(0.1),
+                                  serviceLocator<ColorCubit>().state
+                                      .withOpacity(0.7),
+                                  serviceLocator<ColorCubit>().state
+                                      .withOpacity(0.9),
+                                  serviceLocator<ColorCubit>().state,
+                                ],
+                              ),
+                            ),
+                            // backgroundColor: PColors.transparent,
+                          );
+                        },
+                      ),
                       Align(
                         alignment: Alignment.center,
                         child: BlocBuilder<ExpandCubit, bool>(
-                            builder: (context, state) {
-                          return AnimatedOpacity(
-                            opacity:
-                                serviceLocator<ExpandCubit>().state ? 0 : 1,
-                            duration: Duration(milliseconds: 500),
-                            child: Text(
-                              'Agro Market',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .displayMedium!
-                                  .apply(
-                                      fontWeightDelta: 3,
-                                      fontSizeDelta: 2,
-                                      color: PColors.grey.withOpacity(0.8)),
-                            ),
-                          );
-                        }),
-                      )
+                          builder: (context, state) {
+                            return AnimatedOpacity(
+                              opacity:
+                                  serviceLocator<ExpandCubit>().state ? 0 : 1,
+                              duration: Duration(milliseconds: 500),
+                              child: Text(
+                                'Agro Market',
+                                style: Theme.of(
+                                  context,
+                                ).textTheme.displayMedium!.apply(
+                                  fontWeightDelta: 3,
+                                  fontSizeDelta: 2,
+                                  color: PColors.grey.withOpacity(0.8),
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -108,9 +110,9 @@ class ShopScreen extends StatelessWidget {
                     backgroundColor: PColors.transparent,
                     child: Column(
                       children: [
-                        ShopAppBar(
-                          storeColor: PColors.grey,
-                        ),
+                        // ShopAppBar(
+                        //   storeColor: PColors.grey,
+                        // ),
                         Expanded(
                           child: TabBarView(
                             children: [
@@ -118,18 +120,19 @@ class ShopScreen extends StatelessWidget {
                               ShopTabBarChildren(),
                             ],
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),
       ),
     );
   }
+
   // body: TRoundedContainer()),
   // );
 }

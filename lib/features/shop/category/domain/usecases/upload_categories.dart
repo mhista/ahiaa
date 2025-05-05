@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:fpdart/fpdart.dart';
 
 import '../../../../../core/usecases/usecase.dart';
@@ -18,21 +19,22 @@ class UploadCategories implements UseCase<Category, CategoryParams> {
       name: params.name,
       image: params.image,
       isFeatured: params.isFeatured,
+      parentId: params.parentId,
     );
   }
 }
 
 class CategoryParams {
-  final String id;
+  final int? id;
   final String name;
-  final String image;
-  final String parentId;
+  String image;
+  final String? parentId;
   final bool isFeatured;
   CategoryParams({
-    required this.id,
+    this.id,
     required this.name,
     required this.image,
-    this.parentId = '',
+    this.parentId,
     required this.isFeatured,
   });
 }

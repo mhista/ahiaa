@@ -16,6 +16,7 @@ import 'package:ahiaa/features/auth/domain/repository/auth_repository.dart';
 import 'package:ahiaa/features/shop/home/presentation/cubit/navigation/navigation_cubit.dart';
 import 'package:ahiaa/features/shop/home/presentation/cubit/palette/palette_cubit.dart';
 import 'package:ahiaa/features/shop/store/presentation/cubit/scroller/shop_scroller.dart';
+import 'package:ahiaa/features/shop/product/business_logic/cubits/color_cubit.dart';
 import 'package:get_it/get_it.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -38,12 +39,12 @@ Future<void> initDepenedencies() async {
   // create a new
   serviceLocator.registerLazySingleton(() => supabase.client);
   _initAuth();
-  await _initCubits();
   // other dependencies
   initProductDependencies();
   initBrandDependencies();
   initBannerDependencies();
   initCategoryDependencies();
+  await _initCubits();
 }
 
 // initialize authentication
@@ -118,7 +119,7 @@ void _initHomeCubits() {
 // register color cubit
 void _initColorCubits() {
   serviceLocator
-    ..registerLazySingleton(() => ColorCubit())
+    ..registerLazySingleton(() => ColorPickerCubit())
     ..registerLazySingleton(() => AppBarColorCubit());
 }
 

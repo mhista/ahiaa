@@ -13,7 +13,7 @@ enum PaymentMethods {
   creditCard,
   paystack,
   razorPay,
-  paytm
+  paytm,
 }
 
 enum ImageType { asset, network, memory, file }

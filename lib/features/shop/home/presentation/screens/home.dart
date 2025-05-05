@@ -1,23 +1,20 @@
-import 'package:ahiaa/core/common/widgets/containers/rounded_container.dart';
 import 'package:ahiaa/core/common/widgets/icons/circular_icon.dart'
     show PCircularIcon;
 import 'package:ahiaa/core/common/widgets/images/circular_images.dart'
     show PCircularImage;
-import 'package:ahiaa/core/common/widgets/images/edge_rounded_images.dart'
-    show PRoundedImage;
-import 'package:ahiaa/core/common/widgets/layouts/gid_layout.dart';
 import 'package:ahiaa/core/common/widgets/layouts/staggered_layout.dart';
-import 'package:ahiaa/core/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:ahiaa/core/common/widgets/texts/section_heading.dart';
 import 'package:ahiaa/features/shop/home/presentation/screens/widgets/home_categories.dart';
 import 'package:ahiaa/utils/constants/image_strings.dart' show PImages;
 import 'package:ahiaa/utils/constants/sizes.dart';
-import 'package:ahiaa/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../../../core/common/widgets/list_tiles/category_tiles.dart';
+import '../../../../../core/dependency/init_dependencies.dart';
+import '../../../../../core/dummies/category.dart';
 import '../../../../../utils/constants/colors.dart';
+import '../../../category/presentation/bloc/category_bloc.dart';
 import 'widgets/home_appbar.dart';
 import 'widgets/page_slider.dart';
 
@@ -68,6 +65,7 @@ class HomeScreen extends StatelessWidget {
                               backgroundColor: PColors.transparent,
                             ),
                           ),
+
                           // Text(
                           //   'Ahiaa',
                           //   style: Theme.of(context).textTheme.headlineMedium!
@@ -78,6 +76,22 @@ class HomeScreen extends StatelessWidget {
                             width: 45,
                             icon: Iconsax.shopping_cart,
                             color: PColors.black,
+                            onPressed: () {
+                              final cats = CategoryDummy.categories;
+                              for (var cat in cats) {
+                                serviceLocator<CategoryBloc>().add(
+                                  CategoryUpload(
+                                    id: cat.id,
+                                    name: cat.name,
+                                    image: cat.image,
+                                    parentId: cat.parentId,
+                                    isFeatured: cat.isFeatured,
+                                  ),
+                                );
+                                Future.delayed(Duration(seconds: 2));
+                              }
+                            },
+                            // },
                           ),
                         ],
                       ),

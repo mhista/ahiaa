@@ -1,4 +1,5 @@
 import 'package:ahiaa/core/common/widgets/icons/circular_icon.dart';
+import 'package:ahiaa/utils/constants/enums.dart';
 import 'package:ahiaa/utils/constants/image_strings.dart';
 import 'package:flutter/material.dart';
 
@@ -24,10 +25,11 @@ class CartItem extends StatelessWidget {
         // IMAGE
         PRoundedImage(
           // isNetworkImage: true,
-          imageUrl: PImages.applePay,
+          imageType: ImageType.asset,
+          image: PImages.applePay,
           width: 60,
           height: 60,
-          padding: const EdgeInsets.all(PSizes.md),
+          padding: PSizes.md,
           backgroundColor: isDark ? PColors.darkerGrey : PColors.light,
         ),
         const SizedBox(width: PSizes.spaceBtwItems),

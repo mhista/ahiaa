@@ -1,5 +1,6 @@
 import 'package:ahiaa/core/common/widgets/containers/rounded_container.dart';
 import 'package:ahiaa/core/common/widgets/custom_shapes/curved_edges/curved_edge_container.dart';
+import 'package:ahiaa/utils/constants/enums.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,11 +11,8 @@ import '../../../../../../core/common/widgets/custom_shapes/containers/circular_
 import '../../../../../../core/common/widgets/images/edge_rounded_images.dart';
 import '../../../../../../core/dependency/init_dependencies.dart';
 import '../../../../../../utils/constants/colors.dart';
-import '../../../../../../utils/constants/image_strings.dart';
 import '../../../../../../utils/constants/sizes.dart';
 import '../../cubit/banners/banner_cubit.dart';
-import '../../cubit/palette/color_cubit.dart';
-import '../../cubit/palette/palette_cubit.dart';
 
 class PageSlider extends StatelessWidget {
   const PageSlider({super.key, this.carouselHeight = 150});
@@ -39,7 +37,8 @@ class PageSlider extends StatelessWidget {
                               height: carouselHeight,
                               borderRadius: PSizes.md,
                               width: double.infinity,
-                              imageUrl: banner,
+                              image: banner,
+                              imageType: ImageType.asset,
                               isNetworkImage: false,
                               onPressed: () {},
                               fit: BoxFit.cover,

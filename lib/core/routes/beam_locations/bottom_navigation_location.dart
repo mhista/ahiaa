@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 
 import '../../../features/shop/discover/presentation/screens/discover.dart';
 import '../../../features/personalization/presentation/personalisation.dart';
+import '../../../features/shop/product/presentation/screens/vendor/upload_product.dart';
 import '../../../features/support/presentation/support.dart';
-import '../../../features/vendor/presentation/screens/upload_product.dart';
 
 class NavigationMenuLocator extends BeamLocation<BeamState> {
   @override

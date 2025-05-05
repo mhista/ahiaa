@@ -1,3 +1,4 @@
+import 'package:ahiaa/utils/constants/enums.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../core/common/widgets/containers/rounded_container.dart';
@@ -41,9 +42,10 @@ class _ShopImageState extends State<ShopImage> {
       height: 350,
       width: double.infinity,
       child: PRoundedImage(
+        imageType: ImageType.asset,
         borderRadius: 0,
-        imageUrl: PImages.p1,
-        contentPadding: 0,
+        image: PImages.p1,
+        // contentPadding: 0,
       ),
     );
   }

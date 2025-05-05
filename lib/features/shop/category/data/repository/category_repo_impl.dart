@@ -2,6 +2,7 @@ import 'package:ahiaa/features/shop/category/data/datasource/category_data_sourc
 import 'package:ahiaa/features/shop/category/domain/entities/category.dart';
 
 import 'package:ahiaa/utils/exceptions/exceptions.dart';
+import 'package:flutter/widgets.dart';
 import 'package:fpdart/fpdart.dart';
 
 import '../../../../../utils/exceptions/subabase/server_exceptions.dart';
@@ -25,7 +26,7 @@ class CategoryRepoImpl implements CategoryRepository {
 
   @override
   Future<Either<Failure, List<Category>>> getSubCategories(
-    String categoryId,
+    int categoryId,
   ) async {
     try {
       final categories = await _categoryDataSource.getAllCategories();
@@ -40,9 +41,10 @@ class CategoryRepoImpl implements CategoryRepository {
     required id,
     required name,
     required image,
-    parentId = '',
+    required parentId,
     required isFeatured,
   }) async {
+    debugPrint(id.toString());
     try {
       CategoryModel categoryModel = CategoryModel(
         id: id,
@@ -51,11 +53,30 @@ class CategoryRepoImpl implements CategoryRepository {
         isFeatured: isFeatured,
         parentId: parentId,
       );
+      debugPrint('uploading category ${id.toString()}');
+
       final imageUrl = await _categoryDataSource.uploadImage(categoryModel);
+      debugPrint('uploaded category image ${id.toString()}');
+      debugPrint('uploaded category image ${imageUrl.toString()}');
+      debugPrint('uploaded category image ${parentId.toString()}');
+
+      // final cat =
       final category = await _categoryDataSource.uploadCategory(
         categoryModel.copyWith(image: imageUrl),
       );
+      debugPrint('uploaded category ${id.toString()}');
+
       return right(category);
+    } on ServerException catch (e) {
+      return left(Failure(e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<Category>>> getParentCategories() async {
+    try {
+      final categories = await _categoryDataSource.getParentCategories();
+      return right(categories);
     } on ServerException catch (e) {
       return left(Failure(e.message));
     }

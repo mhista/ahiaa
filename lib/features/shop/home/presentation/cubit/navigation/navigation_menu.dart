@@ -1,6 +1,5 @@
 import 'package:ahiaa/core/dependency/init_dependencies.dart';
 import 'package:ahiaa/features/shop/home/presentation/screens/home.dart';
-import 'package:ahiaa/features/vendor/presentation/screens/upload_product.dart';
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,6 +11,7 @@ import '../../../../../../utils/helpers/helper_functions.dart';
 import '../../../../discover/presentation/screens/discover.dart';
 import '../../../../../personalization/presentation/personalisation.dart';
 import '../../../../../support/presentation/support.dart';
+import '../../../../product/presentation/screens/vendor/upload_product.dart';
 import 'navigation_cubit.dart';
 
 class NavigationMenu extends StatelessWidget {
@@ -64,19 +64,6 @@ class NavigationMenu extends StatelessWidget {
             selectedIndex: serviceLocator<NavigationCubit>().state,
             onDestinationSelected: (index) {
               serviceLocator<NavigationCubit>().updateIndex(index);
-
-              Beamer.of(context).update(
-                configuration: RouteInformation(uri: Uri.parse(labels[index])),
-                rebuild: false,
-              );
-              debugPrint(serviceLocator<NavigationCubit>().state.toString());
-
-              debugPrint(Beamer.of(context).currentPages.first.name.toString());
-              debugPrint(Beamer.of(context).currentBeamLocation.toString());
-
-              debugPrint(
-                Beamer.of(context).currentConfiguration?.uri.toString(),
-              );
             },
             destinations:
                 screenIcons

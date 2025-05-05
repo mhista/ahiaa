@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../utils/constants/colors.dart';
+import '../../../../../utils/constants/enums.dart';
 import '../../../../../utils/constants/image_strings.dart';
 import '../../../../../utils/constants/sizes.dart';
 import '../../containers/rounded_container.dart';
@@ -24,9 +25,10 @@ class ProductContainer extends StatelessWidget {
                 height: height,
                 width: width,
                 child: PRoundedImage(
-                  contentPadding: 0,
+                  padding: 0,
                   fit: BoxFit.cover,
-                  imageUrl: PImages.p1,
+                  image: PImages.p1,
+                  imageType: ImageType.asset,
                 ),
               ),
               Positioned(

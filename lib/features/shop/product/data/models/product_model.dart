@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:ahiaa/features/shop/product/domain/entities/product.dart';
+import 'package:ahiaa/core/entities/product.dart';
 import '../../../../../core/entities/coupon.dart';
 import '../../../../../core/entities/user.dart';
 import '../../../brands/data/models/brandmodel.dart';
@@ -15,20 +15,21 @@ class ProductModel extends Products {
     required super.title,
     required super.thumbnail,
     required super.productType,
-    required super.canResale,
-    required super.sku,
-    required super.salePrice,
+    super.canResale,
+    super.sku,
+    super.salePrice,
     required super.date,
-    required super.isFeatured,
-    required super.brand,
+    super.isFeatured,
+    super.brand,
     required super.description,
     required super.categoryId,
     required super.images,
-    required super.productAttributes,
-    required super.productVariations,
-    required super.resaleAddedAmount,
-    required super.coupon,
+    super.productAttributes,
+    super.productVariations,
+    super.resaleAddedAmount,
+    super.coupon,
     required super.sellerId,
+    required super.subCategories,
     super.user,
   });
   // final bool useRefNet;
@@ -47,6 +48,8 @@ class ProductModel extends Products {
     BrandModel? brand,
     String? description,
     String? categoryId,
+    List<String>? subCategories,
+
     List<String>? images,
     String? productType,
     List<ProductAttributeModel>? productAttributes,
@@ -69,6 +72,8 @@ class ProductModel extends Products {
       brand: brand ?? this.brand,
       description: description ?? this.description,
       categoryId: categoryId ?? this.categoryId,
+      subCategories: subCategories ?? this.subCategories,
+
       images: images ?? this.images,
       productType: productType ?? this.productType,
       productAttributes: productAttributes ?? this.productAttributes,
@@ -94,20 +99,22 @@ class ProductModel extends Products {
     result.addAll({'date': date.toIso8601String()});
     result.addAll({'thumbnail': thumbnail});
     result.addAll({'is_featured': isFeatured});
-    result.addAll({'brand': brand.toMap()});
+    result.addAll({'brand': brand?.toMap()});
     result.addAll({'description': description});
     result.addAll({'category_id': categoryId});
+    result.addAll({'sub_categories': subCategories});
+
     result.addAll({'images': images});
     result.addAll({'product_type': productType});
     result.addAll({
-      'product_attributes': productAttributes.map((x) => x.toMap()).toList(),
+      'product_attributes': productAttributes?.map((x) => x.toMap()).toList(),
     });
     result.addAll({
-      'product_variations': productVariations.map((x) => x.toMap()).toList(),
+      'product_variations': productVariations?.map((x) => x.toMap()).toList(),
     });
     result.addAll({'can_resale': canResale});
     result.addAll({'resale_added_amount': resaleAddedAmount});
-    result.addAll({'coupon': coupon.toMap()});
+    result.addAll({'coupon': coupon?.toMap()});
 
     return result;
   }
@@ -127,7 +134,7 @@ class ProductModel extends Products {
       brand: BrandModel.fromMap(map['brand'] ?? BrandModel.empty()),
       description: map['description'] ?? '',
       categoryId: map['category_id'] ?? '',
-      images: List<String>.from(map['images'] ?? []),
+      images: List<String>.from(map['images'] ?? ['']),
       productType: map['product_type'] ?? '',
       productAttributes: List<ProductAttributeModel>.from(
         map['product_attributes']?.map((x) => ProductAttributeModel.fromMap(x)),
@@ -138,6 +145,7 @@ class ProductModel extends Products {
       canResale: map['can_resale'] ?? false,
       resaleAddedAmount: map['resale_added_amount']?.toDouble() ?? 0.0,
       coupon: Coupon.fromMap(map['coupon']),
+      subCategories: List<String>.from(map['subCategories'] ?? ['']),
     );
   }
 
@@ -148,6 +156,6 @@ class ProductModel extends Products {
 
   @override
   String toString() {
-    return 'Products(id: $id, stock: $stock, sku: $sku, price: $price, salePrice: $salePrice, title: $title, date: $date, thumbnail: $thumbnail, isFeatured: $isFeatured, brand: $brand, description: $description, categoryId: $categoryId, images: $images, productType: $productType, productAttributes: $productAttributes, productVariations: $productVariations, canResale: $canResale, resaleAddedAmount: $resaleAddedAmount, coupon: $coupon)';
+    return 'Products(id: $id, stock: $stock, sku: $sku, price: $price, salePrice: $salePrice, title: $title, date: $date, thumbnail: $thumbnail, isFeatured: $isFeatured, brand: $brand, subCategories: $subCategories, description: $description, categoryId: $categoryId, images: $images, productType: $productType, productAttributes: $productAttributes, productVariations: $productVariations, canResale: $canResale, resaleAddedAmount: $resaleAddedAmount, coupon: $coupon)';
   }
 }

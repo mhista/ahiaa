@@ -15,7 +15,7 @@ final class ProductUpload extends ProductEvent {
   final bool? isFeatured;
   final BrandModel? brand;
   final String description;
-  final String categoryId;
+  final int categoryId;
   final String productType;
   final bool? canResale;
   final double? resaleAddedAmount;

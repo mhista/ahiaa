@@ -32,25 +32,26 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
        _getProductsByBrand = getProductsByBrand,
        _getFeaturedProducts = getFeaturedProducts,
        super(ProductInitial()) {
-    on<ProductEvent>(
-      (event, emit) => ProductLoading(),
-    ); // Handles the ProductEvent and emits ProductLoading state
     on<ProductUpload>(
-      (event, emit) => uploadProduct,
+      uploadAllProduct,
     ); // Handles the ProductUpload event and calls the uploadProduct function
     on<AllProductsGet>(
-      (event, emit) => getAllProducts,
+      getAllTheProducts,
     ); // Handles the AllProductsGet event and calls the getAllProducts function
     on<GetFeatureProducts>(
-      (event, emit) => getAllProducts,
+      getAllTheFeaturedProducts,
     ); // Handles the GetFeatureProducts event and calls the getAllProducts function
     on<GetBrandProducts>(
-      (event, emit) => getProductsByBrand,
+      getAllTheBrandProducts,
     ); // Handles the GetBrandProducts event and calls the getProductsByBrand function
   }
 
   // Uploads a product
-  void uploadProduct(ProductUpload event, Emitter<ProductState> emit) async {
+  Future<void> uploadAllProduct(
+    ProductUpload event,
+    Emitter<ProductState> emit,
+  ) async {
+    emit(ProductLoading()); // Emits ProductLoading state
     final result = await _uploadProduct(
       ProductParams(
         sellerId: event.sellerId,
@@ -78,7 +79,11 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
   }
 
   // Retrieves all products
-  void getAllProducts(AllProductsGet event, Emitter<ProductState> emit) async {
+  Future<void> getAllTheProducts(
+    AllProductsGet event,
+    Emitter<ProductState> emit,
+  ) async {
+    emit(ProductLoading()); // Emits ProductLoading state
     final result = await _getAllProducts(NoParams());
 
     result.fold(
@@ -92,10 +97,11 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
   }
 
   // Retrieves products by brand
-  void getAllBrandProducts(
+  Future<void> getAllTheBrandProducts(
     GetBrandProducts event,
     Emitter<ProductState> emit,
   ) async {
+    emit(ProductLoading()); // Emits ProductLoading state
     final result = await _getProductsByBrand(
       BrandProductParams(brandId: event.brandId),
     );
@@ -111,10 +117,11 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
   }
 
   // Retrieves featured products
-  void getAllFeaturedProducts(
+  Future<void> getAllTheFeaturedProducts(
     GetFeatureProducts event,
     Emitter<ProductState> emit,
   ) async {
+    emit(ProductLoading()); // Emits ProductLoading state
     final result = await _getFeaturedProducts(
       FeaturedProductsParams(useLimit: event.useLimit),
     );

@@ -66,17 +66,13 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ),
 
-                          // Text(
-                          //   'Ahiaa',
-                          //   style: Theme.of(context).textTheme.headlineMedium!
-                          //       .apply(fontWeightDelta: -2, fontSizeDelta: -2),
-                          // ),
                           PCircularIcon(
                             height: 45,
                             width: 45,
                             icon: Iconsax.shopping_cart,
                             color: PColors.black,
                             onPressed: () {
+                              // Beamer.of(context).beamToNamed('/cart');
                               final cats = CategoryDummy.categories;
                               for (var cat in cats) {
                                 serviceLocator<CategoryBloc>().add(
@@ -86,9 +82,10 @@ class HomeScreen extends StatelessWidget {
                                     image: cat.image,
                                     parentId: cat.parentId,
                                     isFeatured: cat.isFeatured,
+                                    productCounts: cat.productCounts,
                                   ),
                                 );
-                                Future.delayed(Duration(seconds: 2));
+                                // Future.delayed(Duration(seconds: 2));
                               }
                             },
                             // },

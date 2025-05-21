@@ -19,8 +19,8 @@ class Products {
   final bool? isFeatured;
   final BrandModel? brand;
   final String description;
-  final String categoryId;
-  final List<String> subCategories;
+  final int categoryId;
+  final List<String?> subCategories;
 
   final List<String> images;
   final String productType;

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:fpdart/fpdart.dart';
 
 import '../../../../../core/usecases/usecase.dart';
@@ -13,6 +14,7 @@ class GetSubCategories implements UseCase<List<Category>, SubCatParams> {
 
   @override
   Future<Either<Failure, List<Category>>> call(SubCatParams params) async {
+    debugPrint('GetSubCategories called with categoryID: ${params.categoryID}');
     return await _categoryRepo.getSubCategories(params.categoryID);
   }
 }

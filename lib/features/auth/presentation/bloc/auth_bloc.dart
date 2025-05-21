@@ -32,7 +32,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthStateChanges> {
        _userCubit = userCubit,
        _googleSignIn = googleSignIn,
        super(AuthInitial()) {
-    on<AuthEvent>((_, emit) => emit(AuthLoading()));
     on<AuthSignUp>(_onAuthSignUp);
     on<AuthLogin>(_onAuthLoginWithEmailAndPasword);
     on<AuthUserLoggedIn>(_isUserLoggedIn);
@@ -42,6 +41,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthStateChanges> {
   // SIGNUP EVENT
 
   FutureOr<void> _onAuthSignUp(AuthSignUp event, emit) async {
+    emit(AuthLoading());
     // debugPrint(event.)
     final res = await _userSignUp(
       // debugPrint
@@ -63,6 +63,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthStateChanges> {
   // LOGIN EVENT
 
   FutureOr<void> _onAuthLoginWithEmailAndPasword(event, emit) async {
+    emit(AuthLoading());
+
     final res = await _userLogin(
       UserLoginParams(email: event.email, password: event.password),
     );
@@ -90,6 +92,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthStateChanges> {
     GoogleSigninEvent event,
     Emitter<AuthStateChanges> emit,
   ) async {
+    emit(AuthLoading());
+
     final result = await _googleSignIn(NoParams());
     result.fold(
       (l) => emit(AuthFailure(message: l.message)),

@@ -1,5 +1,9 @@
+import 'dart:math';
+
 import '../../features/shop/category/data/models/category_model.dart';
 import '../../utils/constants/image_strings.dart';
+
+final Random random = Random();
 
 class CategoryDummy {
   static final List<CategoryModel> catTest = [
@@ -8,6 +12,7 @@ class CategoryDummy {
       name: 'Sustainable & Eco-Friendly Products',
       image: '',
       isFeatured: true,
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 2,
@@ -15,6 +20,7 @@ class CategoryDummy {
       image: PImages.p4,
       isFeatured: true,
       parentId: '2',
+      productCounts: random.nextInt(1000),
     ),
   ];
   // Main Categories (Prioritized by Sustainability, Crafts, Fashion, Food, DIY, etc.)
@@ -24,6 +30,7 @@ class CategoryDummy {
       name: 'Sustainable & Eco-Friendly Products',
       image: PImages.p12,
       isFeatured: true,
+      productCounts: random.nextInt(1000),
     ),
 
     CategoryModel(
@@ -31,6 +38,7 @@ class CategoryDummy {
       name: 'Hobbies & Crafts',
       image: PImages.p4,
       isFeatured: true,
+      productCounts: random.nextInt(1000),
     ),
 
     CategoryModel(
@@ -38,6 +46,7 @@ class CategoryDummy {
       name: 'Fashion & Apparel',
       image: PImages.p14,
       isFeatured: true,
+      productCounts: random.nextInt(1000),
     ),
 
     CategoryModel(
@@ -45,6 +54,7 @@ class CategoryDummy {
       name: 'Beauty & Personal Care',
       image: PImages.p5,
       isFeatured: true,
+      productCounts: random.nextInt(1000),
     ),
 
     CategoryModel(
@@ -52,6 +62,7 @@ class CategoryDummy {
       name: 'Groceries & Food',
       image: PImages.p5,
       isFeatured: true,
+      productCounts: random.nextInt(1000),
     ),
 
     CategoryModel(
@@ -59,6 +70,7 @@ class CategoryDummy {
       name: 'Specialty Diet & Organic Food',
       image: PImages.p2,
       isFeatured: true,
+      productCounts: random.nextInt(1000),
     ),
 
     CategoryModel(
@@ -66,6 +78,7 @@ class CategoryDummy {
       name: 'DIY & Home Improvement',
       image: PImages.p9,
       isFeatured: true,
+      productCounts: random.nextInt(1000),
     ),
 
     CategoryModel(
@@ -73,6 +86,7 @@ class CategoryDummy {
       name: 'Home & Furniture',
       image: PImages.p15,
       isFeatured: true,
+      productCounts: random.nextInt(1000),
     ),
 
     CategoryModel(
@@ -80,6 +94,7 @@ class CategoryDummy {
       name: 'Home Improvement & Tools',
       image: PImages.p10,
       isFeatured: true,
+      productCounts: random.nextInt(1000),
     ),
 
     CategoryModel(
@@ -87,6 +102,7 @@ class CategoryDummy {
       name: 'Office & School Supplies',
       image: PImages.p8,
       isFeatured: true,
+      productCounts: random.nextInt(1000),
     ),
 
     CategoryModel(
@@ -94,6 +110,7 @@ class CategoryDummy {
       name: 'Health & Wellness',
       image: PImages.p1,
       isFeatured: true,
+      productCounts: random.nextInt(1000),
     ),
 
     CategoryModel(
@@ -101,6 +118,7 @@ class CategoryDummy {
       name: 'Jewelry & Accessories',
       image: PImages.p13,
       isFeatured: true,
+      productCounts: random.nextInt(1000),
     ),
 
     CategoryModel(
@@ -108,6 +126,7 @@ class CategoryDummy {
       name: 'Travel & Luggage',
       image: PImages.p3,
       isFeatured: true,
+      productCounts: random.nextInt(1000),
     ),
 
     CategoryModel(
@@ -115,6 +134,7 @@ class CategoryDummy {
       name: 'Party & Events Supplies',
       image: PImages.p6,
       isFeatured: true,
+      productCounts: random.nextInt(1000),
     ),
 
     CategoryModel(
@@ -122,6 +142,7 @@ class CategoryDummy {
       name: 'Pet Supplies',
       image: PImages.p11,
       isFeatured: true,
+      productCounts: random.nextInt(1000),
     ),
 
     CategoryModel(
@@ -129,6 +150,7 @@ class CategoryDummy {
       name: 'Baby & Kids Products',
       image: '',
       isFeatured: true,
+      productCounts: random.nextInt(1000),
     ),
 
     CategoryModel(
@@ -136,15 +158,23 @@ class CategoryDummy {
       name: 'Electronics & Gadgets',
       image: '',
       isFeatured: true,
+      productCounts: random.nextInt(1000),
     ),
 
-    CategoryModel(id: 18, name: 'Home Appliances', image: '', isFeatured: true),
+    CategoryModel(
+      id: 18,
+      name: 'Home Appliances',
+      image: '',
+      isFeatured: true,
+      productCounts: random.nextInt(1000),
+    ),
 
     CategoryModel(
       id: 19,
       name: 'Office Electronics',
       image: '',
       isFeatured: true,
+      productCounts: random.nextInt(1000),
     ),
 
     CategoryModel(
@@ -152,6 +182,7 @@ class CategoryDummy {
       name: 'Photography & Videography Equipment',
       image: '',
       isFeatured: true,
+      productCounts: random.nextInt(1000),
     ),
 
     CategoryModel(
@@ -159,6 +190,7 @@ class CategoryDummy {
       name: 'Handmade & Custom Products',
       image: '',
       isFeatured: true,
+      productCounts: random.nextInt(1000),
     ),
 
     CategoryModel(
@@ -166,6 +198,7 @@ class CategoryDummy {
       name: 'Industrial & Business Supplies',
       image: '',
       isFeatured: true,
+      productCounts: random.nextInt(1000),
     ),
 
     CategoryModel(
@@ -173,6 +206,7 @@ class CategoryDummy {
       name: 'Automotive & Motorcycles',
       image: '',
       isFeatured: true,
+      productCounts: random.nextInt(1000),
     ),
 
     CategoryModel(
@@ -180,6 +214,7 @@ class CategoryDummy {
       name: 'Agricultural & Farming Supplies',
       image: '',
       isFeatured: true,
+      productCounts: random.nextInt(1000),
     ),
 
     CategoryModel(
@@ -187,6 +222,7 @@ class CategoryDummy {
       name: 'Alcohol & Beverages',
       image: '',
       isFeatured: true,
+      productCounts: random.nextInt(1000),
     ),
 
     // Subcategories for Electronics & Gadgets
@@ -196,6 +232,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '1',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 102,
@@ -203,6 +240,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '1',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 103,
@@ -210,6 +248,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '1',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 104,
@@ -217,6 +256,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '1',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 105,
@@ -224,6 +264,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '1',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 106,
@@ -231,6 +272,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '1',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 107,
@@ -238,6 +280,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '1',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 108,
@@ -245,6 +288,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '1',
+      productCounts: random.nextInt(1000),
     ),
     // Subcategories for Home Appliances
     CategoryModel(
@@ -253,6 +297,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '2',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 202,
@@ -260,6 +305,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '2',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 203,
@@ -267,6 +313,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '2',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 204,
@@ -274,6 +321,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '2',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 205,
@@ -281,6 +329,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '2',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 206,
@@ -288,6 +337,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '2',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 207,
@@ -295,6 +345,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '2',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 208,
@@ -302,6 +353,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '2',
+      productCounts: random.nextInt(1000),
     ),
 
     // Subcategories for Fashion & Apparel
@@ -311,6 +363,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '3',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 302,
@@ -318,6 +371,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '3',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 303,
@@ -325,6 +379,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '3',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 304,
@@ -332,6 +387,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '3',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 305,
@@ -339,6 +395,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '3',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 306,
@@ -346,6 +403,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '3',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 307,
@@ -353,6 +411,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '3',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 308,
@@ -360,6 +419,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '3',
+      productCounts: random.nextInt(1000),
     ),
 
     // Subcategories for Beauty & Personal Care
@@ -369,6 +429,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '4',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 402,
@@ -376,6 +437,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '4',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 403,
@@ -383,6 +445,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '4',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 404,
@@ -390,6 +453,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '4',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 405,
@@ -397,6 +461,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '4',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 406,
@@ -404,6 +469,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '4',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 407,
@@ -411,6 +477,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '4',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 408,
@@ -418,6 +485,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '4',
+      productCounts: random.nextInt(1000),
     ),
 
     // Subcategories for Health & Wellness
@@ -427,6 +495,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '5',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 502,
@@ -434,6 +503,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '5',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 503,
@@ -441,6 +511,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '5',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 504,
@@ -448,6 +519,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '5',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 505,
@@ -455,6 +527,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '5',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 506,
@@ -462,6 +535,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '5',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 507,
@@ -469,6 +543,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '5',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 508,
@@ -476,6 +551,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '5',
+      productCounts: random.nextInt(1000),
     ),
 
     // Subcategories for Groceries & Food
@@ -485,6 +561,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '6',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 602,
@@ -492,6 +569,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '6',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 603,
@@ -499,6 +577,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '6',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 604,
@@ -506,6 +585,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '6',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 605,
@@ -513,6 +593,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '6',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 606,
@@ -520,6 +601,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '6',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 607,
@@ -527,6 +609,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '6',
+      productCounts: random.nextInt(1000),
     ),
 
     // Subcategories for Baby & Kids Products
@@ -536,6 +619,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '7',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 702,
@@ -543,6 +627,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '7',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 703,
@@ -550,6 +635,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '7',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 704,
@@ -557,6 +643,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '7',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 705,
@@ -564,6 +651,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '7',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 706,
@@ -571,6 +659,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '7',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 707,
@@ -578,6 +667,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '7',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 708,
@@ -585,6 +675,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '7',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 709,
@@ -592,6 +683,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '7',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 710,
@@ -599,6 +691,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '7',
+      productCounts: random.nextInt(1000),
     ),
 
     // Subcategories for Home & Furniture
@@ -608,6 +701,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '8',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 802,
@@ -615,6 +709,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '8',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 803,
@@ -622,6 +717,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '8',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 804,
@@ -629,6 +725,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '8',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 805,
@@ -636,6 +733,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '8',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 806,
@@ -643,6 +741,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '8',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 807,
@@ -650,6 +749,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '8',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 808,
@@ -657,6 +757,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '8',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 809,
@@ -664,6 +765,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '8',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 810,
@@ -671,6 +773,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '8',
+      productCounts: random.nextInt(1000),
     ),
 
     // Subcategories for Office & School Supplies
@@ -680,6 +783,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '9',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 902,
@@ -687,6 +791,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '9',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 903,
@@ -694,6 +799,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '9',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 904,
@@ -701,6 +807,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '9',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 905,
@@ -708,6 +815,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '9',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 906,
@@ -715,6 +823,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '9',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 907,
@@ -722,6 +831,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '9',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 908,
@@ -729,6 +839,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '9',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 909,
@@ -736,6 +847,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '9',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 910,
@@ -743,6 +855,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '9',
+      productCounts: random.nextInt(1000),
     ),
 
     // Subcategories for Sports & Outdoors
@@ -752,6 +865,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '10',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1002,
@@ -759,6 +873,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '10',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1003,
@@ -766,6 +881,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '10',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1004,
@@ -773,6 +889,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '10',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1005,
@@ -780,6 +897,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '10',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1006,
@@ -787,6 +905,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '10',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1007,
@@ -794,6 +913,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '10',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1008,
@@ -801,6 +921,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '10',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1009,
@@ -808,6 +929,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '10',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1010,
@@ -815,6 +937,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '10',
+      productCounts: random.nextInt(1000),
     ),
 
     // Subcategories for Automotive & Motorcycles
@@ -824,6 +947,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '11',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1102,
@@ -831,6 +955,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '11',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1103,
@@ -838,6 +963,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '11',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1104,
@@ -845,6 +971,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '11',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1105,
@@ -852,6 +979,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '11',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1106,
@@ -859,6 +987,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '11',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1107,
@@ -866,6 +995,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '11',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1108,
@@ -873,6 +1003,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '11',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1109,
@@ -880,6 +1011,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '11',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1110,
@@ -887,6 +1019,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '11',
+      productCounts: random.nextInt(1000),
     ),
 
     // Subcategories for Pet Supplies
@@ -896,6 +1029,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '12',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1202,
@@ -903,6 +1037,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '12',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1203,
@@ -910,6 +1045,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '12',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1204,
@@ -917,6 +1053,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '12',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1205,
@@ -924,6 +1061,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '12',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1206,
@@ -931,6 +1069,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '12',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1207,
@@ -938,6 +1077,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '12',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1208,
@@ -945,6 +1085,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '12',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1209,
@@ -952,6 +1093,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '12',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1210,
@@ -959,6 +1101,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '12',
+      productCounts: random.nextInt(1000),
     ),
 
     // Subcategories for Books & Stationery
@@ -968,6 +1111,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '13',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1302,
@@ -975,6 +1119,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '13',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1303,
@@ -982,6 +1127,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '13',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1304,
@@ -989,6 +1135,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '13',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1305,
@@ -996,6 +1143,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '13',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1306,
@@ -1003,6 +1151,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '13',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1307,
@@ -1010,6 +1159,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '13',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1308,
@@ -1017,6 +1167,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '13',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1309,
@@ -1024,6 +1175,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '13',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1310,
@@ -1031,6 +1183,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '13',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1311,
@@ -1038,6 +1191,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '13',
+      productCounts: random.nextInt(1000),
     ),
 
     // Subcategories for Jewelry & Accessories
@@ -1047,6 +1201,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '14',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1402,
@@ -1054,6 +1209,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '14',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1403,
@@ -1061,6 +1217,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '14',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1404,
@@ -1068,6 +1225,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '14',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1405,
@@ -1075,6 +1233,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '14',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1406,
@@ -1082,6 +1241,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '14',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1407,
@@ -1089,6 +1249,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '14',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1408,
@@ -1096,6 +1257,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '14',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1409,
@@ -1103,6 +1265,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '14',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1410,
@@ -1110,6 +1273,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '14',
+      productCounts: random.nextInt(1000),
     ),
 
     // Subcategories for Home Improvement & Tools
@@ -1119,6 +1283,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '15',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1502,
@@ -1126,6 +1291,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '15',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1503,
@@ -1133,6 +1299,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '15',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1504,
@@ -1140,6 +1307,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '15',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1505,
@@ -1147,6 +1315,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '15',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1506,
@@ -1154,6 +1323,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '15',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1507,
@@ -1161,6 +1331,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '15',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1508,
@@ -1168,6 +1339,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '15',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1509,
@@ -1175,6 +1347,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '15',
+      productCounts: random.nextInt(1000),
     ),
     CategoryModel(
       id: 1510,
@@ -1182,6 +1355,7 @@ class CategoryDummy {
       image: '',
       isFeatured: false,
       parentId: '15',
+      productCounts: random.nextInt(1000),
     ),
   ];
 }

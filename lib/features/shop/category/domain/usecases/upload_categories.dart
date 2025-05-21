@@ -20,6 +20,7 @@ class UploadCategories implements UseCase<Category, CategoryParams> {
       image: params.image,
       isFeatured: params.isFeatured,
       parentId: params.parentId,
+      productCounts: params.productCounts,
     );
   }
 }
@@ -30,11 +31,13 @@ class CategoryParams {
   String image;
   final String? parentId;
   final bool isFeatured;
+  final int productCounts;
   CategoryParams({
     this.id,
     required this.name,
     required this.image,
     this.parentId,
     required this.isFeatured,
+    required this.productCounts,
   });
 }

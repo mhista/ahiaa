@@ -5,9 +5,7 @@ import 'package:fpdart/fpdart.dart';
 import '../../../../../core/entities/coupon.dart';
 import '../../../../../core/usecases/usecase.dart';
 import '../../../brands/data/models/brandmodel.dart';
-import '../../../brands/domain/entities/brands.dart';
-import '../../data/models/product_attributes.dart';
-import '../../data/models/product_variations.dart';
+
 import '../../../../../core/entities/product.dart';
 
 class UploadProduct implements UseCase<Products, ProductParams> {
@@ -46,7 +44,7 @@ class ProductParams {
   final bool? isFeatured;
   final BrandModel? brand;
   final String description;
-  final String categoryId;
+  final int categoryId;
   final String productType;
   final bool? canResale;
   final double? resaleAddedAmount;

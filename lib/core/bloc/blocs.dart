@@ -9,8 +9,6 @@ import 'package:ahiaa/features/shop/product/business_logic/cubits/attribute_cubi
 import 'package:ahiaa/features/shop/product/business_logic/cubits/sub_categories.dart';
 import 'package:ahiaa/features/shop/product/business_logic/cubits/variation_cubit.dart'
     show ProductVariationCubit;
-import 'package:ahiaa/features/shop/store/presentation/cubit/scroller/scroll_cubit.dart';
-import 'package:ahiaa/features/shop/store/presentation/cubit/scroller/shop_scroller.dart';
 import 'package:ahiaa/features/shop/product/business_logic/cubits/color_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -21,7 +19,6 @@ import '../dependency/init_dependencies.dart';
 import '../../features/auth/presentation/bloc/auth_bloc.dart';
 import '../../features/shop/home/presentation/cubit/banners/banner_cubit.dart';
 import '../../features/shop/home/presentation/cubit/navigation/navigation_cubit.dart';
-import '../../features/shop/home/presentation/cubit/palette/color_cubit.dart';
 import '../../features/shop/home/presentation/cubit/palette/palette_cubit.dart';
 
 class AllBlocsProvider {
@@ -74,6 +71,9 @@ class AllBlocsProvider {
     ),
     BlocProvider<ProductSubCategoryCubit>(
       create: (_) => serviceLocator<ProductSubCategoryCubit>(),
+    ),
+    BlocProvider<SubCategoryCheckboxCubit>(
+      create: (_) => serviceLocator<SubCategoryCheckboxCubit>(),
     ),
   ];
 }

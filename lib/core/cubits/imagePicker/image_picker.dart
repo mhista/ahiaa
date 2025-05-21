@@ -22,5 +22,10 @@ class ImageCubit extends Cubit<List<File>> {
     // return [...state];
   }
 
+  Future<void> removeFile(String filePath) async {
+    final updatedFiles = state.where((file) => file.path != filePath).toList();
+    emit(updatedFiles);
+  }
+
   void emptyCubit() => emit([]);
 }

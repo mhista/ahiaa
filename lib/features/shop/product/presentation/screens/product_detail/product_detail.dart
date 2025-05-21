@@ -8,20 +8,14 @@ import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
-import 'package:ahiaa/utils/constants/enums.dart';
 import 'package:ahiaa/utils/constants/sizes.dart';
 
 import '../../../../../../core/common/widgets/appbar/app_bar.dart';
 import '../../../../../../core/common/widgets/icons/favorite_icon.dart';
-import '../../../../../../core/common/widgets/layouts/gid_layout.dart'
-    show GridLayout;
 import '../../../../../../core/common/widgets/layouts/staggered_layout.dart';
-import '../../../../../../core/common/widgets/products/product_cards/product_card_vertical.dart'
-    show PProductCardVertical;
 import '../../../../../../core/common/widgets/texts/read_more_text.dart';
 import '../../../../../../core/common/widgets/texts/section_heading.dart';
 import '../../../../../../core/routes/route_names.dart';
-import '../../../data/models/product_model.dart';
 import '../product_review/widgets/product_detail_review_card.dart'
     show ProductDetailReviewCard;
 import 'widgets/product_attributes.dart';

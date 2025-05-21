@@ -37,10 +37,12 @@ class CategoryDataSourceImpl implements CategoryDataSource {
   @override
   Future<List<CategoryModel>> getSubCategories(int categoryId) async {
     try {
+      debugPrint('fetching subcategories for category ID: $categoryId');
       final subCategories = await _supabaseClient
           .from('category')
           .select()
-          .eq('parent_id', categoryId);
+          .eq('parent_id', categoryId.toString());
+      debugPrint(subCategories.toString());
       return subCategories.map((e) => CategoryModel.fromMap(e)).toList();
     } catch (e) {
       debugPrint(e.toString());
@@ -52,7 +54,7 @@ class CategoryDataSourceImpl implements CategoryDataSource {
   @override
   Future<String> uploadImage(CategoryModel categorymodel) async {
     try {
-      if (categorymodel.image != '' && categorymodel.image != null) {
+      if (categorymodel.image != '') {
         final image = await serviceLocator<StorageCubit>()
             .getImageDataFromAssets(categorymodel.image);
         final imageUrl = await serviceLocator<StorageCubit>().uploadImageData(

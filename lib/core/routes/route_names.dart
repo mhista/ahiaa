@@ -37,4 +37,5 @@ class RouteNames {
   static const onBoardinig = '/onboarding';
   // selling
   static const sell = '/sell';
+  static const categorySelect = '/sell/cat-select';
 }

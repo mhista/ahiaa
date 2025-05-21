@@ -1,14 +1,9 @@
-import 'package:ahiaa/core/cubits/imagePicker/image_picker.dart';
 import 'package:ahiaa/core/dependency/init_dependencies.dart';
 import 'package:ahiaa/core/entities/coupon.dart';
-import 'package:ahiaa/core/services/storage/storage/storage_cubit.dart';
-import 'package:ahiaa/features/shop/brands/domain/entities/brands.dart';
 import 'package:ahiaa/features/shop/product/business_logic/cubits/sub_categories.dart';
 import 'package:ahiaa/features/shop/product/business_logic/cubits/variation_cubit.dart';
 import 'package:ahiaa/features/shop/product/data/datasources/product_remote_data_source.dart';
-import 'package:ahiaa/features/shop/product/data/models/product_attributes.dart';
 import 'package:ahiaa/features/shop/product/data/models/product_model.dart';
-import 'package:ahiaa/features/shop/product/data/models/product_variations.dart';
 import 'package:ahiaa/core/entities/product.dart';
 import 'package:ahiaa/features/shop/product/domain/repository/product_repositories.dart';
 import 'package:ahiaa/utils/exceptions/exceptions.dart';
@@ -16,6 +11,7 @@ import 'package:ahiaa/utils/exceptions/subabase/server_exceptions.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:uuid/uuid.dart';
 
+import '../../../../../core/cubits/imagePicker/image_picker.dart';
 import '../../../brands/data/models/brandmodel.dart';
 import '../../business_logic/cubits/attribute_cubits.dart';
 
@@ -36,7 +32,7 @@ class ProductRepoImpl implements ProductRepository {
     bool? isFeatured,
     BrandModel? brand,
     required String description,
-    required String categoryId,
+    required int categoryId,
     required String productType,
     bool? canResale,
     double? resaleAddedAmount,
@@ -64,22 +60,28 @@ class ProductRepoImpl implements ProductRepository {
         categoryId: categoryId,
         images: [],
         productAttributes: productAttribute.state,
-        productVariations: productVariation.state,
+        productVariations:
+            productVariation.state!.isEmpty ? null : productVariation.state,
         resaleAddedAmount: resaleAddedAmount,
         coupon: coupon,
         sellerId: sellerId,
-        subCategories: [''],
+        subCategories: subCategories.state.toList(),
       );
+      // debugPrint('Product images: ${product.toString()}');
 
       final imagesUrl = await _dataSource.uploadProductImage(product);
-      product = product.copyWith(
+      final productModel = product.copyWith(
         thumbnail: imagesUrl[0],
-        images: imagesUrl.sublist(0),
+        images: imagesUrl.length > 1 ? imagesUrl.sublist(1) : [imagesUrl[0]],
       );
 
-      final uploadedProduct = await _dataSource.uploadProduct(product);
+      final uploadedProduct = await _dataSource.uploadProduct(productModel);
+      // empty the cubits
       productAttribute.emptyCubit();
       productVariation.emptyCubit();
+      subCategories.emptyCubit();
+      serviceLocator<ImageCubit>().emptyCubit();
+
       return right(uploadedProduct);
     } on ServerException catch (e) {
       return left(Failure(e.message));

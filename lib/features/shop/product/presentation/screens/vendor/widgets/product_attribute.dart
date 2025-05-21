@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../../core/common/widgets/containers/rounded_container.dart';
 import '../../../../../../../core/common/widgets/fields/custom_textfield.dart';
+import '../../../../../../../core/dependency/init_dependencies.dart'
+    show serviceLocator;
 import '../../../../../../../utils/constants/colors.dart';
 import '../../../../../../../utils/constants/sizes.dart';
+import '../../../../../../../utils/validators/validation.dart';
+import '../../../../business_logic/cubits/attribute_cubits.dart';
 
 class AttributeSelect extends StatelessWidget {
   const AttributeSelect({
@@ -48,20 +52,29 @@ class AttributeSelect extends StatelessWidget {
                 flex: 2,
               ),
             if (isColorField) colorWidget!,
-            TRoundedContainer(
-              // height: 20,
-              // width: 50,
-              padding: EdgeInsets.symmetric(
-                vertical: PSizes.xs,
-                horizontal: PSizes.sm,
-              ),
-              backgroundColor: PColors.secondary,
-              child: Center(
-                child: Text(
-                  'Apply',
-                  style: Theme.of(context).textTheme.titleSmall!.apply(
-                    color: PColors.light,
-                    fontWeightDelta: 2,
+            GestureDetector(
+              onTap: () {
+                serviceLocator<ProductAttributeCubits>().addProductAttribute(
+                  controller.text,
+                  [controller2.text],
+                );
+                controller2.clear();
+              },
+              child: TRoundedContainer(
+                // height: 20,
+                // width: 50,
+                padding: EdgeInsets.symmetric(
+                  vertical: PSizes.xs,
+                  horizontal: PSizes.sm,
+                ),
+                backgroundColor: PColors.secondary,
+                child: Center(
+                  child: Text(
+                    'Apply',
+                    style: Theme.of(context).textTheme.titleSmall!.apply(
+                      color: PColors.light,
+                      fontWeightDelta: 2,
+                    ),
                   ),
                 ),
               ),
@@ -90,6 +103,7 @@ class AttributeFormField extends StatelessWidget {
     return Flexible(
       flex: flex,
       child: TextFieldForm(
+        canDispose: false,
         decoration: InputDecoration(
           hintText: hintext,
           hintStyle: Theme.of(context).textTheme.titleMedium!.apply(
@@ -114,7 +128,8 @@ class AttributeFormField extends StatelessWidget {
           ),
         ),
         controller: controller,
-        fieldName: 'Size',
+        fieldName: fieldName,
+        validator: (value) => PValidator.validateEmptyText(fieldName, value),
       ),
     );
   }

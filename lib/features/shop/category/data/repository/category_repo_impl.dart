@@ -29,7 +29,7 @@ class CategoryRepoImpl implements CategoryRepository {
     int categoryId,
   ) async {
     try {
-      final categories = await _categoryDataSource.getAllCategories();
+      final categories = await _categoryDataSource.getSubCategories(categoryId);
       return right(categories);
     } on ServerException catch (e) {
       return left(Failure(e.message));
@@ -43,6 +43,7 @@ class CategoryRepoImpl implements CategoryRepository {
     required image,
     required parentId,
     required isFeatured,
+    required productCounts,
   }) async {
     debugPrint(id.toString());
     try {
@@ -52,6 +53,7 @@ class CategoryRepoImpl implements CategoryRepository {
         image: image,
         isFeatured: isFeatured,
         parentId: parentId,
+        productCounts: productCounts,
       );
       debugPrint('uploading category ${id.toString()}');
 

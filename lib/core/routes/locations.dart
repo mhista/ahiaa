@@ -5,6 +5,7 @@ import 'package:beamer/beamer.dart';
 
 import 'beam_locations/cart_checkout_location.dart';
 import 'beam_locations/auth_location.dart';
+import 'beam_locations/product_upload_location.dart';
 
 class BeamerLocations {
   static final beamLocations = <BeamLocation>[
@@ -13,5 +14,6 @@ class BeamerLocations {
     ShopLocation(),
     ProductDetailLocation(),
     CartCheckoutLocation(),
+    ProductUploadLocation(),
   ];
 }

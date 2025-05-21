@@ -24,6 +24,7 @@ class TRoundedContainer extends StatelessWidget {
     this.intensity = 0,
     this.borderWidth = 1,
     this.gradientColor = PColors.primary,
+    this.onClick,
   });
   final double? width, height;
   final double radius, borderWidth;
@@ -35,46 +36,54 @@ class TRoundedContainer extends StatelessWidget {
   final Gradient? gradient;
   final List<BoxShadow>? shadow;
   final double elevation, intensity;
+  final Function()? onClick;
 
   @override
   Widget build(BuildContext context) {
     final isDark = PHelperFunctions.isDarkMode(context);
-    return Material(
-      type: MaterialType.canvas,
-      borderRadius: BorderRadius.circular(radius),
-      elevation: elevation,
-      color: backgroundColor,
-      child: Container(
-        width: width,
-        height: height,
-        padding: padding,
-        margin: margin,
-        decoration: BoxDecoration(
-            gradient: useContainerGradient
-                ? gradient ??
-                    LinearGradient(
-                        begin: AlignmentDirectional.topCenter,
-                        end: AlignmentDirectional.bottomCenter,
-                        colors: [
-                          gradientColor.withOpacity(0.8 + intensity),
-                          gradientColor.withOpacity(0.6 + intensity),
-                          gradientColor.withOpacity(0.2 + intensity),
-                          isDark
-                              ? PColors.black.withOpacity(0.3)
-                              : PColors.white.withOpacity(0.3),
-                          isDark
-                              ? PColors.black.withOpacity(0.6)
-                              : PColors.white.withOpacity(0.6),
-                          isDark ? PColors.black : PColors.white
-                        ])
-                : null,
+    return GestureDetector(
+      onTap: onClick,
+      child: Material(
+        type: MaterialType.canvas,
+        borderRadius: BorderRadius.circular(radius),
+        elevation: elevation,
+        color: backgroundColor,
+        child: Container(
+          width: width,
+          height: height,
+          padding: padding,
+          margin: margin,
+          decoration: BoxDecoration(
+            gradient:
+                useContainerGradient
+                    ? gradient ??
+                        LinearGradient(
+                          begin: AlignmentDirectional.topCenter,
+                          end: AlignmentDirectional.bottomCenter,
+                          colors: [
+                            gradientColor.withOpacity(0.8 + intensity),
+                            gradientColor.withOpacity(0.6 + intensity),
+                            gradientColor.withOpacity(0.2 + intensity),
+                            isDark
+                                ? PColors.black.withOpacity(0.3)
+                                : PColors.white.withOpacity(0.3),
+                            isDark
+                                ? PColors.black.withOpacity(0.6)
+                                : PColors.white.withOpacity(0.6),
+                            isDark ? PColors.black : PColors.white,
+                          ],
+                        )
+                    : null,
             borderRadius: BorderRadius.circular(radius),
             color: backgroundColor ?? (isDark ? PColors.black : PColors.white),
-            border: showBorder
-                ? Border.all(color: borderColor, width: borderWidth)
-                : null,
-            boxShadow: shadow),
-        child: child,
+            border:
+                showBorder
+                    ? Border.all(color: borderColor, width: borderWidth)
+                    : null,
+            boxShadow: shadow,
+          ),
+          child: child,
+        ),
       ),
     );
   }

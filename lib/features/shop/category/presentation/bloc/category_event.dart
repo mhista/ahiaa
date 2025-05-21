@@ -8,9 +8,9 @@ final class GetAllCategory extends CategoryEvent {}
 final class GetAllFeaturedCategory extends CategoryEvent {}
 
 final class GetSubCategory extends CategoryEvent {
-  final int categoryId;
+  final int? categoryId;
 
-  GetSubCategory({required this.categoryId});
+  GetSubCategory({this.categoryId});
 }
 
 final class CategoryUpload extends CategoryEvent {
@@ -19,6 +19,7 @@ final class CategoryUpload extends CategoryEvent {
   final String image;
   final String? parentId;
   final bool isFeatured;
+  final int productCounts;
 
   CategoryUpload({
     this.id,
@@ -26,7 +27,8 @@ final class CategoryUpload extends CategoryEvent {
     required this.image,
     this.parentId,
     required this.isFeatured,
+    required this.productCounts,
   });
 }
 
-class GetAllParentCategories extends CategoryEvent {}
+final class GetAllParentCategories extends CategoryEvent {}

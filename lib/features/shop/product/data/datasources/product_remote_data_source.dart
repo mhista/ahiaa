@@ -2,6 +2,7 @@ import 'package:ahiaa/core/cubits/imagePicker/image_picker.dart';
 import 'package:ahiaa/core/dependency/init_dependencies.dart';
 import 'package:ahiaa/features/shop/product/data/models/product_model.dart';
 import 'package:ahiaa/utils/exceptions/subabase/server_exceptions.dart';
+import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../../../core/services/storage/storage/storage_cubit.dart';
@@ -28,6 +29,8 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
   ProductRemoteDataSourceImpl({required this.supabaseClient});
   @override
   Future<ProductModel> uploadProduct(ProductModel productModel) async {
+    debugPrint('uploading product');
+    debugPrint(productModel.toString());
     try {
       final product =
           await supabaseClient
@@ -36,7 +39,9 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
               .select();
 
       return ProductModel.fromMap(product.first);
-    } catch (e) {
+    } on ServerException catch (e) {
+      debugPrint(e.toString());
+
       throw ServerException(e.toString());
     }
   }
@@ -48,18 +53,24 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
       final images = serviceLocator<ImageCubit>().state;
 
       for (var image in images) {
-        final imageUrl = await serviceLocator<StorageCubit>()
-            .uploadImageToSupabase(
-              image: image,
-              path: 'products/${product.id}',
-              bucketId: 'products',
-            );
+        final imageUrl = await serviceLocator<StorageCubit>().uploadImageToSupabase(
+          image: image,
+          path:
+              'products/${product.sellerId}/${product.id}/${image.path.split('/').last}',
+          bucketId: 'products',
+        );
         imagesUrl.add(imageUrl);
       }
 
-      serviceLocator<ImageCubit>().emptyCubit();
+      // debugPrint('uploaded product image');
       return imagesUrl;
-    } catch (e) {
+    } on ServerException catch (e) {
+      debugPrint(e.toString());
+
+      throw ServerException(e.toString());
+    } on StorageException catch (e) {
+      debugPrint(e.toString());
+
       throw ServerException(e.toString());
     }
   }

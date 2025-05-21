@@ -3,9 +3,6 @@ import 'package:fpdart/fpdart.dart';
 
 import '../../../../../core/entities/coupon.dart';
 import '../../../brands/data/models/brandmodel.dart';
-import '../../../brands/domain/entities/brands.dart';
-import '../../data/models/product_attributes.dart';
-import '../../data/models/product_variations.dart';
 import '../../../../../core/entities/product.dart';
 
 abstract interface class ProductRepository {
@@ -19,7 +16,7 @@ abstract interface class ProductRepository {
     bool? isFeatured,
     BrandModel? brand,
     required String description,
-    required String categoryId,
+    required int categoryId,
     required String productType,
     bool? canResale,
     double? resaleAddedAmount,

@@ -14,5 +14,6 @@ abstract interface class CategoryRepository {
     required image,
     required parentId,
     required isFeatured,
+    required productCounts,
   });
 }

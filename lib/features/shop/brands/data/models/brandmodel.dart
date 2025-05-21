@@ -62,6 +62,9 @@ class BrandModel extends Brand {
   }
 
   factory BrandModel.fromMap(Map<String, dynamic> map) {
+    if (map.isEmpty) {
+      return BrandModel.empty();
+    }
     return BrandModel(
       id: map['id'] ?? '',
       sellerId: map['seller_id'] ?? '',

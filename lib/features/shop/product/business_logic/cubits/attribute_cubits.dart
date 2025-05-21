@@ -7,27 +7,31 @@ class ProductAttributeCubits extends Cubit<List<ProductAttributeModel>?> {
   ProductAttributeCubits() : super([]);
 
   Future<void> addProductAttribute(String? name, List<dynamic> values) async {
+    name = name?.trim().toLowerCase();
     final currentState = state ?? [];
 
     final index = currentState.indexWhere((attr) => attr.name == name);
-
     if (index != -1) {
+      // debugPrint(currentState[index].toString());
+
       // Update existing attribute
       final updatedAttr = ProductAttributeModel(
         name: name,
-        values: [...?currentState[index].values, ...values],
+        values: [...?currentState[index].values?..addAll(values)],
       );
-
+      debugPrint('Updated Attribute: $updatedAttr');
       final updatedList = List<ProductAttributeModel>.from(currentState);
+      debugPrint('Updated List: $updatedList');
       updatedList[index] = updatedAttr;
 
       emit(updatedList);
     } else {
       // Add new attribute
       final newAttr = ProductAttributeModel(name: name, values: values);
-      emit([...currentState, newAttr]);
+      debugPrint('New Attribute: $newAttr');
+      emit(List<ProductAttributeModel>.from(currentState)..add(newAttr));
+      debugPrint('Updated List: ${[...currentState, newAttr]}');
     }
-    debugPrint(currentState.toString());
   }
 
   void emptyCubit() => emit([]);

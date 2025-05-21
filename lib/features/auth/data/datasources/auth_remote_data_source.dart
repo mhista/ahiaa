@@ -4,6 +4,7 @@ import 'package:ahiaa/utils/exceptions/subabase/server_exceptions.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:uuid/uuid.dart';
 
 abstract interface class AuthRemoteDataSource {
   Session? get currentSession;
@@ -22,11 +23,14 @@ abstract interface class AuthRemoteDataSource {
     required String password,
   });
 
-  //
+  // get the current user
   Future<UserModel?> getCurrentUserData();
 
   // google signin
   Future<UserModel?> signInWithGoogle();
+
+  // create new profiile
+  Future<UserModel?> createNewProfile(UserModel userModel);
 }
 
 // SUPABASE IMPLEMENTATION
@@ -138,14 +142,33 @@ class AuthRemoteDataSourceSupabaseImp implements AuthRemoteDataSource {
         throw ServerException('Unable to login, Try again later');
       }
       final user = UserModel.fromMap(response.user!.toJson());
-      final userModel =
+      UserModel? userModel = UserModel.empty();
+      final userData = await supabaseClient
+          .from('profiles')
+          .select()
+          .eq('id', user.id);
+
+      if (userData.isEmpty) {
+        userModel = await createNewProfile(user);
+      }
+      userModel = UserModel.fromMap(userData.first);
+
+      return userModel;
+    } catch (e) {
+      throw ServerException(e.toString());
+    }
+  }
+
+  @override
+  Future<UserModel?> createNewProfile(UserModel userModel) async {
+    try {
+      final newUserData =
           await supabaseClient
               .from('profiles')
-              .update(user.toMap())
-              .eq('id', user.id)
+              .update(userModel.toMap())
+              .eq('id', userModel.id)
               .select();
-
-      return UserModel.fromMap(userModel.first);
+      return UserModel.fromMap(newUserData.first);
     } catch (e) {
       throw ServerException(e.toString());
     }

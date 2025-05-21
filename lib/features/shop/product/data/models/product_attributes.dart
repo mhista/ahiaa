@@ -12,6 +12,10 @@ class ProductAttributeModel {
     );
   }
 
+  static ProductAttributeModel empty() {
+    return ProductAttributeModel(name: null, values: []);
+  }
+
   Map<String, dynamic> toMap() {
     final result = <String, dynamic>{};
 

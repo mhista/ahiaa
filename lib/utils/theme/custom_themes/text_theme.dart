@@ -20,7 +20,6 @@ class TTextTheme {
       fontSize: 16.0,
       fontWeight: FontWeight.w600,
       color: PColors.dark,
-   
     ),
     titleLarge: const TextStyle().copyWith(
       fontSize: 14.0,
@@ -50,7 +49,7 @@ class TTextTheme {
     bodySmall: const TextStyle().copyWith(
       fontSize: 11.0,
       fontWeight: FontWeight.w500,
-      color: PColors.dark.withOpacity(0.5),
+      color: PColors.dark.withValues(alpha: 0.5),
     ),
     labelLarge: const TextStyle().copyWith(
       fontSize: 10.0,
@@ -60,7 +59,7 @@ class TTextTheme {
     labelMedium: const TextStyle().copyWith(
       fontSize: 10.0,
       fontWeight: FontWeight.normal,
-      color: PColors.dark.withOpacity(0.5),
+      color: PColors.dark.withValues(alpha: 0.5),
     ),
   );
   static TextTheme darkTextTheme = TextTheme(
@@ -78,7 +77,6 @@ class TTextTheme {
       fontSize: 16.0,
       fontWeight: FontWeight.w600,
       color: PColors.light,
-   
     ),
     titleLarge: const TextStyle().copyWith(
       fontSize: 14.0,
@@ -108,7 +106,7 @@ class TTextTheme {
     bodySmall: const TextStyle().copyWith(
       fontSize: 11.0,
       fontWeight: FontWeight.w500,
-      color: PColors.light.withOpacity(0.5),
+      color: PColors.light.withValues(alpha: 0.5),
     ),
     labelLarge: const TextStyle().copyWith(
       fontSize: 10.0,
@@ -118,7 +116,7 @@ class TTextTheme {
     labelMedium: const TextStyle().copyWith(
       fontSize: 10.0,
       fontWeight: FontWeight.normal,
-      color: PColors.light.withOpacity(0.5),
+      color: PColors.light.withValues(alpha: 0.5),
     ),
   );
 }

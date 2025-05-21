@@ -47,7 +47,7 @@ class ProductModel extends Products {
     bool? isFeatured,
     BrandModel? brand,
     String? description,
-    String? categoryId,
+    int? categoryId,
     List<String>? subCategories,
 
     List<String>? images,
@@ -90,7 +90,7 @@ class ProductModel extends Products {
     final result = <String, dynamic>{};
 
     result.addAll({'id': id});
-    result.addAll({'seller_id': id});
+    result.addAll({'seller_id': sellerId});
     result.addAll({'stock': stock});
     result.addAll({'sku': sku});
     result.addAll({'price': price});
@@ -131,20 +131,33 @@ class ProductModel extends Products {
       date: map['date'] == null ? DateTime.now() : DateTime.parse(map['date']),
       thumbnail: map['thumbnail'] ?? '',
       isFeatured: map['is_featured'] ?? false,
-      brand: BrandModel.fromMap(map['brand'] ?? BrandModel.empty()),
+      brand:
+          map['brand'] != null
+              ? BrandModel.fromMap(map['brand'])
+              : BrandModel.empty(),
       description: map['description'] ?? '',
       categoryId: map['category_id'] ?? '',
       images: List<String>.from(map['images'] ?? ['']),
       productType: map['product_type'] ?? '',
-      productAttributes: List<ProductAttributeModel>.from(
-        map['product_attributes']?.map((x) => ProductAttributeModel.fromMap(x)),
-      ),
-      productVariations: List<ProductVariationModel>.from(
-        map['product_variations']?.map((x) => ProductVariationModel.fromMap(x)),
-      ),
+      productAttributes:
+          map['product_attributes'] != null
+              ? List<ProductAttributeModel>.from(
+                map['product_attributes']?.map(
+                  (x) => ProductAttributeModel.fromMap(x),
+                ),
+              )
+              : [],
+      productVariations:
+          map['product_variations'] != null
+              ? List<ProductVariationModel>.from(
+                map['product_variations']?.map(
+                  (x) => ProductVariationModel.fromMap(x),
+                ),
+              )
+              : [],
       canResale: map['can_resale'] ?? false,
       resaleAddedAmount: map['resale_added_amount']?.toDouble() ?? 0.0,
-      coupon: Coupon.fromMap(map['coupon']),
+      coupon: map['coupon'] != null ? Coupon.fromMap(map['coupon']) : null,
       subCategories: List<String>.from(map['subCategories'] ?? ['']),
     );
   }
@@ -156,6 +169,6 @@ class ProductModel extends Products {
 
   @override
   String toString() {
-    return 'Products(id: $id, stock: $stock, sku: $sku, price: $price, salePrice: $salePrice, title: $title, date: $date, thumbnail: $thumbnail, isFeatured: $isFeatured, brand: $brand, subCategories: $subCategories, description: $description, categoryId: $categoryId, images: $images, productType: $productType, productAttributes: $productAttributes, productVariations: $productVariations, canResale: $canResale, resaleAddedAmount: $resaleAddedAmount, coupon: $coupon)';
+    return 'Products(id: $id, stock: $stock, sku: $sku, price: $price, salePrice: $salePrice, title: $title, date: $date, thumbnail: $thumbnail, isFeatured: $isFeatured, brand: $brand, subCategories: $subCategories, description: $description, categoryId: $categoryId, images: $images, productType: $productType, productAttributes: $productAttributes, productVariations: $productVariations, canResale: $canResale, resaleAddedAmount: $resaleAddedAmount, coupon: $coupon, sellerId: $sellerId, user: $user,)';
   }
 }

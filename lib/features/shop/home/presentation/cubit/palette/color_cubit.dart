@@ -9,6 +9,10 @@ class ColorCubit extends Cubit<Color> {
   void updateColor(Color color) {
     emit(color);
   }
+
+  //   void removeColors(){
+  //     emit([])
+  //   }
 }
 // List<String> images, ImageType imageType, Color? color
 
@@ -19,4 +23,5 @@ class AppBarColorCubit extends Cubit<Color> {
     emit(color);
   }
 }
+
 // List<String> images, ImageType imageType, Color? color

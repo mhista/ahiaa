@@ -27,6 +27,8 @@ class StorageCubit extends Cubit<StorageState> {
       await supabaseClient.storage.from(bucketId).upload(path, image);
       return supabaseClient.storage.from(bucketId).getPublicUrl(path);
     } catch (e) {
+      debugPrint(e.toString());
+
       throw ServerException('Something went wrong, please try again');
     }
   }

@@ -60,6 +60,7 @@ class ColorAttribute extends StatelessWidget {
                 }
               },
             ),
+            colorWidget ?? SizedBox.shrink(),
           ],
         ),
       ],
@@ -81,6 +82,7 @@ class AttributeFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: TextFieldForm(
+        canDispose: false,
         decoration: InputDecoration(
           hintText: hintext,
           hintStyle: Theme.of(context).textTheme.titleMedium!.apply(

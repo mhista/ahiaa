@@ -18,6 +18,7 @@ class TextFieldForm extends StatefulWidget {
     this.useSuffixIcon = false,
     this.minLines,
     this.decoration,
+    this.canDispose = true,
   });
   final TextEditingController controller;
   final String fieldName;
@@ -29,7 +30,7 @@ class TextFieldForm extends StatefulWidget {
   final bool obscureText;
   final bool expands, useSuffixIcon;
   final InputDecoration? decoration;
-
+  final bool? canDispose;
   @override
   State<TextFieldForm> createState() => _TextFieldFormState();
 }
@@ -68,7 +69,10 @@ class _TextFieldFormState extends State<TextFieldForm> {
   @override
   void dispose() {
     debugPrint('disposing ${widget.controller.text}');
-    widget.controller.dispose();
+    if (widget.canDispose == true) {
+      widget.controller.clear();
+      widget.controller.dispose();
+    }
     super.dispose();
   }
 }

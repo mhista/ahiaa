@@ -40,6 +40,18 @@ class UserModel extends User {
     );
   }
 
+  static UserModel empty() => UserModel(
+    id: '',
+    firstName: '',
+    lastName: '',
+    email: '',
+    phoneNumber: '',
+    profilePicture: '',
+    isShopOwner: false,
+    updatedAt: DateTime.now(),
+    isSuperAdmin: false,
+  );
+
   Map<String, dynamic> toMap() {
     final result = <String, dynamic>{};
 

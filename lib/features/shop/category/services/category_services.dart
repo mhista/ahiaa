@@ -1,6 +1,5 @@
-import 'package:equatable/equatable.dart';
 import '../domain/entities/category.dart';
-import 'package:collection/collection.dart'; // For ListEquality
+// For ListEquality
 
 class CategoryService {
   List<Category> _parentCategories = [];

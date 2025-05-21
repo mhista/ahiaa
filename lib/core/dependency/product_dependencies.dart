@@ -9,9 +9,10 @@ import 'package:ahiaa/features/shop/product/business_logic/bloc/product_bloc.dar
 
 import '../../features/shop/product/business_logic/cubits/attribute_cubits.dart';
 import '../../features/shop/product/business_logic/cubits/sub_categories.dart'
-    show ProductSubCategoryCubit;
+    show ProductSubCategoryCubit, SubCategoryCheckboxCubit;
 import '../../features/shop/product/business_logic/cubits/variation_cubit.dart';
 import '../../features/shop/product/domain/usecase/get_featured_products.dart';
+import '../../features/shop/product/services/product_text_controllers.dart';
 
 void initProductDependencies() {
   serviceLocator
@@ -28,6 +29,7 @@ void initProductDependencies() {
     ..registerLazySingleton(() => ProductAttributeCubits())
     ..registerLazySingleton(() => ProductVariationCubit())
     ..registerLazySingleton(() => ProductSubCategoryCubit())
+    ..registerLazySingleton(() => SubCategoryCheckboxCubit())
     ..registerLazySingleton(
       () => ProductBloc(
         uploadProduct: serviceLocator(),
@@ -35,5 +37,8 @@ void initProductDependencies() {
         getProductsByBrand: serviceLocator(),
         getFeaturedProducts: serviceLocator(),
       ),
+    )
+    ..registerLazySingleton<ProductTextControllers>(
+      () => ProductTextControllers.create(),
     );
 }

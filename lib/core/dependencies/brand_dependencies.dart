@@ -1,4 +1,4 @@
-import 'package:ahiaa/core/dependency/init_dependencies.dart';
+import 'package:ahiaa/core/dependencies/init_dependencies.dart';
 import 'package:ahiaa/features/shop/brands/data/datasource/brand_dart_source.dart';
 import 'package:ahiaa/features/shop/brands/domain/repository/brand_repository.dart';
 import 'package:ahiaa/features/shop/brands/domain/usecases/upload_brands.dart';

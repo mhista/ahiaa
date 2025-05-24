@@ -3,6 +3,7 @@ import 'package:ahiaa/utils/constants/enums.dart';
 import 'package:ahiaa/utils/constants/image_strings.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../features/shop/cart/data/models/cart_model.dart';
 import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/sizes.dart';
 import '../../../../../utils/helpers/helper_functions.dart';
@@ -11,11 +12,8 @@ import '../../texts/brand_text_title_with_icon.dart';
 import '../../texts/product_title_text.dart';
 
 class CartItem extends StatelessWidget {
-  const CartItem({
-    super.key,
-    // required this.cartItem,
-  });
-  // final CartItemModel cartItem;
+  const CartItem({super.key, required this.cartItem});
+  final CartItemModel cartItem;
   @override
   Widget build(BuildContext context) {
     final isDark = PHelperFunctions.isDarkMode(context);
@@ -24,9 +22,9 @@ class CartItem extends StatelessWidget {
       children: [
         // IMAGE
         PRoundedImage(
-          // isNetworkImage: true,
-          imageType: ImageType.asset,
-          image: PImages.applePay,
+          isNetworkImage: true,
+          imageType: ImageType.network,
+          image: cartItem.image,
           width: 60,
           height: 60,
           padding: PSizes.md,
@@ -41,9 +39,11 @@ class CartItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               BrandTitleTextWithVerifiedIcon(
-                title: 'Nike',
+                title: cartItem.brandName ?? 'Nike',
               ), //cartItem.brandName ?? ''),
-              Flexible(child: ProductTitleText(title: 'title', maxLines: 1)),
+              Flexible(
+                child: ProductTitleText(title: cartItem.title, maxLines: 1),
+              ),
               // /ATTRIBUTES
 
               // Text.rich(

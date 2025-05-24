@@ -3,11 +3,13 @@ import 'package:ahiaa/core/common/widgets/containers/rounded_container.dart'
 import 'package:flutter/material.dart';
 
 import '../../../utils/constants/colors.dart';
+import '../../entities/product.dart';
 
 class ClipButtonButton extends StatelessWidget {
-  const ClipButtonButton({super.key, required this.index});
+  const ClipButtonButton({super.key, required this.index, this.product});
 
   final int index;
+  final Products? product;
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +27,12 @@ class ClipButtonButton extends StatelessWidget {
           width: 56,
           child: Center(
             child: Text(
-              '\$$index',
+              '\$${product?.price}',
               style: Theme.of(
                 context,
               ).textTheme.bodyMedium!.apply(color: Colors.white),
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
             ),
           ),
         ),

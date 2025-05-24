@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:ahiaa/utils/constants/sizes.dart';
 
 import '../../../../core/common/widgets/appbar/app_bar.dart';
+import '../../../../core/dependencies/init_dependencies.dart';
 import '../../../../core/routes/route_names.dart';
+import '../business_logic/cubit/cart_service.dart';
 import 'widgets/cart_items.dart';
 
 class CartScreen extends StatelessWidget {
@@ -14,6 +16,7 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cartService = serviceLocator<CartService>();
     // final cartController = CartController.instance;
     return Scaffold(
       appBar: PAppBar(

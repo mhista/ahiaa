@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../../core/common/widgets/failure/failure_widget.dart';
 import '../../../../../../core/common/widgets/shimmer/categories/category_tile_shimmer.dart';
-import '../../../../../../core/dependency/init_dependencies.dart';
+import '../../../../../../core/dependencies/init_dependencies.dart';
 import '../../../../../../utils/constants/sizes.dart';
 import '../../bloc/category_bloc.dart';
 import 'sub_category_select.dart';

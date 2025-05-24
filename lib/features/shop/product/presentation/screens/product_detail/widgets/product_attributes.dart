@@ -4,21 +4,23 @@ import 'package:flutter/material.dart';
 import 'package:ahiaa/utils/constants/colors.dart';
 import 'package:ahiaa/utils/constants/sizes.dart';
 import 'package:ahiaa/utils/helpers/helper_functions.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../../../core/common/widgets/containers/rounded_container.dart';
-import '../../../../../../../core/common/widgets/list_tiles/settings_menu_tiles.dart';
 import '../../../../../../../core/common/widgets/list_tiles/variation_tile.dart';
-import '../../../../../../../core/common/widgets/texts/product_price_text.dart';
-import '../../../../../../../core/common/widgets/texts/product_title_text.dart';
-import '../../../../../../../core/common/widgets/texts/section_heading.dart';
+import '../../../../../../../core/dependencies/init_dependencies.dart';
+import '../../../../../../../core/entities/product.dart' show Products;
+import '../../../../../cart/business_logic/bloc/cart_bloc.dart';
+import '../../../../../cart/business_logic/cubit/cart_service.dart';
 
 class ProductAttributes extends StatelessWidget {
-  const ProductAttributes({super.key});
+  const ProductAttributes({super.key, required this.product});
 
-  // final ProductModel product;
+  final Products product;
   @override
   Widget build(BuildContext context) {
-    // final controller = Get.put(VariationController());
+    final cartBloc = serviceLocator<CartBloc>();
+
     final isDark = PHelperFunctions.isDarkMode(context);
     return Column(
       children: [
@@ -29,31 +31,58 @@ class ProductAttributes extends StatelessWidget {
           child: Column(
             spacing: PSizes.sm,
             children: [
-              VariationWithText(
-                title: 'Color',
-                subtitle: 'Brown',
-                onPressed: () {},
-              ),
-              VariationWithText(
-                title: 'Size',
-                subtitle: 'Small',
-                onPressed: () {},
-              ),
+              if (product.productAttributes != null)
+                Column(
+                  spacing: PSizes.sm,
+
+                  children:
+                      product.productAttributes!
+                          .map(
+                            (attribute) => VariationWithText(
+                              title: attribute.name ?? '',
+                              subtitle: attribute.values?.first,
+                              onPressed: () {},
+                            ),
+                          )
+                          .toList(),
+                ),
 
               VariationTile(
                 title: 'Quantity',
                 trailing: GestureDetector(
                   onTap: () {},
                   child: ProductAddAndRemove(
+                    valueWidget: BlocBuilder<CartBloc, CartState>(
+                      builder: (context, state) {
+                        if (state is CartItemCountUpdated) {
+                          return Text(
+                            state.itemCount.toString(),
+                            style: Theme.of(context).textTheme.titleSmall,
+                          );
+                        }
+                        return Text(
+                          '0',
+                          style: Theme.of(context).textTheme.titleSmall,
+                        );
+                      },
+                    ),
                     width: 30,
                     height: 30,
                     addColor: !isDark ? PColors.black : PColors.white,
                     addBgColor: PColors.transparent,
                     minusColor: !isDark ? PColors.darkGrey : PColors.grey,
                     minusBgColor: PColors.transparent,
-                    text: '1',
-                    addOnPressed: () {},
-                    minusOnPressed: () {},
+                    addOnPressed: () {
+                      if (product.stock <=
+                          serviceLocator<CartService>().itemQuantityToUpdate) {
+                        return;
+                      }
+                      cartBloc.add(UpdateCartItemCount(isIncrease: true));
+                    },
+                    minusOnPressed:
+                        () => cartBloc.add(
+                          UpdateCartItemCount(isIncrease: false),
+                        ),
                   ),
                 ),
               ),

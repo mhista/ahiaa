@@ -7,6 +7,8 @@ import '../../../../utils/helpers/pricing_calculator.dart';
 import '../../../core/common/loaders/loaders.dart';
 import '../../../core/common/widgets/appbar/app_bar.dart';
 import '../../../core/common/widgets/containers/rounded_container.dart';
+import '../../../core/dependencies/init_dependencies.dart';
+import '../cart/business_logic/bloc/cart_bloc.dart';
 import '../cart/presentation/widgets/cart_items.dart';
 import 'widget/billing_address_section.dart';
 import 'widget/billing_amount_section.dart';
@@ -18,8 +20,9 @@ class CheckoutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = PHelperFunctions.isDarkMode(context);
-    final subTotal = 10.0;
-    final itemCount = 20;
+    final cartService = serviceLocator<CartBloc>().state as CartList;
+    final subTotal = cartService.totalPrice;
+    final itemCount = cartService.totalItems;
     final total = PPricingCalculator.calculateTotalPrice(
       subTotal,
       'Nigeria',

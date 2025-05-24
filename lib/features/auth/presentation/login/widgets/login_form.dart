@@ -82,7 +82,7 @@ class PLoginForm extends StatelessWidget {
                       message: 'Login success',
                       context: context,
                     );
-                    Beamer.of(context).beamToNamed(RouteNames.home);
+                    Beamer.of(context).beamToReplacementNamed(RouteNames.home);
                   }
                 },
                 builder: (context, state) {
@@ -111,7 +111,9 @@ class PLoginForm extends StatelessWidget {
                 Text("Don't have an account? "),
                 GestureDetector(
                   onTap:
-                      () => Beamer.of(context).beamToNamed(RouteNames.signup),
+                      () => Beamer.of(
+                        context,
+                      ).beamToNamed(RouteNames.signup, stacked: false),
                   child: Text(
                     "Sign Up",
                     style: Theme.of(

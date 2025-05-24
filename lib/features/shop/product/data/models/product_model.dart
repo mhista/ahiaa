@@ -34,6 +34,30 @@ class ProductModel extends Products {
   });
   // final bool useRefNet;
 
+  static ProductModel empty() => ProductModel(
+    id: '',
+    stock: 0,
+    price: 0.0,
+    title: '',
+    thumbnail: '',
+    productType: '',
+    canResale: false,
+    sku: '',
+    salePrice: 0.0,
+    date: DateTime.now(),
+    isFeatured: false,
+    brand: BrandModel.empty(),
+    description: '',
+    categoryId: 0,
+    images: [],
+    productAttributes: [],
+    productVariations: [],
+    resaleAddedAmount: 0.0,
+    coupon: null,
+    sellerId: '',
+    subCategories: [],
+  );
+
   ProductModel copyWith({
     String? id,
     String? sellerId,

@@ -1,4 +1,4 @@
-import 'package:ahiaa/core/dependency/init_dependencies.dart';
+import 'package:ahiaa/core/dependencies/init_dependencies.dart';
 import 'package:ahiaa/features/shop/home/presentation/cubit/palette/color_cubit.dart';
 import 'package:ahiaa/features/shop/store/presentation/cubit/expand_cubit.dart';
 

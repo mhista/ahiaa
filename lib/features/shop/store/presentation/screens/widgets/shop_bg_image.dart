@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../core/common/widgets/containers/rounded_container.dart';
 import '../../../../../../core/common/widgets/images/edge_rounded_images.dart';
-import '../../../../../../core/dependency/init_dependencies.dart';
+import '../../../../../../core/dependencies/init_dependencies.dart';
 import '../../../../../../utils/constants/colors.dart';
 import '../../../../../../utils/constants/image_strings.dart';
 import '../../../../home/presentation/cubit/palette/color_cubit.dart';

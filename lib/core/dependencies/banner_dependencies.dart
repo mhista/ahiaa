@@ -1,4 +1,4 @@
-import 'package:ahiaa/core/dependency/init_dependencies.dart';
+import 'package:ahiaa/core/dependencies/init_dependencies.dart';
 import 'package:ahiaa/features/shop/banner/data/datasource/banner_data_source.dart';
 import 'package:ahiaa/features/shop/banner/domain/repository/banner_repository.dart';
 import 'package:ahiaa/features/shop/banner/domain/usecases/getAllBanners.dart';

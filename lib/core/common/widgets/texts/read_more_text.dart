@@ -14,6 +14,7 @@ class PReadMoreText extends StatelessWidget {
       trimMode: TrimMode.Line,
       trimCollapsedText: 'Show more',
       trimExpandedText: 'Show less',
+      textAlign: TextAlign.start,
       moreStyle: const TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.bold,

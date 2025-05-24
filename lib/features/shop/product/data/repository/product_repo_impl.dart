@@ -1,4 +1,4 @@
-import 'package:ahiaa/core/dependency/init_dependencies.dart';
+import 'package:ahiaa/core/dependencies/init_dependencies.dart';
 import 'package:ahiaa/core/entities/coupon.dart';
 import 'package:ahiaa/features/shop/product/business_logic/cubits/sub_categories.dart';
 import 'package:ahiaa/features/shop/product/business_logic/cubits/variation_cubit.dart';

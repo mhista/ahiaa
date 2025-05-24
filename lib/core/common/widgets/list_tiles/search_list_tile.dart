@@ -1,4 +1,5 @@
 import 'package:ahiaa/utils/constants/enums.dart';
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 
 import 'package:ahiaa/core/common/widgets/appbar/searchBar.dart';
@@ -7,7 +8,6 @@ import 'package:ahiaa/core/common/widgets/custom_shapes/containers/search_contai
 import 'package:ahiaa/core/common/widgets/icons/circular_icon.dart';
 import 'package:ahiaa/core/common/widgets/images/edge_rounded_images.dart';
 import 'package:ahiaa/utils/constants/image_strings.dart';
-import 'package:icons_plus/icons_plus.dart';
 
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sizes.dart';
@@ -32,10 +32,11 @@ class SearchWidgetListTile extends StatelessWidget {
                 PRoundedImage(
                   imageType: ImageType.asset,
                   image: PImages.p1,
-                  height: 45,
+                  height: 50,
                   width: 40,
                   borderRadius: 10,
                   fit: BoxFit.fitWidth,
+                  backgroundColor: PColors.transparent,
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,7 +71,7 @@ class SearchWidgetListTile extends StatelessWidget {
               ],
             ),
             PCircularIcon(
-              icon: EvaIcons.diagonal_arrow_left_up,
+              icon: EvaIcons.diagonalArrowLeftUp,
               backgroundColor: PColors.transparent,
               color: PColors.dark2.withValues(alpha: 0.7),
               weight: 0.2,

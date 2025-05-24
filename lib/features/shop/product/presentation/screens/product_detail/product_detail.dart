@@ -15,15 +15,18 @@ import '../../../../../../core/common/widgets/icons/favorite_icon.dart';
 import '../../../../../../core/common/widgets/layouts/staggered_layout.dart';
 import '../../../../../../core/common/widgets/texts/read_more_text.dart';
 import '../../../../../../core/common/widgets/texts/section_heading.dart';
+import '../../../../../../core/dependencies/init_dependencies.dart';
+import '../../../../../../core/entities/product.dart';
 import '../../../../../../core/routes/route_names.dart';
+import '../../../services/product_services.dart';
 import '../product_review/widgets/product_detail_review_card.dart'
     show ProductDetailReviewCard;
 import 'widgets/product_attributes.dart';
 import 'widgets/product_image_slider.dart';
 
 class ProductDetailScreen extends StatelessWidget {
-  const ProductDetailScreen({super.key});
-  // final ProductModel product;
+  const ProductDetailScreen({super.key, required this.product});
+  final Products product;
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +64,7 @@ class ProductDetailScreen extends StatelessWidget {
         child: Column(
           children: [
             // PRODUCT IMAGE SLIDER
-            ProductImageSlider(),
+            ProductImageSlider(product: product),
 
             // PRODUCT DETAILS
             Padding(
@@ -76,7 +79,7 @@ class ProductDetailScreen extends StatelessWidget {
                   const RatingAndShare(),
 
                   // PRICE , TITLE, STOCK, BRAND
-                  ProductMetaData(),
+                  ProductMetaData(product: product),
                   const SizedBox(height: PSizes.spaceBtwSections),
 
                   // DESCRIPTION
@@ -85,16 +88,11 @@ class ProductDetailScreen extends StatelessWidget {
                     showActionButton: false,
                   ),
                   const SizedBox(height: PSizes.spaceBtwItems),
-                  Center(
-                    child: PReadMoreText(
-                      text:
-                          'Lorem ipsum dolor sit amet,  adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-                    ),
-                  ),
+                  PReadMoreText(text: product.description),
                   // REVIEWS
                   // ATTRIBUTES
                   // if (product.productType == ProductType.variable.name)
-                  ProductAttributes(),
+                  ProductAttributes(product: product),
                   // if (product.productType == ProductType.variable.name)
                   const SizedBox(height: PSizes.spaceBtwSections),
                   // CHECKOUT BUTTON
@@ -154,7 +152,12 @@ class ProductDetailScreen extends StatelessWidget {
                     spacing: PSizes.spaceBtwSections,
                     children: [
                       PSectionHeading(title: "More from John's store"),
-                      StaggeredProductLayout(itemCount: 4),
+                      StaggeredProductLayout(
+                        itemCount:
+                            serviceLocator<ProductServices>()
+                                .brandProducts
+                                .length,
+                      ),
                     ],
                   ),
                 ],
@@ -163,9 +166,7 @@ class ProductDetailScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: BottomAddToCart(
-        // product: product,
-      ),
+      bottomNavigationBar: BottomAddToCart(product: product),
     );
   }
 }

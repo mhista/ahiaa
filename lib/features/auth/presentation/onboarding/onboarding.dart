@@ -1,5 +1,5 @@
 import 'package:ahiaa/core/cubits/navigation/navigation_cubit.dart';
-import 'package:ahiaa/core/dependency/init_dependencies.dart';
+import 'package:ahiaa/core/dependencies/init_dependencies.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../utils/constants/image_strings.dart';

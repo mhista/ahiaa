@@ -9,7 +9,7 @@ import '../../../../../../core/common/buttons/clip_button.dart'
     show ClipButtonButton;
 import '../../../../../../core/common/widgets/custom_shapes/containers/circular_container.dart';
 import '../../../../../../core/common/widgets/images/edge_rounded_images.dart';
-import '../../../../../../core/dependency/init_dependencies.dart';
+import '../../../../../../core/dependencies/init_dependencies.dart';
 import '../../../../../../utils/constants/colors.dart';
 import '../../../../../../utils/constants/sizes.dart';
 import '../../cubit/banners/banner_cubit.dart';

@@ -1,5 +1,5 @@
 import 'package:ahiaa/core/cubits/navigation/navigation_cubit.dart';
-import 'package:ahiaa/core/dependency/init_dependencies.dart';
+import 'package:ahiaa/core/dependencies/init_dependencies.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 

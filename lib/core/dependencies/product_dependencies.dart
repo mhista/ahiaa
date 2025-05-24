@@ -1,4 +1,5 @@
-import 'package:ahiaa/core/dependency/init_dependencies.dart';
+import 'package:ahiaa/core/dependencies/init_dependencies.dart';
+import 'package:ahiaa/features/shop/product/business_logic/cubits/product_attribute_service/product_variation_cubit.dart';
 import 'package:ahiaa/features/shop/product/data/datasources/product_remote_data_source.dart';
 import 'package:ahiaa/features/shop/product/data/repository/product_repo_impl.dart';
 import 'package:ahiaa/features/shop/product/domain/repository/product_repositories.dart';
@@ -8,10 +9,12 @@ import 'package:ahiaa/features/shop/product/domain/usecase/upload_product.dart';
 import 'package:ahiaa/features/shop/product/business_logic/bloc/product_bloc.dart';
 
 import '../../features/shop/product/business_logic/cubits/attribute_cubits.dart';
+import '../../features/shop/product/business_logic/cubits/image_controller_cubits.dart';
 import '../../features/shop/product/business_logic/cubits/sub_categories.dart'
     show ProductSubCategoryCubit, SubCategoryCheckboxCubit;
 import '../../features/shop/product/business_logic/cubits/variation_cubit.dart';
 import '../../features/shop/product/domain/usecase/get_featured_products.dart';
+import '../../features/shop/product/services/product_services.dart';
 import '../../features/shop/product/services/product_text_controllers.dart';
 
 void initProductDependencies() {
@@ -30,7 +33,7 @@ void initProductDependencies() {
     ..registerLazySingleton(() => ProductVariationCubit())
     ..registerLazySingleton(() => ProductSubCategoryCubit())
     ..registerLazySingleton(() => SubCategoryCheckboxCubit())
-    ..registerLazySingleton(
+    ..registerLazySingleton<ProductBloc>(
       () => ProductBloc(
         uploadProduct: serviceLocator(),
         getAllProducts: serviceLocator(),
@@ -40,5 +43,8 @@ void initProductDependencies() {
     )
     ..registerLazySingleton<ProductTextControllers>(
       () => ProductTextControllers.create(),
-    );
+    )
+    ..registerLazySingleton<ProductServices>(() => ProductServices())
+    ..registerLazySingleton(() => VariationCubit())
+    ..registerLazySingleton(() => ProductImageCubit());
 }

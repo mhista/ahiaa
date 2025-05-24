@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class ProductVariationCubit extends Cubit<List<ProductVariationModel>?> {
   ProductVariationCubit() : super([]);
 
-  Future<void> addProductAttribute(ProductVariationModel variation) async {
+  Future<void> addProductVariation(ProductVariationModel variation) async {
     emit([...?state, variation]);
 
     // return [...state];

@@ -4,20 +4,25 @@ import 'package:ahiaa/core/routes/route_names.dart';
 import 'package:beamer/beamer.dart';
 import 'package:flutter/widgets.dart';
 
-class ProductDetailLocation extends BeamLocation {
+import '../../entities/product.dart';
+
+class ProductDetailLocation extends BeamLocation<BeamState> {
   @override
-  List<BeamPage> buildPages(
-    BuildContext context,
-    RouteInformationSerializable state,
-  ) {
+  List<BeamPage> buildPages(BuildContext context, BeamState state) {
     final uri = state.routeInformation.uri;
     final pathSegments = uri.pathSegments;
 
     final pages = <BeamPage>[];
+    debugPrint(state.routeState.toString());
+
+    final product = state.routeState as Products;
 
     if (pathSegments.isNotEmpty && pathSegments.first == 'product') {
       pages.add(
-        BeamPage(key: ValueKey('productDetail'), child: ProductDetailScreen()),
+        BeamPage(
+          key: ValueKey('productDetail'),
+          child: ProductDetailScreen(product: product),
+        ),
       );
 
       if (pathSegments.length > 1 && pathSegments[1] == 'product-reviews') {
@@ -32,6 +37,11 @@ class ProductDetailLocation extends BeamLocation {
 
     return pages;
   }
+
+  // @override
+  // Widget builder(BuildContext context, BeamState navigator) {
+  //   return const SizedBox.shrink();
+  // }
 
   @override
   List<Pattern> get pathPatterns => [

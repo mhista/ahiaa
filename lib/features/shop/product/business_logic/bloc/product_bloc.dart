@@ -8,10 +8,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:ahiaa/features/shop/product/domain/usecase/upload_product.dart';
 
+import '../../../../../core/dependencies/init_dependencies.dart';
 import '../../../../../core/entities/coupon.dart';
 import '../../../brands/data/models/brandmodel.dart';
 import '../../data/models/product_attributes.dart';
 import '../../data/models/product_variations.dart';
+import '../../services/product_services.dart';
 
 part 'product_event.dart';
 part 'product_state.dart';
@@ -44,6 +46,8 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     on<GetBrandProducts>(
       getAllTheBrandProducts,
     ); // Handles the GetBrandProducts event and calls the getProductsByBrand function
+
+    add(AllProductsGet());
   }
 
   // Uploads a product
@@ -87,12 +91,25 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     final result = await _getAllProducts(NoParams());
 
     result.fold(
-      (f) => ProductFailed(
-        message: f.message,
+      (f) => emit(
+        ProductFailed(message: f.message),
       ), // Emits ProductFailed state with the error message
-      (products) => ProductsGetSuccess(
-        products: products,
-      ), // Emits ProductsGetSuccess state with the retrieved products
+      (products) {
+        final productServices = serviceLocator<ProductServices>();
+        productServices.updateProducts(products);
+        emit(
+          ProductsGetSuccess(
+            products: productServices.products,
+            featuredProducts: productServices.featuredProducts,
+            brandProducts: productServices.brandProducts,
+            storeProducts: productServices.storeProducts,
+            categoryProducts: productServices.categoryProducts,
+            favProducts: productServices.favProducts,
+            recommendedProducts: productServices.recommendedProducts,
+            isLoadingProducts: false,
+          ),
+        );
+      }, // Emits ProductsGetSuccess state with the retrieved products
     );
   }
 
@@ -107,12 +124,25 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     );
 
     result.fold(
-      (f) => ProductFailed(
-        message: f.message,
+      (f) => emit(
+        ProductFailed(message: f.message),
       ), // Emits ProductFailed state with the error message
-      (products) => ProductsGetSuccess(
-        products: products,
-      ), // Emits ProductsGetSuccess state with the retrieved products
+      (products) {
+        final productServices = serviceLocator<ProductServices>();
+        productServices.updateBrandProducts(products);
+        emit(
+          ProductsGetSuccess(
+            products: productServices.products,
+            featuredProducts: productServices.featuredProducts,
+            brandProducts: productServices.brandProducts,
+            storeProducts: productServices.storeProducts,
+            categoryProducts: productServices.categoryProducts,
+            favProducts: productServices.favProducts,
+            recommendedProducts: productServices.recommendedProducts,
+            isLoadingProducts: false,
+          ),
+        );
+      }, // Emits ProductsGetSuccess state with the retrieved products
     );
   }
 
@@ -127,12 +157,25 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     );
 
     result.fold(
-      (f) => ProductFailed(
-        message: f.message,
+      (f) => emit(
+        ProductFailed(message: f.message),
       ), // Emits ProductFailed state with the error message
-      (products) => ProductsGetSuccess(
-        products: products,
-      ), // Emits ProductsGetSuccess state with the retrieved products
+      (products) {
+        final productServices = serviceLocator<ProductServices>();
+        productServices.updateFeaturedProducts(products);
+        emit(
+          ProductsGetSuccess(
+            products: productServices.products,
+            featuredProducts: productServices.featuredProducts,
+            brandProducts: productServices.brandProducts,
+            storeProducts: productServices.storeProducts,
+            categoryProducts: productServices.categoryProducts,
+            favProducts: productServices.favProducts,
+            recommendedProducts: productServices.recommendedProducts,
+            isLoadingProducts: false,
+          ),
+        );
+      }, // Emits ProductsGetSuccess state with the retrieved products
     );
   }
 }

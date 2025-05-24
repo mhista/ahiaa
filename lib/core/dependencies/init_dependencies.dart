@@ -2,10 +2,11 @@ import 'package:ahiaa/core/cubits/appstart/appstart_cubit.dart';
 import 'package:ahiaa/core/cubits/imagePicker/image_picker.dart';
 import 'package:ahiaa/core/cubits/navigation/navigation_cubit.dart';
 import 'package:ahiaa/core/cubits/user/user_cubit.dart';
-import 'package:ahiaa/core/dependency/banner_dependencies.dart';
-import 'package:ahiaa/core/dependency/brand_dependencies.dart';
-import 'package:ahiaa/core/dependency/category_dependencies.dart';
-import 'package:ahiaa/core/dependency/product_dependencies.dart';
+import 'package:ahiaa/core/dependencies/banner_dependencies.dart';
+import 'package:ahiaa/core/dependencies/brand_dependencies.dart';
+import 'package:ahiaa/core/dependencies/cart_dependencies.dart';
+import 'package:ahiaa/core/dependencies/category_dependencies.dart';
+import 'package:ahiaa/core/dependencies/product_dependencies.dart';
 import 'package:ahiaa/core/services/storage/storage/storage_cubit.dart';
 import 'package:ahiaa/features/auth/data/datasources/auth_remote_data_source.dart';
 import 'package:ahiaa/features/auth/data/repository/auth_repository_impl.dart';
@@ -44,6 +45,7 @@ Future<void> initDepenedencies() async {
   initBrandDependencies();
   initBannerDependencies();
   initCategoryDependencies();
+  initCartDependencies();
   await _initCubits();
 }
 

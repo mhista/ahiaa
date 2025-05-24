@@ -3,6 +3,7 @@ import 'package:ahiaa/core/usecases/usecase.dart';
 import 'package:ahiaa/features/auth/domain/usecases/current_user.dart';
 import 'package:ahiaa/features/auth/domain/usecases/login.dart';
 import 'package:ahiaa/features/auth/domain/usecases/signup.dart';
+import 'package:ahiaa/utils/local_storage/storage_utility.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -54,10 +55,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthStateChanges> {
       ),
     );
     debugPrint('signing up');
-    res.fold(
-      (l) => emit(AuthFailure(message: l.message)),
-      (user) => _emitAuthSuccess(user, emit),
-    );
+    res.fold((l) => emit(AuthFailure(message: l.message)), (user) {
+      _emitAuthSuccess(user, emit);
+    });
   }
 
   // LOGIN EVENT
@@ -102,6 +102,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthStateChanges> {
   }
 
   void _emitAuthSuccess(User user, Emitter<AuthStateChanges> emit) {
+    PLocalStorage.init(user.id);
     _userCubit.updateUser(user);
     emit(AuthSuccess(user: user));
   }

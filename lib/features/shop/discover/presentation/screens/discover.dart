@@ -1,5 +1,6 @@
 import 'package:ahiaa/core/common/widgets/icons/circular_icon.dart';
 import 'package:ahiaa/core/common/widgets/layouts/staggered_layout.dart';
+import 'package:ahiaa/utils/constants/enums.dart';
 import 'package:ahiaa/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
@@ -56,7 +57,10 @@ class DiscoverScreen extends StatelessWidget {
                     onPressed: () {},
                     spacing: PSizes.md,
                   ),
-                  StaggeredProductLayout(itemCount: 4),
+                  StaggeredProductLayout(
+                    itemCount: 4,
+                    type: ProductListTypes.featured,
+                  ),
                 ],
               ),
             ),

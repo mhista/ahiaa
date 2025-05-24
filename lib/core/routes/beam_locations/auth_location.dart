@@ -1,4 +1,4 @@
-import 'package:ahiaa/core/dependency/init_dependencies.dart';
+import 'package:ahiaa/core/dependencies/init_dependencies.dart';
 import 'package:ahiaa/features/auth/presentation/onboarding/onboarding.dart';
 import 'package:ahiaa/features/auth/presentation/signup/signup.dart';
 import 'package:ahiaa/features/shop/home/presentation/cubit/navigation/navigation_menu.dart';

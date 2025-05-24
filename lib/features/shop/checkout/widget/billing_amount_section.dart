@@ -1,7 +1,11 @@
+import 'package:ahiaa/features/shop/cart/business_logic/bloc/cart_bloc.dart';
+import 'package:ahiaa/features/shop/cart/business_logic/cubit/cart_service.dart';
 import 'package:flutter/material.dart';
 // import 'package:ahiaa/features/shop/controllers/cart_controller.dart';
 import 'package:ahiaa/utils/constants/sizes.dart';
 import 'package:ahiaa/utils/helpers/pricing_calculator.dart';
+
+import '../../../../core/dependencies/init_dependencies.dart';
 
 class BillingAmountSection extends StatelessWidget {
   const BillingAmountSection({super.key});
@@ -9,8 +13,9 @@ class BillingAmountSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // final controller = CartController.instance;
-    final subTotal = 10.0;
-    final itemCount = 3;
+    final cartService = serviceLocator<CartBloc>().state as CartList;
+    final subTotal = cartService.totalPrice;
+    final itemCount = cartService.totalItems;
     return Column(
       children: [
         // SUBTOTAL

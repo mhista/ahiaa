@@ -1,4 +1,4 @@
-import 'package:ahiaa/core/dependency/init_dependencies.dart';
+import 'package:ahiaa/core/dependencies/init_dependencies.dart';
 import 'package:ahiaa/features/shop/home/presentation/screens/home.dart';
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';

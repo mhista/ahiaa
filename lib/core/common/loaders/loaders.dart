@@ -13,62 +13,88 @@ class PLoaders {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         elevation: 0,
-        duration: const Duration(seconds: 2),
+        duration: const Duration(seconds: 1),
         backgroundColor: Colors.transparent,
         content: Container(
           padding: const EdgeInsets.all(12),
           margin: const EdgeInsets.symmetric(horizontal: 30),
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
-              color: PHelperFunctions.isDarkMode(context)
-                  ? PColors.darkerGrey.withOpacity(0.9)
-                  : PColors.grey.withOpacity(0.9)),
+            borderRadius: BorderRadius.circular(30),
+            color:
+                PHelperFunctions.isDarkMode(context)
+                    ? PColors.darkerGrey.withValues(alpha: 0.9)
+                    : PColors.grey.withValues(alpha: 0.9),
+          ),
           child: Center(
-            child: Text(
-              message,
-              style: Theme.of(context).textTheme.labelLarge,
-            ),
+            child: Text(message, style: Theme.of(context).textTheme.labelLarge),
           ),
         ),
       ),
     );
   }
 
-  // static warningSnackBar({required title, message = ''}) {
-  //   SnackBar(title, message,
-  //       isDismissible: true,
-  //       shouldIconPulse: true,
-  //       colorText: PColors.white,
-  //       backgroundColor: PColors.warning,
-  //       snackPosition: SnackPosition.TOP,
-  //       duration: const Duration(seconds: 3),
-  //       margin: const EdgeInsets.all(20),
-  //       icon: const Icon(
-  //         Iconsax.copy_success,
-  //         color: PColors.white,
-  //       ));
-  // }
+  static warningSnackBar({
+    required title,
+    message = '',
+    required BuildContext context,
+  }) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        elevation: 0,
+        duration: const Duration(seconds: 1),
+        backgroundColor: Colors.transparent,
+        content: Container(
+          padding: const EdgeInsets.all(12),
+          margin: const EdgeInsets.symmetric(horizontal: 30),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(30),
+            color:
+                PHelperFunctions.isDarkMode(context)
+                    ? PColors.error.withValues(alpha: 0.9)
+                    : PColors.error.withValues(alpha: 0.9),
+          ),
+          child: Center(
+            child: Text(message, style: Theme.of(context).textTheme.labelLarge),
+          ),
+        ),
+      ),
+    );
+  }
 
-  // static successSnackBar({required title, message = '', duration = 3}) {
-  //   Get.snackbar(title, message,
-  //       isDismissible: true,
-  //       shouldIconPulse: true,
-  //       colorText: PColors.white,
-  //       backgroundColor: PColors.info,
-  //       snackPosition: SnackPosition.TOP,
-  //       duration: Duration(seconds: duration),
-  //       margin: const EdgeInsets.all(10),
-  //       icon: const Icon(
-  //         Iconsax.check,
-  //         color: PColors.white,
-  //       ));
-  // }
+  static successSnackBar({
+    required title,
+    message = '',
+    required BuildContext context,
+  }) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        elevation: 0,
+        duration: const Duration(seconds: 1),
+        backgroundColor: Colors.transparent,
+        content: Container(
+          padding: const EdgeInsets.all(12),
+          margin: const EdgeInsets.symmetric(horizontal: 30),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(30),
+            color:
+                PHelperFunctions.isDarkMode(context)
+                    ? PColors.info.withValues(alpha: 0.9)
+                    : PColors.info.withValues(alpha: 0.9),
+          ),
+          child: Center(
+            child: Text(message, style: Theme.of(context).textTheme.labelLarge),
+          ),
+        ),
+      ),
+    );
+  }
 
-  static errorSnackBar(
-      {title = 'Oops!',
-      message = '',
-      duration = 3,
-      required BuildContext context}) {
+  static errorSnackBar({
+    title = 'Oops!',
+    message = '',
+    duration = 3,
+    required BuildContext context,
+  }) {
     showTopSnackBar(
       Overlay.of(context),
       AwesomeSnackbarContent(

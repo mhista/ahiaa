@@ -1,7 +1,7 @@
 import 'package:ahiaa/core/common/widgets/containers/product_container.dart';
 import 'package:ahiaa/core/common/widgets/containers/rounded_container.dart';
 import 'package:ahiaa/core/common/widgets/layouts/gid_layout.dart';
-import 'package:ahiaa/core/dependency/init_dependencies.dart';
+import 'package:ahiaa/core/dependencies/init_dependencies.dart';
 import 'package:ahiaa/features/shop/home/presentation/cubit/palette/color_cubit.dart';
 import 'package:ahiaa/utils/helpers/helper_functions.dart';
 import 'package:beamer/beamer.dart';

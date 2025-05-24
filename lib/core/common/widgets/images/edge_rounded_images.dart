@@ -93,6 +93,8 @@ class PRoundedImage extends StatelessWidget {
     if (image != null) {
       return CachedNetworkImage(
         imageUrl: image!,
+        height: height - 10,
+        width: width - 10,
         fit: fit,
         progressIndicatorBuilder:
             (context, url, downloadProgress) => PShimmerEffect(

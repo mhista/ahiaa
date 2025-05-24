@@ -1,27 +1,30 @@
-import 'package:ahiaa/core/common/widgets/icons/circular_icon.dart';
-import 'package:ahiaa/utils/constants/enums.dart';
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
-
-import 'package:ahiaa/utils/constants/colors.dart';
-import 'package:ahiaa/utils/constants/sizes.dart';
-import 'package:ahiaa/utils/helpers/helper_functions.dart';
 import 'package:iconsax/iconsax.dart';
 
+import 'package:ahiaa/core/common/widgets/icons/circular_icon.dart';
+import 'package:ahiaa/utils/constants/colors.dart';
+import 'package:ahiaa/utils/constants/enums.dart';
+import 'package:ahiaa/utils/constants/sizes.dart';
+import 'package:ahiaa/utils/helpers/helper_functions.dart';
+
 import '../../../../../utils/constants/image_strings.dart' show PImages;
+import '../../../../entities/product.dart';
 import '../../../../routes/route_names.dart';
 import '../../../buttons/clip_button.dart';
 import '../../containers/rounded_container.dart';
 import '../../custom_shapes/curved_edges/curved_edge_container.dart';
-import '../../icons/favorite_icon.dart' show FavoriteIcon;
 import '../../images/edge_rounded_images.dart';
 import '../../texts/brand_text_title_with_icon.dart';
 import '../../texts/product_title_text.dart';
-import '../product_pricing_row.dart';
 
 class PProductCardVertical extends StatelessWidget {
-  const PProductCardVertical({super.key, required this.index});
-  // final ProductModel product;
+  const PProductCardVertical({
+    super.key,
+    required this.product,
+    required this.index,
+  });
+  final Products product;
   final int index;
 
   @override
@@ -31,16 +34,17 @@ class PProductCardVertical extends StatelessWidget {
     //     controller.calculateSalePercentage(product.price, product.salePrice);
     final isDark = PHelperFunctions.isDarkMode(context);
     final isShort = (index % 4 == 1) || (index % 4 == 3);
-    final images = [PImages.p1, PImages.p2, PImages.p3, PImages.p4];
-    final name = ['Bag', 'After Shave', 'Perfume', 'Headset'];
+
     // card with side paddings, edges, radius and shadow
     return GestureDetector(
       onTap: () {
-        Beamer.of(context).beamToNamed(RouteNames.productDetail);
-        debugPrint(Beamer.of(context).currentPages.first.name.toString());
-        debugPrint(Beamer.of(context).currentBeamLocation.toString());
+        Beamer.of(
+          context,
+        ).beamToNamed(RouteNames.productDetail, routeState: product);
+        // debugPrint(Beamer.of(context).currentPages.first.name.toString());
+        // debugPrint(Beamer.of(context).currentBeamLocation.toString());
 
-        debugPrint(Beamer.of(context).currentConfiguration?.uri.toString());
+        // debugPrint(Beamer.of(context).currentConfiguration?.uri.toString());
       },
       // => Get.to(() => ProductDetailScreen(
       //       product: product,
@@ -68,9 +72,10 @@ class PProductCardVertical extends StatelessWidget {
                               isDark ? PColors.black : PColors.white,
                           padding: 0,
                           fit: BoxFit.cover,
-                          isNetworkImage: false,
-                          image: images[index],
-                          imageType: ImageType.asset,
+                          isNetworkImage: true,
+                          image: product.thumbnail,
+                          imageType: ImageType.network,
+
                           // applyImageRadius: true,
                         ),
                       ),
@@ -94,7 +99,7 @@ class PProductCardVertical extends StatelessWidget {
                       //   bottom: 0,
                       //   child: TRoundedContainer(height: 20, width: 20),
                       // ),
-                      ClipButtonButton(index: index),
+                      ClipButtonButton(index: index, product: product),
                     ],
                   ),
                 ),
@@ -111,7 +116,7 @@ class PProductCardVertical extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ProductTitleText(title: name[index], smallSize: false),
+                ProductTitleText(title: product.title, smallSize: false),
                 const SizedBox(height: PSizes.xs),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

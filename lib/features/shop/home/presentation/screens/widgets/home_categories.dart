@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../../core/common/widgets/failure/failure_widget.dart';
 import '../../../../../../core/common/widgets/images/image_text_widgets/vertical_image_text.dart';
 import '../../../../../../core/common/widgets/shimmer/categories/category_shimmer.dart';
-import '../../../../../../core/dependency/init_dependencies.dart';
+import '../../../../../../core/dependencies/init_dependencies.dart';
 import '../../../../../../utils/constants/colors.dart';
 import '../../../../category/services/category_services.dart'
     show CategoryService;

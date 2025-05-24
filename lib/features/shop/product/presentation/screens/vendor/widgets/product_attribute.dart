@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../../core/common/widgets/containers/rounded_container.dart';
 import '../../../../../../../core/common/widgets/fields/custom_textfield.dart';
-import '../../../../../../../core/dependency/init_dependencies.dart'
+import '../../../../../../../core/dependencies/init_dependencies.dart'
     show serviceLocator;
 import '../../../../../../../utils/constants/colors.dart';
 import '../../../../../../../utils/constants/sizes.dart';

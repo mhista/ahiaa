@@ -1,7 +1,7 @@
 import 'package:ahiaa/core/common/widgets/appbar/app_bar.dart';
 import 'package:ahiaa/core/common/widgets/containers/rounded_container.dart';
 import 'package:ahiaa/core/common/widgets/texts/section_heading.dart';
-import 'package:ahiaa/core/dependency/init_dependencies.dart';
+import 'package:ahiaa/core/dependencies/init_dependencies.dart';
 import 'package:ahiaa/features/shop/product/business_logic/bloc/product_bloc.dart';
 import 'package:ahiaa/features/shop/product/business_logic/cubits/attribute_cubits.dart';
 import 'package:ahiaa/features/shop/product/business_logic/cubits/color_cubit.dart';

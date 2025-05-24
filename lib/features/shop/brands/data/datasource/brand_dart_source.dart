@@ -1,5 +1,5 @@
 import 'package:ahiaa/core/cubits/imagePicker/image_picker.dart';
-import 'package:ahiaa/core/dependency/init_dependencies.dart';
+import 'package:ahiaa/core/dependencies/init_dependencies.dart';
 import 'package:ahiaa/core/services/storage/storage/storage_cubit.dart';
 import 'package:ahiaa/features/shop/brands/domain/entities/brands.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';

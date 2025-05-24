@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import '../../domain/entities/cart.dart';
 
-class CartModel extends Cart {
-  CartModel({
+class CartItemModel extends Cart {
+  CartItemModel({
     required super.id,
     required super.quantity,
     super.title = '',
@@ -14,7 +14,7 @@ class CartModel extends Cart {
     super.selectedVariation,
   });
 
-  CartModel copyWith({
+  CartItemModel copyWith({
     String? id,
     String? title,
     double? price,
@@ -24,7 +24,7 @@ class CartModel extends Cart {
     String? brandName,
     Map<String, String>? selectedVariation,
   }) {
-    return CartModel(
+    return CartItemModel(
       id: id ?? this.id,
       title: title ?? this.title,
       price: price ?? this.price,
@@ -36,8 +36,13 @@ class CartModel extends Cart {
     );
   }
 
-  static CartModel empty() =>
-      CartModel(id: '', title: '', price: 0.0, quantity: 0, variationId: '');
+  static CartItemModel empty() => CartItemModel(
+    id: '',
+    title: '',
+    price: 0.0,
+    quantity: 0,
+    variationId: '',
+  );
   Map<String, dynamic> toMap() {
     final result = <String, dynamic>{};
 
@@ -61,8 +66,8 @@ class CartModel extends Cart {
     return result;
   }
 
-  factory CartModel.fromMap(Map<String, dynamic> map) {
-    return CartModel(
+  factory CartItemModel.fromMap(Map<String, dynamic> map) {
+    return CartItemModel(
       id: map['id'] ?? '',
       title: map['title'] ?? '',
       price: map['price']?.toDouble() ?? 0.0,
@@ -78,11 +83,11 @@ class CartModel extends Cart {
 
   String toJson() => json.encode(toMap());
 
-  factory CartModel.fromJson(String source) =>
-      CartModel.fromMap(json.decode(source));
+  factory CartItemModel.fromJson(String source) =>
+      CartItemModel.fromMap(json.decode(source));
 
   @override
   String toString() {
-    return 'CartModel(id: $id, title: $title, price: $price, image: $image, quantity: $quantity, variationId: $variationId, brandName: $brandName, selectedVariation: $selectedVariation)';
+    return 'CartItemModel(id: $id, title: $title, price: $price, image: $image, quantity: $quantity, variationId: $variationId, brandName: $brandName, selectedVariation: $selectedVariation)';
   }
 }

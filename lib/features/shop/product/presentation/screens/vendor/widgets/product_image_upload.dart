@@ -7,7 +7,7 @@ import '../../../../../../../core/common/widgets/containers/rounded_container.da
 import '../../../../../../../core/common/widgets/images/edge_rounded_images.dart';
 import '../../../../../../../core/common/widgets/texts/section_heading.dart';
 import '../../../../../../../core/cubits/imagePicker/image_picker.dart';
-import '../../../../../../../core/dependency/init_dependencies.dart';
+import '../../../../../../../core/dependencies/init_dependencies.dart';
 import '../../../../../../../utils/constants/colors.dart';
 import '../../../../../../../utils/constants/enums.dart';
 import '../../../../../../../utils/constants/sizes.dart';

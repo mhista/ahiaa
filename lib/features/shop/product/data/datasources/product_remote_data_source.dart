@@ -1,5 +1,5 @@
 import 'package:ahiaa/core/cubits/imagePicker/image_picker.dart';
-import 'package:ahiaa/core/dependency/init_dependencies.dart';
+import 'package:ahiaa/core/dependencies/init_dependencies.dart';
 import 'package:ahiaa/features/shop/product/data/models/product_model.dart';
 import 'package:ahiaa/utils/exceptions/subabase/server_exceptions.dart';
 import 'package:flutter/material.dart';
@@ -80,14 +80,19 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
     try {
       final products = await supabaseClient
           .from('products')
-          .select('*, profiles (*)'); //profile(name)
-      return products
-          .map(
-            (product) => ProductModel.fromMap(
-              product,
-            ).copyWith(user: product['profiles']),
-          )
-          .toList();
+          .select('*') // Fetch only from the 'products' table
+          .limit(10); // Limit to the first 10 products
+      // .from('products')
+      // .select('*, profiles (*)'); //profile(name)
+      final productList =
+          products
+              .map(
+                (product) => ProductModel.fromMap(product),
+                // .copyWith(user: product['profiles']),
+              )
+              .toList();
+      debugPrint('products: $productList');
+      return productList;
     } catch (e) {
       throw ServerException(e.toString());
     }

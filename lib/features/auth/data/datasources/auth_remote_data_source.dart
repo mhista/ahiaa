@@ -1,4 +1,4 @@
-import 'package:ahiaa/core/dependency/init_dependencies.dart';
+import 'package:ahiaa/core/dependencies/init_dependencies.dart';
 import 'package:ahiaa/features/auth/data/models/user_model.dart';
 import 'package:ahiaa/utils/exceptions/subabase/server_exceptions.dart';
 import 'package:flutter/material.dart';

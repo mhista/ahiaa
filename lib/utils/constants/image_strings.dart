@@ -6,6 +6,7 @@ class PImages {
   //   SOCIAL LOGOSassets\logos\icon.png
   static const String google = 'assets/logos/google-icon.png';
   static const String facebook = 'assets/logos/facebook-icon.png';
+  static const String paypal = 'assets/logos/paypal.png';
 
   // DEFAULT IMAGES
   static const String defaultMultiImageIcon = 'assets/logos/image-upload.png';
@@ -17,7 +18,7 @@ class PImages {
   //   static const String dell = 'assets/images/logo_images/brand logos/dell.png';
   //   static const String hp = 'assets/images/logo_images/brand logos/hp.png';
   //   static const String ikea = 'assets/images/logo_images/brand logos/ikea.png';
-  //   static const String nike = 'assets/images/logo_images/brand logos/nike.png';
+  static const String nike = 'assets/logos/nike.png';
   //   static const String puma = 'assets/images/logo_images/brand logos/puma.png';
   //   static const String zara = 'assets/images/logo_images/brand logos/zara.png';
   //   static const String jordan =
@@ -72,7 +73,7 @@ class PImages {
   static const String p18 = 'assets/images/categories/p (18).jpg';
 
   //   // ICON3
-  static const String paypal = 'assets/icons/payment_methods/paypal.png';
+  // static const String paypal = 'assets/icons/payment_methods/paypal.png';
   static const String applePay = 'assets/icons/payment_methods/apple-pay.png';
   static const String creditCard =
       'assets/icons/payment_methods/credit-card.png';

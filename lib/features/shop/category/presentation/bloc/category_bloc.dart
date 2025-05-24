@@ -29,7 +29,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../core/dependency/init_dependencies.dart';
+import '../../../../../core/dependencies/init_dependencies.dart';
 import '../../domain/entities/category.dart';
 import '../../domain/usecases/get_all_categories.dart';
 import '../../domain/usecases/get_sub_categories.dart';

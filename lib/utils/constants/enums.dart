@@ -17,3 +17,17 @@ enum PaymentMethods {
 }
 
 enum ImageType { asset, network, memory, file }
+
+enum ProductListTypes {
+  normal,
+  fav,
+  featured,
+  brand,
+  store,
+  recommended,
+  category,
+  search,
+  cart,
+  order,
+  orderDetails,
+}

@@ -1,21 +1,23 @@
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PLocalStorage {
-  static final PLocalStorage _instance = PLocalStorage._internal();
+  static PLocalStorage? _instance;
   static SharedPreferences? _prefs;
-  String? _userBucket;
+  static String? _userBucket;
   PLocalStorage._internal();
 
   /// Get the singleton instance
-  static Future<PLocalStorage> getInstance() async {
-    _prefs ??= await SharedPreferences.getInstance();
-    return _instance;
+  factory PLocalStorage.instance() {
+    _instance ??= PLocalStorage._internal();
+    return _instance!;
   }
 
   /// Initialize SharedPreferences and set user bucket
-  Future<void> init(String userId) async {
+  static Future<void> init(String userId) async {
     _prefs ??= await SharedPreferences.getInstance();
     _userBucket = "user_$userId"; // Create bucket per user
+    debugPrint("User bucket: $_userBucket");
   }
 
   /// Get the key with the user bucket prefix
@@ -30,6 +32,7 @@ class PLocalStorage {
   Future<void> saveData<T>(String key, T value) async {
     if (_prefs == null) return;
     key = _getKeyWithBucket(key);
+    debugPrint("Saving key: $key, value: $value");
     if (value is String) {
       await _prefs!.setString(key, value);
     } else if (value is int) {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../dependency/init_dependencies.dart';
+import '../../../dependencies/init_dependencies.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/device/device_utility.dart';
 import '../../../../utils/helpers/helper_functions.dart';
@@ -9,10 +9,7 @@ import '../../../../features/shop/home/presentation/cubit/palette/color_cubit.da
 import '../../../../features/shop/store/presentation/cubit/expand_cubit.dart';
 
 class AnimatedPageSlide extends StatelessWidget {
-  const AnimatedPageSlide({
-    super.key,
-    this.child,
-  });
+  const AnimatedPageSlide({super.key, this.child});
   final Widget? child;
 
   @override
@@ -37,26 +34,28 @@ class AnimatedPageSlide extends StatelessWidget {
               // height: serviceLocator<ExpandCubit>().state
               //     ? PDeviceUtils.getScreenHeight(context)
               //     : PDeviceUtils.getScreenHeight(context) - 320,
-              decoration: serviceLocator<ExpandCubit>().state
-                  ? null
-                  : BoxDecoration(
-                      gradient: LinearGradient(
-                      begin: AlignmentDirectional.topCenter,
-                      end: AlignmentDirectional.bottomCenter,
-                      colors: [
-                        serviceLocator<ColorCubit>().state,
-                        serviceLocator<ColorCubit>().state.withOpacity(0.8),
-                        serviceLocator<ColorCubit>().state.withOpacity(0.7),
-                        serviceLocator<ColorCubit>().state.withOpacity(0.6),
-                        serviceLocator<ColorCubit>().state.withOpacity(0.5),
-                        PColors.transparent,
-                      ],
-                    )),
+              decoration:
+                  serviceLocator<ExpandCubit>().state
+                      ? null
+                      : BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: AlignmentDirectional.topCenter,
+                          end: AlignmentDirectional.bottomCenter,
+                          colors: [
+                            serviceLocator<ColorCubit>().state,
+                            serviceLocator<ColorCubit>().state.withOpacity(0.8),
+                            serviceLocator<ColorCubit>().state.withOpacity(0.7),
+                            serviceLocator<ColorCubit>().state.withOpacity(0.6),
+                            serviceLocator<ColorCubit>().state.withOpacity(0.5),
+                            PColors.transparent,
+                          ],
+                        ),
+                      ),
               duration: Duration(milliseconds: 500),
             );
           },
         ),
-        if (child != null) child!
+        if (child != null) child!,
       ],
     );
   }

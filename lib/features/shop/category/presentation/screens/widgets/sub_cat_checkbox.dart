@@ -2,7 +2,7 @@ import 'package:ahiaa/features/shop/category/domain/entities/category.dart';
 import 'package:ahiaa/features/shop/category/services/category_services.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../../core/dependency/init_dependencies.dart';
+import '../../../../../../core/dependencies/init_dependencies.dart';
 import '../../../../product/business_logic/cubits/sub_categories.dart';
 
 class SubcatCheckbox extends StatefulWidget {

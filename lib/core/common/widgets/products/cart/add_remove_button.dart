@@ -1,4 +1,6 @@
+import 'package:ahiaa/features/shop/cart/business_logic/bloc/cart_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../../../utils/constants/sizes.dart';
@@ -15,17 +17,17 @@ class ProductAddAndRemove extends StatelessWidget {
     required this.addBgColor,
     required this.minusColor,
     required this.minusBgColor,
-    required this.text,
     required this.addOnPressed,
     required this.minusOnPressed,
+    required this.valueWidget,
   });
   final double width, height;
   final double? size, spaceBetween;
   final Color addColor, addBgColor;
   final Color minusColor, minusBgColor;
-  final String text;
   final VoidCallback? addOnPressed;
   final VoidCallback? minusOnPressed;
+  final Widget valueWidget;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +44,7 @@ class ProductAddAndRemove extends StatelessWidget {
           onPressed: minusOnPressed,
         ),
         SizedBox(width: spaceBetween),
-        Text(text, style: Theme.of(context).textTheme.titleSmall),
+        valueWidget,
         SizedBox(width: spaceBetween),
         PCircularIcon(
           icon: Iconsax.add,

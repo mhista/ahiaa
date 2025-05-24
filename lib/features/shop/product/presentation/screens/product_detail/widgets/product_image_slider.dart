@@ -8,16 +8,15 @@ import '../../../../../../../core/common/widgets/appbar/app_bar.dart';
 import '../../../../../../../core/common/widgets/custom_shapes/curved_edges/curved_edges_widget.dart';
 import '../../../../../../../core/common/widgets/icons/favorite_icon.dart';
 import '../../../../../../../core/common/widgets/images/edge_rounded_images.dart';
+import '../../../../../../../core/entities/product.dart';
 import '../../../../../../../utils/constants/colors.dart';
 import '../../../../../../../utils/constants/sizes.dart';
 import '../../../../../../../utils/helpers/helper_functions.dart';
+import 'product_banner.dart';
 
 class ProductImageSlider extends StatelessWidget {
-  const ProductImageSlider({
-    super.key,
-    // required this.product,
-  });
-  // final ProductModel product;
+  const ProductImageSlider({super.key, required this.product});
+  final Products product;
   @override
   Widget build(BuildContext context) {
     // final controller = Get.put(ImageController());
@@ -28,13 +27,13 @@ class ProductImageSlider extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          child: PageSlider(carouselHeight: 200),
+          child: ProductPageSlider(carouselHeight: 200, product: product),
         ),
         SizedBox(
           height: 60,
           child: ListView.separated(
             padding: EdgeInsets.only(left: PSizes.spaceBtwItems),
-            itemCount: 3,
+            itemCount: product.images.length,
             shrinkWrap: true,
             scrollDirection: Axis.horizontal,
             physics: const AlwaysScrollableScrollPhysics(),
@@ -45,12 +44,12 @@ class ProductImageSlider extends StatelessWidget {
                 GestureDetector(
                   onTap: () {},
                   child: PCircularImage(
-                    // isNetworkImage: true,
+                    isNetworkImage: true,
                     fit: BoxFit.cover,
                     height: 60,
                     width: 60,
                     backgroundColor: isDark ? PColors.dark : PColors.white,
-                    imageUrl: PImages.p2,
+                    imageUrl: product.images[index],
                     // controller.selectedProductImage.value = images[index],
                   ),
                 ),
